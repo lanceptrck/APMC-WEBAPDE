@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>potato. - Discover good food and recipes</title>
+		<script>
+			function commentHeader(cUser, cImage, cBody, hCount){
+				this.cUser = cUser;
+				this.cImage = cImage;
+				this.cBody = cBody;
+				this.hCount = hCount;
+			}
+
+			var comments = [];
+			comments[0] = new commentHeader("iluvfood21", "images/lobster.jpg", "Great review! Hopefully I can go there and eat lobster soon! :)", 5);
+			comments[1] = new commentHeader("usaftw", "images/steak.jpg", "I still prefer steak, but hey! Surf and Turf is amazing.", 5);
+			comments[2] = new commentHeader("bluesky21", "images/sandwich.jpg", "I love it :D", 1);
+			comments[3] = new commentHeader("calidownsouth", "images/sushi.jpg", "This is an extensive well thought out review, who knew California has the best lobsters around!!!", 1);
+			comments[4] = new commentHeader("mammamia", "images/pizza.jpg", "This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!!", 0);
+
+			function populate(){
+				for(var i in comments){
+					var newElement = document.createElement('div');
+					newElement.className = "commentBox";
+					var commentBoxData = 
+					  	  "<img class = \"itemBoxImg\" src = \"" + comments[i].cImage + "\">"
+						+ "&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" + comments[i].cUser + "</font></b>"
+						+ "<p class = \"heartCount\">" + comments[i].hCount + "</p><img class = \"heartImg\" src = \"images/heart.jpg\">"
+						+ "<br><br>"
+						+ "<p class = \"commentText\">" + comments[i].cBody + "</p>";
+					newElement.innerHTML = commentBoxData;
+					document.getElementById("inbox").appendChild(newElement);
+				}
+			}
+			function search(){
+				var search = document.getElementById('searchBar').value;
+				alert("You searched for: " + search);
+			}
+		</script>
+		<style>
+			body{
+				margin: 0px;
+			}
+			.foodList{
+				background: url(images/registerBackground.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+    			overflow: auto;
+			}
+			.header{
+				background-color: rgb(175, 20, 20);
+				height: 47px;
+				width: 100%;
+				position: fixed;
+				z-index: 1;
+			}
+			.addButton{
+				width: 128px;
+				height: 128px;
+				top: 500px;
+				right: 16px;
+				position: fixed;
+				z-index: 1;
+			}
+			p.headName{
+				color: rgb(255, 255, 255);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 18px;
+				margin: 13px;
+				margin-left: 40px;
+				float: left;
+			}
+			p.heartCount{
+				margin: 0px;
+				padding-top: 19px;
+				color: rgba(10, 10, 10, 0.9);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 10px;
+				font-weight: bold;
+				float: right;
+			}
+			p.reviewHead{
+				margin: 0px;
+				padding-top: 20px;
+				padding-left: 15px;
+				color: rgba(10, 10, 10, 0.9);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 50px;
+				font-weight: bold;
+			}
+			p.recipeText{
+				margin: 0px;
+				padding-left: 20px;
+				padding-right: 20px;
+				line-height: 130%;
+				-webkit-columns: 2 200px;
+			    columns: 2 200px;
+			    -webkit-column-gap: 2em;
+			    column-gap: 2em;
+			    -webkit-column-rule: 1px solid #ddd;
+	            column-rule: 1px solid #ddd;
+			}
+			p.userTag{
+				margin: 0px;
+				padding-left: 20px;
+				color: rgba(10, 10, 10, 0.9);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 13px;
+				font-weight: bold;
+			}
+			p.sideText{
+    			margin-left: 30px;
+    			float: left;
+    			position: relative;
+    		}
+    		p.userName{
+				margin-top: 53px;
+				font-size: 11px;
+				line-height: 150%;
+			}
+			p.commentText{
+				margin: 0px;
+				margin-left: 55px;
+				margin-right: 55px;
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 11px;
+				line-height: 120%;
+			}
+    		.slideOutBar{
+				padding: 13px;
+				padding-top: 37px;
+				background: rgb(60, 60, 60);
+				box-shadow: 0.5px 0.5px 1px rgb(60, 60, 60);
+				color: rgb(255, 255, 255);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 12px;
+				width: 240px;
+				height: 100%;
+				top: 47px;
+				left: -268px;
+				position: fixed;
+				z-index: 1;
+			}
+			.sideBox{
+				padding: 10px;
+				height: 20px;
+				width: 220px;
+				border-radius: 5px;
+    		}
+    		.sideBox:hover{
+    			background: rgb(118, 118, 118); 
+    		}
+			.menuBox{
+				color: rgba(10, 10, 10, 0.9);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 14px;
+				background-color: rgb(255, 255, 255);
+    			border-radius: 5px;
+    			box-shadow: 0.5px 0.5px 1px #888888 inset;
+    			width: 1000px;
+    			height: auto;
+    			top: 15%;
+    			left: 10%;
+    			padding: 30px;
+    			position: absolute;
+			}
+			.commentBox{
+				color: rgba(10, 10, 10, 0.9);
+				background-color: rgb(255, 255, 255);
+    			border-radius: 5px;
+    			box-shadow: 0.5px 0.5px 1px #888888 inset;
+    			width: 900px;
+    			height: auto;
+    			padding: 15px;
+    			left: 30px;
+    			position: relative;
+			}
+			.commentBox:hover{
+      			border: 1px solid rgba(0, 0, 0, 0.3);
+    		}
+    		img.favorited{
+    			margin: 0px;
+    			padding-left: 15px;
+    			background-repeat: no-repeat;
+    			background-position: 50%;
+    			width: 27px;
+    			height: 25px;
+    		}
+			img.itemBoxImg{
+    			background-repeat: no-repeat;
+    			background-position: 50%;
+    			border-radius: 50%;
+    			width: 40px;
+    			height: 40px;
+    			float: left;
+			}
+			img.userImg{
+				margin-right: 15px;
+    			background-repeat: no-repeat;
+    			background-position: 50%;
+    			border-radius: 50%;
+    			border: solid 1px rgb(255, 255, 255);
+    			width: 80px;
+    			height: 80px;
+    			float: left;
+			}
+    		img.reviewImg{
+    			margin: 20px;
+    			background-repeat: no-repeat;
+    			background-position: 50%;
+    			border-radius: 50%;
+    			width: 200px;
+    			height: 200px;
+    			float: right;
+			}
+			img.sideImg{
+				margin-right: 30px;
+				height: 16px;
+				width: 16px;
+				float: left;
+			}
+			img.heartImg{
+				background-repeat: no-repeat;
+    			width: 20px;
+    			height: 18px;
+    			padding-top: 10px;
+    			padding-left: 10px;
+    			float: right;
+			}
+			img.postImg{
+				background-repeat: no-repeat;
+    			width: 80px;
+    			height: 80px;
+    			padding-top: 10px;
+    			padding-left: 10px;
+			}
+			#nav-toggle{
+				position: absolute;
+				top: 25%;
+				left: 1%;
+				cursor: pointer;
+				padding: 10px 35px 16px 0px;
+			}
+			#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+  				cursor: pointer;
+  				height: 1px;
+  				width: 15px;
+  				background: white;
+  				position: absolute;
+  				display: block;
+  				content: '';
+			}
+			#nav-toggle span:before{
+  				top: -6px; 
+			}
+			#nav-toggle span:after{
+  				bottom: -6px;
+			}
+			#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+  				transition: all 500ms ease-in-out;
+			}
+			#nav-toggle.active span{
+  				background-color: transparent;
+			}
+			#nav-toggle.active span:before, #nav-toggle.active span:after{
+  				top: 0;
+			}
+			#nav-toggle.active span:before{
+  				transform: rotate(45deg);
+			}
+			#nav-toggle.active span:after{
+  				transform: rotate(-45deg);
+			}
+			input[type=search]{
+				margin: 13px;
+				float: right;
+				top: 0px;
+				background: url(images/searchIcon.png) no-repeat 0px center;
+				background-size: 20px 20px;
+				border: 0px;
+				height: 22px;
+				width: 22px;
+				color: transparent;
+				cursor: pointer;
+				-webkit-border-radius: 1em;
+				border-radius: 1em;
+				-webkit-transition: width .5s;
+				transition: width .5s;
+			}
+			input::-webkit-search-decoration, input::-webkit-search-cancel-button{
+				display: none;
+			}
+			input[type=search]:focus{
+				background: rgb(255, 255, 255);
+				color: rgb(10, 10, 10);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 13px;
+    			box-shadow: 0.5px 0.5px 1px #888888 inset;
+				width: 230px;
+				padding-left: 6px;
+				padding-right: 6px;
+				cursor: auto;
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class = "foodList">
+			<header class = "header">
+				<a id = "nav-toggle" href = "#"><span></span></a>
+				<script src = "jquery-2.1.3.min.js"></script>
+				<script>
+					var clicked = 0;
+					document.querySelector("#nav-toggle").addEventListener("click", function(){
+						this.classList.toggle("active");
+						if(clicked == 0){
+							$(".slideOutBar").animate({left: "0px"}, 300);
+							clicked = 1;
+						}
+						else{
+							$(".slideOutBar").animate({left: "-268px"}, 300);
+							clicked = 0;
+						}
+  					});
+				</script>
+				<p class = "headName">potato.</p>
+				<input type = "search" id = "searchBar">
+			</header>
+			<div class = "slideOutBar">
+				<img class = "userImg" src = "images/account.jpg">
+				<p class = "userName">
+					<font size = "3">Chino Tapales</font>
+					<br>
+					chinotapales
+				</p>
+				<hr>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sHeart.png">Favorites
+				</div>
+				<hr>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sGlass.png">Fine Dining
+				</div>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sApple.png">Eat Healthy
+				</div>
+				<hr>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sLogout.png">Sign Out
+				</div>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sSettings.png">Settings
+				</div>
+			</div>
+			<div class = "menuBox" id = "inbox">
+				<img class = "reviewImg" src = "images/lobsterTail.jpg">
+				<p class = "reviewHead">Broiled Lobster Tails with Garlic-Chili Butter.<img class = "favorited" src = "images/heart.jpg"></p>
+				<p class = "userTag">by iluvfood21</p>
+				<br><br><br>
+				<p class = "recipeText">
+					<b>Ingredients</b>
+					<br><br>
+					4 8 ounces fresh or frozen lobster tails<br>
+					1 teaspoon finely shredded orange peel<br>
+					1/2 teaspoon chili powder<br>
+					1 clove garlic, minced<br>
+					1/4 cup butter<br>
+  					Clarified Butter (optional)
+  					<br><br>
+  					<b>Directions</b>
+  					<br><br>
+					Thaw lobster tails, if frozen. Preheat broiler. Butterfly the lobster tails by cutting through the center of the hard top shells and meat. Spread the halves of tails apart. Place lobster tails, meat side up, on the unheated rack of a broiler pan.
+					<br><br>
+					In a small skillet cook garlic, orange peel, and chili powder in butter over medium heat about 30 seconds or until garlic is tender. Brush mixture over lobster meat.
+					<br><br>
+					Broil 4 inches from heat for 12 to 14 minutes or until lobster meat is opaque. If desired, serve with Clarified Butter.
+					<br><br>
+					Makes 4 lobster tails
+					<br><br>
+					<b>Nutrition Facts</b>
+					<br><br>
+					Per serving: 238 kcal cal., 14 g fat (6 g sat. fat, 1 g polyunsaturated fat, 5 g monounsatured fat), 167 mg chol., 509 mg sodium, 1 g carb., 0 g fiber, 0 g sugar, 27 g pro.
+					<br><br>
+					Percent Daily Values are based on a 2,000 calorie diet
+				</p>
+				<br><br><br>
+				<script>populate();</script>
+			</div>
+			<div class = "addButton">
+				<img class = "postImg" src = "images/addButton.png">
+			</div>
+		</div>
+	</body>
+</html>

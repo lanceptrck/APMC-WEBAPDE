@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sign up for potato.</title>
+		<script>
+			function register(){
+				var fullname = document.getElementById('fullname').value;
+				var email = document.getElementById('email').value;
+				var password = document.getElementById('password').value;
+				var username = document.getElementById('username').value;
+				alert("Full name: " + fullname + "\nEmail: " + email + "\nPassword: " + password + "\nUsername: " + username);
+			}
+		</script>
+		<style>
+			body{
+				margin: 0px;
+			}
+			.registerPage{
+				background: url(images/registerBackground.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+			.header{
+				background-color: rgb(175, 20, 20);
+				height: 47px;
+				width: 100%;
+				position: fixed;
+				z-index: 1;
+			}
+			p.headName{
+				color: rgb(255, 255, 255);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 18px;
+				margin: 13px;
+				float: left;
+			}
+			p.registerHead{
+				margin: 0px;
+				padding: 0px;
+				color: rgba(10, 10, 10, 0.9);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 56px;
+				font-weight: bold;
+			}
+			.registerBox{
+				background-color: rgb(255, 255, 255);
+    			border-radius: 5px;
+    			box-shadow: 0.5px 0.5px 1px #888888 inset;
+    			width: 350px;
+    			height: 350px;
+    			top: 20%;
+    			left: 35%;
+    			padding: 30px;
+    			padding-left: 45px;
+    			padding-right: 0px;
+    			position: absolute;
+			}
+			.rBox{
+				color: rgb(10, 10, 10);
+				font-style: arial;
+				font-family: sans-serif;
+				font-size: 13px;
+				height: 25px;
+				width: 295px;
+				border: 1px solid rgba(0,0,0,0.15);
+    			border-radius: 3px;
+      			opacity: 1.0;
+			}
+    		.rBox:hover{
+      			border: 1px solid rgba(0,0,0,0.3);
+    		}
+    		.rBox:active{
+      			border: 1px solid rgb(66,133,244);
+      			opacity: 0.8;
+    		}
+    		.rBox::-webkit-input-placeholder{
+    			color: rgb(118, 118, 118);
+			}
+    		.registerButton{
+    			font-style: arial;
+				font-family: sans-serif;
+				font-weight: bold;
+				font-size: 11px;
+				padding-top: 5px;
+    			border-radius: 3px;
+    			height: 2.5em;
+    			width: 27em;
+    			border: 0px;
+    			opacity: 0.8;
+    		}
+    		.registerButton:hover{
+      			border: 1px solid rgba(0,0,0,0.3);
+    		}
+    		.registerButton:active{
+    			background-color: rgb(168, 168, 168);
+    			border: 1px solid rgb(66,133,244);
+    		}
+    		.registerButton:focus{
+    			outline: 0;
+    		}
+		</style>
+	</head>
+	<body>
+		<div class = "registerPage">
+			<div class = "header">
+				<p class = "headName">potato.</p>
+			</div>
+			<div class = "registerBox">
+				<p class = "registerHead">Sign up for potato.</p>
+				<br>
+				<br>
+				<input type = "text" placeholder = "Full name" class = "rBox" id = "fullname"/>
+				<br>
+				<br>
+				<input type = "text" placeholder = "Email" class = "rBox" id = "email"/>
+				<br>
+				<br>
+				<input type = "password" placeholder = "Password" class = "rBox" id = "password"/>
+				<br>
+				<br>
+				<input type = "text" placeholder = "Username" class = "rBox" id = "username"/>
+				<br>
+				<br>
+				<button class = "registerButton" onclick = "register();">Register</button>
+			</div>
+		</div>
+	</body>
+</html>
