@@ -50,6 +50,14 @@ body{
 	position: fixed;
 	z-index: 1;
 }
+p.welcomeHeadName{
+	color: rgb(255, 255, 255);
+	font-style: arial;
+	font-family: sans-serif;
+	font-size: 18px;
+	margin: 13px;
+	float: left;
+}
 p.headName{
 	color: rgb(255, 255, 255);
 	font-style: arial;
