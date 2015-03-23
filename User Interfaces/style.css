@@ -562,6 +562,10 @@ ul.tabs{
 	padding: 0px;
 	list-style: none;
 }
+ul.tabs li:hover{
+	border-bottom: 3px solid;
+	border-color: rgb(175, 20, 20);
+}
 ul.tabs li{
 	background: none;
 	display: inline-block;
@@ -569,6 +573,7 @@ ul.tabs li{
 	cursor: pointer;
 }
 ul.tabs li.current{
+	font-weight: bold;
 	background: rgb(255, 255, 255);
 	border-bottom: 3px solid;
 	border-color: rgb(175, 20, 20);
