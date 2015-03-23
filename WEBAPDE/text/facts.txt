@@ -1,0 +1,45 @@
+10001
+100g protein
+8g fat
+10mg sodium
+;
+10002
+100 kcal
+3g fat
+10g protein
+;
+10003
+100 kcal
+3g fat
+10g protein
+;
+10004
+100 kcal
+3g fat
+10g protein
+;
+10005
+100 kcal
+3g fat
+10g protein
+;
+10006
+100 kcal
+3g fat
+10g protein
+;
+10007
+100 kcal
+3g fat
+10g protein
+;
+10008
+100 kcal
+3g fat
+10g protein
+;
+10009
+Per serving: 238 kcal cal., 14 g fat (6 g sat. fat, 1 g polyunsaturated fat, 5 g monounsatured fat), 167 mg chol., 509 mg sodium, 1 g carb., 0 g fiber, 0 g sugar, 27 g pro. 
+
+Percent Daily Values are based on a 2,000 calorie diet
+;

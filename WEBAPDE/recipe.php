@@ -10,14 +10,16 @@
 	if(isset($_SESSION["username"]))
 	{
 		$loggedIn_account = getAccount($_SESSION["username"]);
-		include 'userhome.php';
+		$recipe_id = $_GET["link"];
+		$recipe = getRecipeById($recipe_id);
 
 	}
 
 	else
 	{
 		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');	
+		header('Refresh: 3; URL=index.php');
+		exit;	
 	}
 
 ?>
@@ -65,7 +67,7 @@
 		<div class = "foodList">
 			<header class = "header">
 				<a id = "nav-toggle" href = "#"><span></span></a>
-				<script src = "jquery-2.1.3.min.js"></script>
+				<script src = "js/jquery-2.1.3.min.js"></script>
 				<script>
 					var clicked = 0;
 					document.querySelector("#nav-toggle").addEventListener("click", function(){
@@ -80,11 +82,11 @@
 						}
   					});
 				</script>
-				<p class = "headName">potato.</p>
+				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
-				<img class = "userImg" src = "images/account.jpg">
+				<img class = "userImg" src = "images/<?php echo $loggedIn_account->getImg()?>">
 				<p class = "userName">
 					<font size = "3"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?></font>
 					<br>
@@ -110,35 +112,23 @@
 				</div>
 			</div>
 			<div class = "menuBox" id = "inbox">
-				<img class = "reviewImg" src = "images/lobsterTail.jpg">
-				<p class = "reviewHead">Broiled Lobster Tails with Garlic-Chili Butter.<img class = "favorited" src = "images/heart.jpg"></p>
-				<p class = "userTag">by iluvfood21</p>
+				<img class = "reviewImg" src = "<?php echo $recipe->get_recipeimg()?>">
+				<p class = "reviewHead"> <?php echo $recipe->get_recipename(); ?> <img class = "favorited" src = "images/heart.jpg"></p>
+				<p class = "userTag">by <?php echo getAccountName($recipe->get_accid()); ?> </p>
 				<br><br><br>
 				<p class = "recipeText">
 					<b>Ingredients</b>
 					<br><br>
-					4 8 ounces fresh or frozen lobster tails<br>
-					1 teaspoon finely shredded orange peel<br>
-					1/2 teaspoon chili powder<br>
-					1 clove garlic, minced<br>
-					1/4 cup butter<br>
-  					Clarified Butter (optional)
-  					<br><br>
+					<?php echo $recipe->get_ingredients(); ?>
+  					<br>
   					<b>Directions</b>
   					<br><br>
-					Thaw lobster tails, if frozen. Preheat broiler. Butterfly the lobster tails by cutting through the center of the hard top shells and meat. Spread the halves of tails apart. Place lobster tails, meat side up, on the unheated rack of a broiler pan.
-					<br><br>
-					In a small skillet cook garlic, orange peel, and chili powder in butter over medium heat about 30 seconds or until garlic is tender. Brush mixture over lobster meat.
-					<br><br>
-					Broil 4 inches from heat for 12 to 14 minutes or until lobster meat is opaque. If desired, serve with Clarified Butter.
-					<br><br>
-					Makes 4 lobster tails
-					<br><br>
+					<?php echo $recipe->get_directions(); ?>
+					<br>
 					<b>Nutrition Facts</b>
 					<br><br>
-					Per serving: 238 kcal cal., 14 g fat (6 g sat. fat, 1 g polyunsaturated fat, 5 g monounsatured fat), 167 mg chol., 509 mg sodium, 1 g carb., 0 g fiber, 0 g sugar, 27 g pro.
-					<br><br>
-					Percent Daily Values are based on a 2,000 calorie diet
+					<?php echo $recipe ->get_facts(); ?>
+
 				</p>
 				<br><br><br>
 				<script>populate();</script>

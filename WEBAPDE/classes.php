@@ -10,17 +10,19 @@ class recipe
 	private $directions;
 	private $facts;
 	private $fave_count;
+	private $review_count;
 
-	function __construct($id, $name, $accid, $img, $ing, $dir, $fac, $cnt)
+	function __construct($id, $name, $accid, $img, $ing, $dir, $fac, $fcnt, $rcnt)
 	{
 		$this->recipe_id = $id;
 		$this->recipe_name = $name;
 		$this->account_id = $accid;
 		$this->recipeImg = $img;
-		$this->$ingredients = $ing;
+		$this->ingredients = $ing;
 		$this->directions = $dir;
 		$this->facts = $fac;
-		$this->fave_count = $cnt;
+		$this->fave_count = $fcnt;
+		$this->review_count = $rcnt;
 	}
 
 	function loadComments()
@@ -36,6 +38,66 @@ class recipe
 	function deleteComment()
 	{
 
+	}
+
+	function set_ingredients($input)
+	{
+		$this->ingredients = $input;
+	}
+
+	function set_directions($input)
+	{
+		$this->directions = $input;
+	}
+
+	function set_facts($input)
+	{
+		$this->facts = $input;
+	}
+
+	function get_recipeid()
+	{
+		return $this->recipe_id;
+	}
+
+	function get_recipename()
+	{
+		return $this->recipe_name;
+	}
+
+	function get_accid()
+	{
+		return $this->account_id;
+	}
+
+	function get_recipeimg()
+	{
+		return $this->recipeImg;
+	}
+
+	function get_ingredients()
+	{
+		return $this->ingredients;
+	}
+
+	function get_directions()
+	{
+		return $this->directions;
+	}
+
+	function get_facts()
+	{
+		return $this->facts;
+	}
+
+	function get_favecounts()
+	{
+		return $this->fave_count;
+	}
+
+	function get_reviewcounts()
+	{
+		return $this->review_count;
 	}
 }
 
@@ -103,7 +165,7 @@ class account
 
 	function getAccid()
 	{
-		return $this->accountId;
+		return $this->account_id;
 	}
 }
 
