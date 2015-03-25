@@ -275,7 +275,7 @@ p.signInText{
 	padding-top: 5px;
     border-radius: 3px;
     height: 2.5em;
-    width: 10em;
+    width: 7em;
     border: 0px;
     opacity: 0.8;
     float: right;
@@ -287,7 +287,7 @@ p.signInText{
 	padding-top: 5px;
     border-radius: 3px;
     height: 2.5em;
-    width: 10em;
+    width: 7em;
     border: 0px;
     opacity: 0.8;
     float: left;
@@ -679,4 +679,7 @@ ul.tabs li.current{
 }
 #postButton:focus{
     outline: 0;
+}
+#postButton:hover{
+	cursor: pointer;
 }

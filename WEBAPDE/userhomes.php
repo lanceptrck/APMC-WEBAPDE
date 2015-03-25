@@ -59,40 +59,40 @@
 						}
   					});
 				</script>
-				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
+				<p class = "headName">potato.</p>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
-				<img class = "userImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>">
+				<img class = "userImg" src = "images/<?php echo $loggedIn_account->getImg()?>">
 				<p class = "userName">
 					<font size = "3"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?></font>
 					<br>
 					<?php echo $loggedIn_account->getUser(); ?>
 				</p>
 				<hr>
-				<a href="#" class ="no"><div class = "sideBox">
+				<div class = "sideBox">
 					<img class = "sideImg" src = "images/sHeart.png">Favorites
-				</div></a>
+				</div>
 				<hr>
-				<a href="home.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sGlass.png">Recipes
-				</div></a>
-				<a href="home-review.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sApple.png">Reviews
-				</div></a>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sGlass.png">Fine Dining
+				</div>
+				<div class = "sideBox">
+					<img class = "sideImg" src = "images/sApple.png">Eat Healthy
+				</div>
 				<hr>
-				<a href="logout.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sLogout.png">Logout
-				</div></a>
-				<a href="#" class ="no"><div class = "sideBox">
+				<div class = "sideBox">
+					<a href="logout.php"><img class = "sideImg" src = "images/sLogout.png"></a>Logout
+				</div>
+				<div class = "sideBox">
 					<img class = "sideImg" src = "images/sSettings.png">Settings
-				</div></a>
+				</div>
 			</div>
 			<div class = "menuBox" id = "inbox">
 				<p class = "menuHead">The best food in Los Angeles.</p>
 				<br>
 				<br>
-				<?php populateRecipeList(); ?>
+				<script>populate();</script>
 			</div>
 			<div class = "addButton">
 				<a href="post.php"><img class = "postImg" src = "images/addButton.png"></a>

@@ -10,17 +10,17 @@
 	if(isset($_SESSION["username"]))
 	{
 		$loggedIn_account = getAccount($_SESSION["username"]);
+		if(!isset($_GET["link"]))
+		{
+			echo "<h1 align=\"center\">No review selected.</h1>";
+			header('Refresh: 3; URL=home-review.php');
+			exit;
 
-	if(!isset($_GET["link"]))
-	{
-		echo "<h1 align=\"center\">No recipe selected.</h1>";
-		header('Refresh: 3; URL=home.php');
-		exit;
-	} else {	
+		} else {	
 
-		$recipe_id = $_GET["link"];
-		$recipe = getRecipeById($recipe_id);
-	}
+			$review_id = $_GET["link"];
+			$review = getReviewById($review_id);
+		}
 
 	}
 
@@ -32,6 +32,7 @@
 	}
 
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -65,6 +66,19 @@
 					document.getElementById("inbox").appendChild(newElement);
 				}
 			}
+			function displayRating(stars){
+				var i;
+				for(i = 0; i < 5; i++){
+					var newElement = document.createElement('div');
+					newElement.className = "fLeft";
+					if(i < stars)
+						var starImgData = "<img class = \"starImg\" src = \"images/star.jpg\">";
+					else 
+						var starImgData = "<img class = \"starImg\" src = \"images/hollowStar.png\">";
+					newElement.innerHTML = starImgData;
+					document.getElementById("rating").appendChild(newElement);
+				}
+			}
 			function search(){
 				var search = document.getElementById('searchBar').value;
 				alert("You searched for: " + search);
@@ -91,7 +105,7 @@
 						}
   					});
 				</script>
-				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
+				<p class = "headName">potato.</p>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
@@ -121,25 +135,18 @@
 				</div></a>
 			</div>
 			<div class = "menuBox" id = "inbox">
-				<img class = "reviewImg" src = "images/recipe/<?php echo $recipe->get_recipeimg()?>">
-				<p class = "reviewHead"> <?php echo $recipe->get_recipename(); ?> <img class = "favorited" src = "images/heart.jpg"></p>
-				<p class = "userTag">by <?php echo getAccountName($recipe->get_accid()); ?> </p>
-				<br><br><br>
-				<p class = "recipeText">
-					<b>Ingredients</b>
-					<br><br>
-					<?php echo $recipe->get_ingredients(); ?>
-  					<br>
-  					<b>Directions</b>
-  					<br><br>
-					<?php echo $recipe->get_directions(); ?>
-					<br>
-					<b>Nutrition Facts</b>
-					<br><br>
-					<?php echo $recipe ->get_facts(); ?>
-
+				<img class = "reviewImg" src = "images/review/<?php echo $review->get_reviewimg()?>">
+				<p class = "reviewHead"> <?php echo $review->get_reviewname(); ?> <img class = "favorited" src = "images/heart.jpg"></p>
+				<p class = "userTag">by <?php echo getAccountName($review->get_accid()); ?> </p>
+				<br><br>
+				<p class = "reviewText">
+					<?php echo $review->get_reviewtext(); ?>
 				</p>
-				<br><br><br>
+				<br>
+				<div id = "rating">
+					<script>displayRating(<?php echo $review->get_reviewcounts(); ?>);</script>
+				</div>
+				<br><br>
 				<script>populate();</script>
 			</div>
 			<div class = "addButton">

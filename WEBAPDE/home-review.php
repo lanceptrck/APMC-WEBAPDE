@@ -1,3 +1,27 @@
+<?php
+
+	session_start();
+
+	include 'functions.php';
+
+	loadAll();
+
+
+	if(isset($_SESSION["username"]))
+	{
+		$loggedIn_account = getAccount($_SESSION["username"]);
+
+	}
+
+	else
+	{
+		echo "You are not logged in.";
+		header('Refresh: 3; URL=index.php');	
+	}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -89,10 +113,10 @@
 				</div></a>
 			</div>
 			<div class = "menuBox" id = "inbox">
-				<p class = "menuHead">The best food in Los Angeles.</p>
+				<p class = "menuHead"> Exceptional reviews, brought by potato. </p>
 				<br>
 				<br>
-				<?php populateRecipeList(); ?>
+				<?php populateReviewList(); ?>
 			</div>
 			<div class = "addButton">
 				<a href="post.php"><img class = "postImg" src = "images/addButton.png"></a>

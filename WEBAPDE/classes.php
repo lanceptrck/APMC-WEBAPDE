@@ -10,9 +10,8 @@ class recipe
 	private $directions;
 	private $facts;
 	private $fave_count;
-	private $review_count;
 
-	function __construct($id, $name, $accid, $img, $ing, $dir, $fac, $fcnt, $rcnt)
+	function __construct($id, $name, $accid, $img, $ing, $dir, $fac, $fcnt)
 	{
 		$this->recipe_id = $id;
 		$this->recipe_name = $name;
@@ -22,7 +21,6 @@ class recipe
 		$this->directions = $dir;
 		$this->facts = $fac;
 		$this->fave_count = $fcnt;
-		$this->review_count = $rcnt;
 	}
 
 	function loadComments()
@@ -94,11 +92,85 @@ class recipe
 	{
 		return $this->fave_count;
 	}
+}
+
+class review
+{
+	private $review_id;
+	private $review_name;
+	private $account_id;
+	private $reviewImg;
+	private $review_text;
+	private $fave_count;
+	private $review_count;
+
+	function __construct($id, $name, $accid, $img, $fcnt, $rcnt)
+	{
+		$this->review_id = $id;
+		$this->review_name = $name;
+		$this->account_id = $accid;
+		$this->reviewImg = $img;
+		$this->fave_count = $fcnt;
+		$this->review_count = $rcnt;
+	}
+
+	function loadComments()
+	{
+
+	}
+
+	function postComment()
+	{
+
+	}
+
+	function deleteComment()
+	{
+
+	}
+
+	function set_reviewtext($input)
+	{
+		$this->review_text = $input;
+	}
+
+	function get_reviewid()
+	{
+		return $this->review_id;
+	}
+
+	function get_reviewname()
+	{
+		return $this->review_name;
+	}
+
+	function get_accid()
+	{
+		return $this->account_id;
+	}
+
+	function get_reviewimg()
+	{
+		return $this->reviewImg;
+	}
+
+	function get_reviewtext()
+	{
+		return $this->review_text;
+	}
+
+	function get_favecounts()
+	{
+		return $this->fave_count;
+	}
 
 	function get_reviewcounts()
 	{
 		return $this->review_count;
 	}
+
+
+
 }
 
 class account

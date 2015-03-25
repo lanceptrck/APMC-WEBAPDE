@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Review Page creator</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      body{
+        margin: 0px;
+      }
+      .foodList{
+        background: url(images/foodListBackground.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+          overflow: auto;
+      }
+      .header{
+        background-color: rgb(175, 20, 20);
+        height: 47px;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+      }
+      p.headName{
+        color: rgb(255, 255, 255);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 18px;
+        margin: 13px;
+        margin-left: 50px;
+        float: left;
+      }
+      p.menuHead{
+        margin: 0px;
+        padding-top: 25px;
+        padding-left: 25px;
+        color: rgba(10, 10, 10, 0.9);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 42px;
+        font-weight: bold;
+      }
+      p.heartCount{
+        margin: 0px;
+        padding-top: 19px;
+        color: rgba(10, 10, 10, 0.9);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        float: right;
+      }
+      p.headSearch{
+        margin: 13px;
+        float: right;
+        top: 0px;
+      }
+      p.userName{
+        margin-top: 53px;
+        font-size: 11px;
+        line-height: 150%;
+      }
+      .menuBox{
+        color: rgb(118, 118, 118);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 14px;
+        background-color: rgb(255, 255, 255);
+          border-radius: 5px;
+          box-shadow: 0.5px 0.5px 1px #888888 inset;
+          width: 1000px;
+          height: auto;
+          top: 15%;
+          left: 10%;
+          padding: 30px;
+          position: absolute;
+      }
+      .sBox{
+        height: 20px;
+        width: 800px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+          border-radius: 3px;
+            opacity: 1.0;
+      }
+        .sBox:hover{
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+        .sBox:active{
+            border: 1px solid rgb(66, 133, 244);
+            opacity: 0.8;
+        }
+        .searchButton{
+          font-style: arial;
+        font-family: sans-serif;
+        font-weight: bold;
+        padding-top: 5px;
+          border-radius: 3px;
+          height: 2.3em;
+          width: 6em;
+          border: 0px;
+          opacity: 0.8;
+        }
+        .searchButton:hover{
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+        .searchButton:active{
+          background-color: rgb(168, 168, 168);
+          border: 1px solid rgb(66, 133, 244);
+        }
+        .searchButton:focus{
+          outline: 0;
+        }
+        .itemBox{
+        color: rgba(10, 10, 10, 0.9);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 11px;
+        background-color: rgb(255, 255, 255);
+          border-radius: 5px;
+          box-shadow: 0.5px 0.5px 1px #888888 inset;
+          width: 840px;
+          height: 35px;
+          padding: 15px;
+          left: 60px;
+          position: relative;
+      }
+      .slideOutBar{
+        padding: 13px;
+        padding-top: 37px;
+        background: rgb(60, 60, 60);
+        box-shadow: 0.5px 0.5px 1px rgb(60, 60, 60);
+        color: rgb(255, 255, 255);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 12px;
+        width: 240px;
+        height: 100%;
+        top: 47px;
+        left: -268px;
+        position: fixed;
+        z-index: 1;
+      }
+      .sideBox{
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+      img.userImg{
+        margin-right: 15px;
+          background-repeat: no-repeat;
+          background-position: 50%;
+          border-radius: 50%;
+          border: solid 1px rgb(255, 255, 255);
+          width: 80px;
+          height: 80px;
+          float: left;
+      }
+        img.reviewImg{
+          margin: 20px;
+          background-repeat: no-repeat;
+          background-position: 50%;
+          border-radius: 50%;
+          width: 200px;
+          height: 200px;
+          float: right;
+      }
+      img.sideImg{
+        margin-right: 30px;
+        height: 16px;
+        width: 16px;
+        float: left;
+      }
+      .itemBox:hover{
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+        img.itemBoxImg{
+          background-repeat: no-repeat;
+          background-position: 50%;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          float: left;
+      }
+      img.heartImg{
+        background-repeat: no-repeat;
+          width: 20px;
+          height: 18px;
+          padding-top: 10px;
+          padding-left: 10px;
+          float: right;
+      }
+      #nav-toggle{
+        position: absolute;
+        top: 25%;
+        left: 1%;
+        cursor: pointer;
+        padding: 10px 35px 16px 0px;
+        opacity: 0.8;
+      }
+      #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+          cursor: pointer;
+          height: 2px;
+          width: 20px;
+          background: white;
+          position: absolute;
+          display: block;
+          content: '';
+      }
+      #nav-toggle span:before{
+          top: -6px; 
+      }
+      #nav-toggle span:after{
+          bottom: -6px;
+      }
+      #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+          transition: all 500ms ease-in-out;
+      }
+      #nav-toggle.active span{
+          background-color: transparent;
+      }
+      #nav-toggle.active span:before, #nav-toggle.active span:after{
+          top: 0;
+      }
+      #nav-toggle.active span:before{
+          transform: rotate(45deg);
+      }
+      #nav-toggle.active span:after{
+          transform: rotate(-45deg);
+      }
+      input[type=search]{
+        background: url(images/searchIcon.png) no-repeat 0px center;
+        background-size: 24px 24px;
+        border: 0px;
+        height: 22px;
+        width: 22px;
+        color: transparent;
+        cursor: pointer;
+        -webkit-border-radius: 1em;
+        border-radius: 1em;
+        -webkit-transition: width .5s;
+        transition: width .5s;
+      }
+      input::-webkit-search-decoration, input::-webkit-search-cancel-button{
+        display: none;
+      }
+      input[type=search]:focus{
+        background: rgb(255, 255, 255);
+        color: rgb(10, 10, 10);
+        font-style: arial;
+        font-family: sans-serif;
+        font-size: 13px;
+          box-shadow: 0.5px 0.5px 1px #888888 inset;
+        width: 230px;
+        padding-left: 6px;
+        padding-right: 6px;
+        cursor: auto;
+        outline: 0;
+      }
+    </style>
+	</head>
+	<body>
+<!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  
+      <header class = "header">
+        <a id= "nav-toggle" href = "#"><span></span></a>
+        <script src = "js/jquery-2.1.3.min.js"></script>
+        <script>
+          var clicked = 0;
+          document.querySelector("#nav-toggle").addEventListener("click", function(){
+            this.classList.toggle("active");
+            if(clicked == 0){
+              $(".slideOutBar").animate({left: "0px"}, 300);
+              clicked = 1;
+            }
+            else{
+              $(".slideOutBar").animate({left: "-268px"}, 300);
+              clicked = 0;
+            }
+            });
+        </script>
+        <p class = "headName">potato.</p>
+        <p class = "headSearch"><input type = "search"></p>
+      </hedaer>
+
+  <div class = "slideOutBar">
+        <img class = "userImg" src = "images/account.jpg">
+        <p class = "userName">
+          <font size = "3">Chino Tapales</font>
+          <br>
+          chinotapales
+        </p>
+        <hr>
+        <div class = "sideBox">
+          <img class = "sideImg" src = "images/sHeart.png">Favorites
+        </div>
+        <hr>
+        <div class = "sideBox">
+          <img class = "sideImg" src = "images/sGlass.png">Fine Dining
+        </div>
+        <div class = "sideBox">
+          <img class = "sideImg" src = "images/sApple.png">Eat Healthy
+        </div>
+        <hr>
+        <div class = "sideBox">
+          <img class = "sideImg" src = "images/sLogout.png">Sign Out
+        </div>
+        <div class = "sideBox">
+          <img class = "sideImg" src = "images/sSettings.png">Settings
+        </div>
+    </div>
+</div>
+
+    
+              <DIV class="container-fluid">
+                <div class = "row">
+                
+                <div class="col-sm-12">
+                  
+               
+              	<div class="panel panel-default">
+                	<div class="panel-heading">
+                      	<div class="panel-title">
+                  		<i class="glyphicon glyphicon-wrench pull-right"></i>
+                      	<h4>Post your review!</h4>
+                      	</div>
+                	</div>
+                	<div class="panel-body">
+
+                      <form class="form form-vertical">
+                       
+                        <div class="control-group">
+                          <label> Header </label>
+                          <div class="controls">
+                           <input type="text" class="form-control" placeholder="Enter Header">
+                          </div>
+                        </div>      
+                        
+                        <div class="control-group">
+                          <label>Body</label>
+                          <div class="controls">
+                          	<textarea class="form-control" rows = "30"></textarea>
+                          </div>
+                        </div> 
+                             
+                        <div class="control-group">
+                          <label>Category</label>
+                          <div class="controls">
+                             <select class="form-control"><option>options</option></select>
+                          </div>
+                        </div>    
+                        
+                        <div class="control-group">
+                          	<label></label>
+                        	<div class="controls">
+                        	<button type="submit" class="btn btn-danger">
+                              Post
+                            </button>
+                        	</div>
+                        </div>   
+                        
+                      </form>
+                
+                </div>
+                  </div>
+                </div>
+                </DIV>
+
+  </div>
+                
+              
+
+
+
+  
+	<!-- script references -->
+	</body>
+</html>

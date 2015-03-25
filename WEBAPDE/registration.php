@@ -1,7 +1,11 @@
 <?php
+
 	session_start();
+
 	include 'logic_registration.php';
+
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
