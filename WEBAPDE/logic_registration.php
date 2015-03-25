@@ -13,7 +13,7 @@ $greeting = "";
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	if (empty($_POST["firstname"])) {
-     	$fnErr = "First name is required";
+     	$fnErr = "Firstname is required";
      	$isErr = true;
    	} else {
      	$firstname = test_input($_POST["firstname"]);
@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
    	}
 
    	if (empty($_POST["lastname"])) {
-     	$lnErr = "Last name is required";
+     	$lnErr = "Lastname is required";
      	$isErr = true;
    	} else {
      	$lastname = test_input($_POST["lastname"]);

@@ -56,10 +56,6 @@
 					document.getElementById("inbox").appendChild(newElement);
 				}
 			}
-			function search(){
-				var search = document.getElementById('searchBar').value;
-				alert("You searched for: " + search);
-			}
 		</script>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
@@ -82,7 +78,7 @@
 						}
   					});
 				</script>
-				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
+				<a href = "home.php"><p class = "headName">potato.</p></a>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
@@ -134,7 +130,7 @@
 				<script>populate();</script>
 			</div>
 			<div class = "addButton">
-				<img class = "postImg" src = "images/addButton.png">
+				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>
 			</div>
 		</div>
 	</body>

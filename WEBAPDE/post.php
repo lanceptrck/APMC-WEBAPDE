@@ -1,37 +1,20 @@
-<?php
-	
+<?php	
 	session_start();
-
 	include 'functions.php';
-
 	loadAll();
-
-
-	if(isset($_SESSION["username"]))
-	{
+	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
-
 	}
-
-	else
-	{
+	else{
 		echo "You are not logged in.";
 		header('Refresh: 3; URL=index.php');
 		exit;	
 	}
-
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
-		<script>
-			function search(){
-				var search = document.getElementById('searchBar').value;
-				alert("You searched for: " + search);
-			}
-		</script>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
 	<body>
@@ -62,7 +45,7 @@
 						})
 					});
 				</script>
-				<p class = "headName">potato.</p>
+				<a href = "home.php"><p class = "headName">potato.</p></a>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
@@ -92,48 +75,54 @@
 				</div>
 			</div>
 			<div class = "menuBox" id = "inbox">
-				<a href ="home.php"> Back to home </a>
 				<ul class = "tabs" align = "center">
 					<li class="tab-link current" data-tab = "postReview">Review</a></li>
 					<li class="tab-link" data-tab = "postRecipe">Recipe</a></li>
 				</ul>
 				<div id = "postReview" class = "tab-content current" align = "center">
-					<br>
-					<input type = "text" placeholder = "Title" class = "pBox" id = "title"/>
-					<br>
-					<br>
-					<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50 "id = "textBody"/></textarea>
-					<br>
-					<br>
-					<span class = "rating">
-				        <input type = "radio" class = "rating-input" id = "rating-input-1-5" name = "rating-input-1">
-				        <label for = "rating-input-1-5" class = "rating-star"></label>
-				        <input type = "radio" class = "rating-input" id = "rating-input-1-4" name = "rating-input-1">
-				        <label for = "rating-input-1-4" class = "rating-star"></label>
-				        <input type = "radio" class="rating-input" id = "rating-input-1-3" name = "rating-input-1">
-				        <label for = "rating-input-1-3" class = "rating-star"></label>
-				        <input type = "radio" class="rating-input" id = "rating-input-1-2" name = "rating-input-1">
-				        <label for = "rating-input-1-2" class = "rating-star"></label>
-				        <input type = "radio" class = "rating-input" id = "rating-input-1-1" name = "rating-input-1">
-				        <label for = "rating-input-1-1" class = "rating-star"></label>
-				    </span>
+					<form> <!-- Insert form here -->
+						<br>
+						<input type = "text" placeholder = "Title" class = "pBox" id = "title"/>
+						<br>
+						<br>
+						<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50 "id = "textBody"/></textarea>
+						<br>
+						<br>
+						<span class = "rating">
+					        <input type = "radio" class = "rating-input" id = "rating-input-1-5" name = "rating-input-1">
+					        <label for = "rating-input-1-5" class = "rating-star"></label>
+					        <input type = "radio" class = "rating-input" id = "rating-input-1-4" name = "rating-input-1">
+					        <label for = "rating-input-1-4" class = "rating-star"></label>
+					        <input type = "radio" class="rating-input" id = "rating-input-1-3" name = "rating-input-1">
+					        <label for = "rating-input-1-3" class = "rating-star"></label>
+					        <input type = "radio" class="rating-input" id = "rating-input-1-2" name = "rating-input-1">
+					        <label for = "rating-input-1-2" class = "rating-star"></label>
+					        <input type = "radio" class = "rating-input" id = "rating-input-1-1" name = "rating-input-1">
+					        <label for = "rating-input-1-1" class = "rating-star"></label>
+						</span>
+					    <div class = "submitButton">
+							<button id = "postButton" onclick = "document.forms["pReview"].submit();"><img class = "postImg" src = "images/checkButton.png"></button>
+						</div>
+					</form>
 				</div>
 				<div id = "postRecipe" class="tab-content" align = "center">
-					<br>
-					<input type = "text" placeholder = "Title" class = "pBox" id = "title"/>
-					<br>
-					<br>
-					<textarea placeholder = "Ingredients" class = "reBox"cols = "10" rows = "50 "id = "ingredientsText"/></textarea>
-					<br>
-					<br>
-					<textarea placeholder = "Directions" class = "reBox"cols = "10" rows = "50 "id = "directionsText"/></textarea>
-					<br>
-					<br>
-					<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50 "id = "nutritionsText"/></textarea>
+					<form> <!-- Insert form here -->
+						<br>
+						<input type = "text" placeholder = "Title" class = "pBox" id = "title"/>
+						<br>
+						<br>
+						<textarea placeholder = "Ingredients" class = "reBox"cols = "10" rows = "50 "id = "ingredientsText"/></textarea>
+						<br>
+						<br>
+						<textarea placeholder = "Directions" class = "reBox"cols = "10" rows = "50 "id = "directionsText"/></textarea>
+						<br>
+						<br>
+						<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50 "id = "nutritionsText"/></textarea>
+						<div class = "submitButton">
+							<button id = "postButton" onclick = "document.forms["pRecipe"].submit();"><img class = "postImg" src = "images/checkButton.png"></button>
+						</div>
+					</form>
 				</div>
-			</div>
-			<div class = "addButton">
-				<img class = "postImg" src = "images/checkButton.png">
 			</div>
 		</div>
 	</body>
