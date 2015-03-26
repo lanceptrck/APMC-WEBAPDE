@@ -369,6 +369,7 @@ p.signInText{
     outline: 0;
 }
 .menuBox{
+	margin-bottom: 40px;
 	color: rgba(10, 10, 10, 0.9);
 	font-style: arial;
 	font-family: sans-serif;
