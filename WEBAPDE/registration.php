@@ -1,11 +1,7 @@
 <?php
-
 	session_start();
-
 	include 'logic_registration.php';
-
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,7 +20,7 @@
 					<label><p id ="error">* required fields</p></label>
 					<br>
 					<br>
-					<label><?php echo $greeting; ?></label>
+					<label><p id ="error" style = "color:black;"><?php echo $greeting; ?></p></label>
 					<label><p id ="error"><?php echo $fnErr; ?></p></label>
 					<input type = "text" placeholder = "*Firstname" class = "rBox" id = "fullname" name="firstname">
 					<br>

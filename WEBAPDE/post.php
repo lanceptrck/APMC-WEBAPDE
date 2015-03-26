@@ -1,37 +1,20 @@
-<?php
-	
-	session_start();
-
-	include 'functions.php';
-
-	loadAll();
-
-
-	if(isset($_SESSION["username"]))
-	{
-		$loggedIn_account = getAccount($_SESSION["username"]);
-
-	}
-
-	else
-	{
-		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');
-		exit;	
-	}
-
+<?php	
+session_start();
+include 'functions.php';
+loadAll();
+if(isset($_SESSION["username"])){
+	$loggedIn_account = getAccount($_SESSION["username"]);
+}
+else{
+	echo "You are not logged in.";
+	header('Refresh: 3; URL=index.php');
+	exit;	
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
-		<script>
-			function search(){
-				var search = document.getElementById('searchBar').value;
-				alert("You searched for: " + search);
-			}
-		</script>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
 	<body>
@@ -62,7 +45,7 @@
 						})
 					});
 				</script>
-				<p class = "headName">potato.</p>
+				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
@@ -73,37 +56,52 @@
 					<?php echo $loggedIn_account->getUser(); ?>
 				</p>
 				<hr>
-				<a href="#" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sHeart.png">Favorites
-				</div></a>
+				<a href="#" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sHeart.png">Favorites
+					</div>
+				</a>
 				<hr>
-				<a href="home.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sGlass.png">Recipes
-				</div></a>
-				<a href="home-review.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sApple.png">Reviews
-				</div></a>
+				<a href="home.php" class = "no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sGlass.png">Recipes
+					</div>
+				</a>
+				<a href="home-review.php" class = "no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sApple.png">Reviews
+					</div>
+				</a>
 				<hr>
-				<a href="logout.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sLogout.png">Logout
-				</div></a>
-				<a href="#" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sSettings.png">Settings
-				</div></a>
+				<a href="logout.php" class = "no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sLogout.png">Logout
+					</div>
+				</a>
+				<a href="#" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sSettings.png">Settings
+					</div>
+				</a>
 			</div>
 			<div class = "menuBox" id = "inbox">
-				<a href ="home.php"> Back to home </a>
 				<ul class = "tabs" align = "center">
 					<li class="tab-link current" data-tab = "postReview">Review</a></li>
 					<li class="tab-link" data-tab = "postRecipe">Recipe</a></li>
 				</ul>
 				<div id = "postReview" class = "tab-content current" align = "center">
-					<form action ="post_review.php" method="POST" enctype="multipart/form-data"> <!-- Insert form here -->
+					<form action ="post_review.php" method="POST" enctype="multipart/form-data">
 						<br>
 						<input type = "text" placeholder = "Title" class = "pBox" id = "title" name="review_title"/>
 						<br>
 						<br>
 						<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50 "id = "textBody" name="review_txt"/></textarea>
+						<br>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type = "file" name = "fileToUpload">
 						<br>
 						<br>
 						<span class = "rating">
@@ -121,29 +119,33 @@
 					    <div class = "submitButton">
 							<button id = "postButton" onclick = "document.forms["pReview"].submit();"><img class = "postImg" src = "images/checkButton.png"></button>
 						</div>
-						<p><label>Review Image: </label><input type="file" name="fileToUpload"></p><br>
 					</form>
-				</div>
-								
-			<form action ="post_recipe.php" method="POST" enctype="multipart/form-data">	
-				<div id = "postRecipe" class="tab-content" align = "center">
-					<br>
-					<input type = "text" placeholder = "Title" class = "pBox" id = "title" name="recipe_title"/>
-					<br>
-					<br>
-					<textarea placeholder = "Ingredients" class = "reBox"cols = "10" rows = "50 "id = "ingredientsText" name="ingredients_txt"/></textarea>
-					<br>
-					<br>
-					<textarea placeholder = "Directions" class = "reBox"cols = "10" rows = "50 "id = "directionsText" name="directions_txt"/></textarea>
-					<br>
-					<br>
-					<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50 "id = "nutritionsText" name="facts_txt"/></textarea>
-					<br><br><label>Recipe Image: </label><input type="file" name="fileToUpload">
-					<div class = "submitButton">
+				</div>					
+				<div id = "postRecipe" class = "tab-content" align = "center">
+					<form action ="post_recipe.php" method="POST" enctype = "multipart/form-data">
+						<br>
+						<input type = "text" placeholder = "Title" class = "pBox" id = "title" name="recipe_title"/>
+						<br>
+						<br>
+						<textarea placeholder = "Ingredients" class = "reBox"cols = "10" rows = "50 "id = "ingredientsText" name="ingredients_txt"/></textarea>
+						<br>
+						<br>
+						<textarea placeholder = "Directions" class = "reBox"cols = "10" rows = "50 "id = "directionsText" name="directions_txt"/></textarea>
+						<br>
+						<br>
+						<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50 "id = "nutritionsText" name="facts_txt"/></textarea>
+						<br>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type = "file" name = "fileToUpload">
+						<div class = "submitButton">
 							<button id = "postButton" onclick = "document.forms["pRecipe"].submit();"><img class = "postImg" src = "images/checkButton.png"></button>
 						</div>
+					</form>
 				</div>
-
-		</form>
+			</div>
+		</div>
 	</body>
 </html>

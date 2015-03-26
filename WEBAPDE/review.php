@@ -1,38 +1,25 @@
-<?php
-	
-	session_start();
-
-	include 'functions.php';
-
-	loadAll();
-
-
-	if(isset($_SESSION["username"]))
-	{
-		$loggedIn_account = getAccount($_SESSION["username"]);
-		if(!isset($_GET["link"]))
-		{
-			echo "<h1 align=\"center\">No review selected.</h1>";
-			header('Refresh: 3; URL=home-review.php');
-			exit;
-
-		} else {	
-
-			$review_id = $_GET["link"];
-			$review = getReviewById($review_id);
-		}
-
+<?php	
+session_start();
+include 'functions.php';
+loadAll();
+if(isset($_SESSION["username"])){
+	$loggedIn_account = getAccount($_SESSION["username"]);
+	if(!isset($_GET["link"])){
+		echo "<h1 align=\"center\">No review selected.</h1>";
+		header('Refresh: 3; URL=home-review.php');
+		exit;
 	}
-
-	else
-	{
-		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');
-		exit;	
+	else{	
+		$review_id = $_GET["link"];
+		$review = getReviewById($review_id);
 	}
-
+}
+else{
+	echo "You are not logged in.";
+	header('Refresh: 3; URL=index.php');
+	exit;	
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -79,10 +66,6 @@
 					document.getElementById("rating").appendChild(newElement);
 				}
 			}
-			function search(){
-				var search = document.getElementById('searchBar').value;
-				alert("You searched for: " + search);
-			}
 		</script>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
@@ -105,7 +88,7 @@
 						}
   					});
 				</script>
-				<p class = "headName">potato.</p>
+				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
 				<input type = "search" id = "searchBar">
 			</header>
 			<div class = "slideOutBar">
@@ -116,29 +99,40 @@
 					<?php echo $loggedIn_account->getUser(); ?>
 				</p>
 				<hr>
-				<a href="#" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sHeart.png">Favorites
-				</div></a>
+				<a href="#" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sHeart.png">Favorites
+					</div>
+				</a>
 				<hr>
-				<a href="home.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sGlass.png">Recipes
-				</div></a>
-				<a href="home-review.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sApple.png">Reviews
-				</div></a>
+				<a href="home.php" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sGlass.png">Recipes
+					</div>
+				</a>
+				<a href="home-review.php" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sApple.png">Reviews
+					</div>
+				</a>
 				<hr>
-				<a href="logout.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sLogout.png">Logout
-				</div></a>
-				<a href="#" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sSettings.png">Settings
-				</div></a>
+				<a href="logout.php" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sLogout.png">Logout
+					</div>
+				</a>
+				<a href="#" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sSettings.png">Settings
+					</div>
+				</a>
 			</div>
 			<div class = "menuBox" id = "inbox">
 				<img class = "reviewImg" src = "images/review/<?php echo $review->get_reviewimg()?>">
-				<p class = "reviewHead"> <?php echo $review->get_reviewname(); ?> <img class = "favorited" src = "images/heart.jpg"></p>
-				<p class = "userTag">by <?php echo getAccountName($review->get_accid()); ?> </p>
-				<br><br>
+				<p class = "reviewHead"><?php echo $review->get_reviewname(); ?><img class = "favorited" src = "images/heart.jpg"></p>
+				<p class = "userTag">by <?php echo getAccountName($review->get_accid()); ?></p>
+				<br>
+				<br>
 				<p class = "reviewText">
 					<?php echo $review->get_reviewtext(); ?>
 				</p>
@@ -146,7 +140,8 @@
 				<div id = "rating">
 					<script>displayRating(<?php echo $review->get_reviewcounts(); ?>);</script>
 				</div>
-				<br><br>
+				<br>
+				<br>
 				<script>populate();</script>
 			</div>
 			<div class = "addButton">

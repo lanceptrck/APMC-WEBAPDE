@@ -1,36 +1,24 @@
-<?php
-	
+<?php	
 	session_start();
-
 	include 'functions.php';
-
 	loadAll();
-
-
-	if(isset($_SESSION["username"]))
-	{
+	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
-
-	if(!isset($_GET["link"]))
-	{
-		echo "<h1 align=\"center\">No recipe selected.</h1>";
-		header('Refresh: 3; URL=home.php');
-		exit;
-	} else {	
-
-		$recipe_id = $_GET["link"];
-		$recipe = getRecipeById($recipe_id);
+		if(!isset($_GET["link"])){
+			echo "<h1 align=\"center\">No recipe selected.</h1>";
+			header('Refresh: 3; URL=home.php');
+			exit;
+		}
+		else{	
+			$recipe_id = $_GET["link"];
+			$recipe = getRecipeById($recipe_id);
+		}
 	}
-
-	}
-
-	else
-	{
+	else{
 		echo "You are not logged in.";
 		header('Refresh: 3; URL=index.php');
 		exit;	
 	}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,10 +53,6 @@
 					document.getElementById("inbox").appendChild(newElement);
 				}
 			}
-			function search(){
-				var search = document.getElementById('searchBar').value;
-				alert("You searched for: " + search);
-			}
 		</script>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
@@ -102,44 +86,60 @@
 					<?php echo $loggedIn_account->getUser(); ?>
 				</p>
 				<hr>
-				<a href="#" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sHeart.png">Favorites
-				</div></a>
+				<a href="#" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sHeart.png">Favorites
+					</div>
+				</a>
 				<hr>
-				<a href="home.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sGlass.png">Recipes
-				</div></a>
-				<a href="home-review.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sApple.png">Reviews
-				</div></a>
+				<a href="home.php" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sGlass.png">Recipes
+					</div>
+				</a>
+				<a href="home-review.php" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sApple.png">Reviews
+					</div>
+				</a>
 				<hr>
-				<a href="logout.php" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sLogout.png">Logout
-				</div></a>
-				<a href="#" class ="no"><div class = "sideBox">
-					<img class = "sideImg" src = "images/sSettings.png">Settings
-				</div></a>
+				<a href="logout.php" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sLogout.png">Logout
+					</div>
+				</a>
+				<a href="#" class ="no">
+					<div class = "sideBox">
+						<img class = "sideImg" src = "images/sSettings.png">Settings
+					</div>
+				</a>
 			</div>
 			<div class = "menuBox" id = "inbox">
 				<img class = "reviewImg" src = "images/recipe/<?php echo $recipe->get_recipeimg()?>">
-				<p class = "reviewHead"> <?php echo $recipe->get_recipename(); ?> <img class = "favorited" src = "images/heart.jpg"></p>
-				<p class = "userTag">by <?php echo getAccountName($recipe->get_accid()); ?> </p>
-				<br><br><br>
+				<p class = "reviewHead"> <?php echo $recipe->get_recipename(); ?><img class = "favorited" src = "images/heart.jpg"></p>
+				<p class = "userTag">by <?php echo getAccountName($recipe->get_accid()); ?></p>
+				<br>
+				<br>
+				<br>
 				<p class = "recipeText">
 					<b>Ingredients</b>
-					<br><br>
+					<br>
+					<br>
 					<?php echo $recipe->get_ingredients(); ?>
   					<br>
   					<b>Directions</b>
-  					<br><br>
+  					<br>
+  					<br>
 					<?php echo $recipe->get_directions(); ?>
 					<br>
 					<b>Nutrition Facts</b>
-					<br><br>
+					<br>
+					<br>
 					<?php echo $recipe ->get_facts(); ?>
-
 				</p>
-				<br><br><br>
+				<br>
+				<br>
+				<br>
 				<script>populate();</script>
 			</div>
 			<div class = "addButton">
