@@ -313,13 +313,14 @@ p.commentText{
     box-shadow: 0.5px 0.5px 1px #888888 inset;
     width: 350px;
     height: auto;
-    top: 20%;
+    opacity: 0;
+    top: 40%;
     left: 35%;
     padding: 30px;
     padding-left: 45px;
     padding-right: 0px;
     position: absolute;
-	}
+}
 .rBox{
 	color: rgb(10, 10, 10);
 	font-style: arial;
@@ -374,7 +375,7 @@ p.commentText{
     box-shadow: 0.5px 0.5px 1px #888888 inset;
     width: 1000px;
     height: auto;
-    opacity: 0.5;
+    opacity: 0;
     top: 40%;
     left: 10%;
     padding: 30px;
@@ -539,7 +540,7 @@ img.postImg{
 	top: 25%;
 	left: 1%;
 	cursor: pointer;
-	padding: 10px 35px 16px 0px;
+	padding: 10px 15px 10px 0px;
 }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
   	cursor: pointer;

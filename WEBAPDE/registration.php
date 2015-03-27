@@ -13,6 +13,12 @@
 			<div class = "header">
 				<p class = "welcomeHeadName">potato.</p>
 			</div>
+			<script src = "js/jquery-2.1.3.min.js"></script>
+			<script>
+  					$(document).ready(function(){
+  						$(".registerBox").animate({opacity: 1, top: "15%"}, 500);
+					});
+			</script>
 			<div class = "registerBox">
 				<form method ="POST" action="#">
 					<p class = "registerHead">Sign up for potato.</p>
