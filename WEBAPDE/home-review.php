@@ -34,6 +34,9 @@
 							clicked = 0;
 						}
   					});
+  					$(document).ready(function() {
+    					$(".menuBox").animate({opacity: 1, top: "15%"}, 500);
+  					});
 				</script>
 				<a href = "home.php" class ="no"><p class = "headName">potato.</p></a>
 				<input type = "search" id = "searchBar">

@@ -373,7 +373,8 @@ p.commentText{
     box-shadow: 0.5px 0.5px 1px #888888 inset;
     width: 1000px;
     height: auto;
-    top: 15%;
+    opacity: 0.5;
+    top: 40%;
     left: 10%;
     padding: 30px;
     position: absolute;
