@@ -43,18 +43,19 @@ body{
 	z-index: 1;
 }
 .addButton{
-	width: 128px;
-	height: 128px;
-	top: 500px;
-	right: 16px;
+	margin: 0px;
+	width: 80px;
+	height: 80px;
+	top: 510px;
+	right: 55px;
 	position: fixed;
 	z-index: 1;
 }
-.submitButton{
-	width: 128px;
-	height: 128px;
-	top: 496px;
-	right: 35px;
+.submitButton{	
+	width: 80px;
+	height: 80px;
+	top: 506px;
+	right: 62px;
 	position: fixed;
 	z-index: 1;
 }
@@ -532,8 +533,6 @@ img.postImg{
 	background-repeat: no-repeat;
     width: 80px;
    	height: 80px;
-   	padding-top: 10px;
-   	padding-left: 10px;
 }
 #nav-toggle{
 	position: absolute;
@@ -678,4 +677,30 @@ ul.tabs li.current{
 }
 #postButton:hover{
 	cursor: pointer;
+}
+.spinButton{
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease;
+    animation-name: spin;
+    animation-duration: 0.5s;
+    animation-iteration-count: 3;
+    animation-timing-function: ease;
+}
+@-webkit-keyframes spin{
+    from{ 
+    	-webkit-transform: rotate(0deg); 
+    }
+    to{ 
+    	-webkit-transform: rotate(360deg); 
+    }
+}
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
 }
