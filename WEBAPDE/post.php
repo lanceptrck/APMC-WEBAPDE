@@ -45,15 +45,14 @@ else{
 							$(this).addClass('current');
 							$("#"+tab_id).addClass('current');
 							if(tab_id == "postReview"){
-								$('.submitButton').css('-webkit-animation-iteration-count', '0');
 								$('#inputData1').css('opacity', '0');
 								$('#inputData1').animate({opacity: 1}, "slow");
 							}
 							else if(tab_id == "postRecipe"){
-								$('.submitButton').css('-webkit-animation-iteration-count', '0');
 								$('#inputData2').css('opacity', '0');
 								$('#inputData2').animate({opacity: 1}, "slow");
 							}
+							$(".submitButton").removeClass('spinButton');
 						});
 					});
 				</script>
@@ -108,7 +107,7 @@ else{
 							<input type = "text" placeholder = "Title" class = "pBox" id = "title" name="review_title"/>
 							<br>
 							<br>
-							<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50 "id = "textBody" name="review_txt"/></textarea>
+							<textarea placeholder = "Insert text here" class = "tBox" cols = "10" rows = "50 "id = "textBody" name="review_txt"/></textarea>
 							<br>
 							<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;
