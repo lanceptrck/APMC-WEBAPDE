@@ -38,5 +38,8 @@ Bacon<br>Onions<br>Lettuce<br>Burger Patty<br>
 <b>Salted pork</b><br>1 lb pork<br>1 tsp salt<br><b>Soup</b><br>6 cups water (1.5L)<br>50g ginger root, sliced<br>3 cloves garlic, skinned<br>1 bunch green onions<br>4 Tbsp soy sauce<br>2 Tbsp sake<br>1 tsp salt<br>1 tsp sesame oil<br><b>Noodles</b><br>9 oz fresh angel hair pasta (225g)<br>8 cups water (2L)<br>2 Tbsp baking soda<br><b>Topping</b><br>boiled egg halves<br>bean sprouts, blanched briefly<br>green onions, cut finely<br>
 ;
 10014
-2 lbs. chicken, cut into serving pieces<br>1 big potato, chopped<br>1 tbsp garlic, minced<br>3 stalks celery, cut into 2 inches length<br>1 medium onion, chopped<br>1 small red bell pepper, cut into cubes<br>2 tbsp fish sauce<br>1 cup coconut milk<br>2 tbsp curry powder<br>1 thumb ginger, cut into strips<br>1 cup water<br>
+2 lbs. chicken, cut into serving pieces<br>1 big potato, chopped<br>1 tbsp garlic, minced<br>3 stalks celery, cut into 2 inches length<br>1 medium onion, chopped<br>1 small red bell pepper, cut into cubes<br>2 tbsp fish sauce<br>1 cup coconut milk<br>2 tbsp curry powder<br>1 thumb ginger, cut into strips<br>1 cup water<br>
+;
+10015
+Cheese<br>
 ;

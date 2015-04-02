@@ -528,4 +528,51 @@ function writeReviewToText()
 
 }
 
+function populateRecipeByName($name)
+{
+	global $recipes;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($recipes); $i++)
+	{
+		$temp = $recipes[$i];
+		if(strpos($temp->get_recipename(), $name) !== false)
+		{
+		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		$cnt++;
+		}
+	}
+
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+function populateReviewByName($name)
+{
+	global $reviews;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($reviews); $i++)
+	{
+		$temp = $reviews[$i];
+		if(strpos($temp->get_reviewname(), $name) !== false){
+		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		$cnt++;
+		}
+	}
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
 ?>	
