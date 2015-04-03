@@ -5,6 +5,9 @@ p{
 	font-style: arial;
     font-family: sans-serif; 
 }
+hr{
+	margin: 0px;
+}
 #rating{
 	padding: 50px;
 	padding-top: 20px;
@@ -64,6 +67,21 @@ p{
 	height: 200px;
 	position: relative;
 }
+.slideHeader{
+	top: 0px;
+	margin: 0px;
+	width: 240px;
+	height: 160px;
+	position: relative;
+}
+.mainHeader{
+	top: 15px;
+	left: 90px;
+	margin: 0px;
+	width: 820px;
+	height: 120px;
+	position: relative;
+}
 p.welcomeHeadName{
 	color: rgb(255, 255, 255);
 	font-size: 18px;
@@ -89,6 +107,19 @@ p.accHead{
 	left: 125px;
 	color: rgb(255, 255, 255);
 	font-size: 32px;
+	position: absolute;
+}
+p.userName{
+	top: 110px;
+	left: 10px;
+	font-size: 13px;
+	position: absolute;
+}
+p.mainHead{
+	top: 45px; 
+	left: 125px;
+	color: rgb(255, 255, 255);
+	font-size: 30px;
 	position: absolute;
 }
 p.menuHead{
@@ -162,12 +193,6 @@ p.sideText{
     float: left;
     position: relative;
 }
-p.userName{
-	margin-top: 33px;
-	padding-left: 100px;
-	font-size: 11px;
-	line-height: 150%;
-}
 p.commentText{
 	margin: 0px;
 	margin-left: 55px;
@@ -185,8 +210,7 @@ p.commentText{
 	position: absolute;
 }
 .slideOutBar{
-	padding: 13px;
-	padding-top: 37px;
+	padding: 0px;
 	background: rgb(60, 60, 60);
 	box-shadow: 0px 0.5px 5px rgb(60, 60, 60);
 	color: rgb(255, 255, 255);
@@ -204,7 +228,6 @@ p.commentText{
 	padding: 10px;
 	height: 20px;
 	width: 220px;
-	border-radius: 5px;
 }
 .sideBox:hover{
     background: rgb(118, 118, 118); 
@@ -527,14 +550,15 @@ img.itemBoxImg{
     float: left;
 }
 img.userImg{
-	margin-right: 15px;
+	margin-top: 27px;
+	margin-left: 75px;
    	background-repeat: no-repeat;
    	background-position: 50%;
    	border-radius: 50%;
     border: solid 1px rgb(255, 255, 255);
    	width: 80px;
    	height: 80px;
-  	float: left;
+  	position: absolute;
 }
 img.accImg{
     margin-top: 85px;
@@ -547,12 +571,43 @@ img.accImg{
     height: 96px;
     position: absolute;
 }
+img.mainItemImg{
+    margin-top: 20px;
+    margin-left: 13px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    border: solid 2px rgb(255, 255, 255);
+    width: 80px;
+    height: 80px;
+    position: absolute;
+}
 img.coverImg{
+	height: 100%;
 	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
 	border-radius: 5px;
 	box-shadow: 0px 1px 1px #888888;
 	width: 870px;
 	height: 200px;
+	position: absolute;
+}
+img.slideImg{
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	box-shadow: 0px 1px 1px #888888;
+	width: 240px;
+	height: 160px;
+	position: absolute;
+}
+img.mainImg{
+	background-repeat: no-repeat;
+	border-radius: 5px;
+	box-shadow: 0px 1px 1px #888888;
+	width: 800px;
+	height: 120px;
 	position: absolute;
 }
 img.reviewImg{
@@ -565,7 +620,7 @@ img.reviewImg{
     float: right;
 }
 img.sideImg{
-	margin-right: 30px;
+	margin-right: 23px;
 	height: 16px;
 	width: 16px;
 	float: left;
@@ -620,6 +675,7 @@ img.postImg{
   	bottom: -6px;
 }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after{
+  	-webkit-transition: all 500ms ease-in-out;
   	transition: all 500ms ease-in-out;
 }
 #nav-toggle.active span{
@@ -629,28 +685,31 @@ img.postImg{
     top: 0;
 }
 #nav-toggle.active span:before{
+	-webkit-transform: rotate(45deg);
   	transform: rotate(45deg);
 }
 #nav-toggle.active span:after{
+	-webkit-transform: rotate(-45deg);
   	transform: rotate(-45deg);
 }
 input[type=search]{
 	margin: 13px;
-	float: right;
 	top: 0px;
 	background: url(../images/searchIcon.png) no-repeat 0px center;
+	background-color: transparent;
 	background-size: 20px 20px;
 	border: 0px;
 	height: 22px;
 	width: 22px;
-	color: transparent;
 	cursor: pointer;
 	-webkit-border-radius: 1em;
 	border-radius: 1em;
 	-webkit-transition: width .5s;
 	transition: width .5s;
+	float: right;
 }
-input::-webkit-search-decoration, input::-webkit-search-cancel-button{
+input::-webkit-search-decoration, 
+input::-webkit-search-cancel-button{
 	display: none;
 }
 input[type=search]:focus{

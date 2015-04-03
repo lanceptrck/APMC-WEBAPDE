@@ -64,27 +64,33 @@
 		</form>
 	</header>
 	<div class = "slideOutBar">
-		<img class = "userImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>">
-		<p class = "userName">
-			<font size = "3"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?></font>
-			<br>
-			<?php echo $loggedIn_account->getUser(); ?>
-		</p>
-		<hr>
+		<div class = "slideHeader">
+			<img class = "slideImg" src = "images/profile/chino_cover.jpg"/>
+			<img class = "userImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>"/>
+			<p class = "userName"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?>
+				<br>
+				<?php echo $loggedIn_account->getUser() ?>
+			</p>
+		</div>
+		<hr><a href = "home.php" class = "no">
+			<div class = "sideBox">
+				<img class = "sideImg" src = "images/sHome.png">Home
+			</div>
+		</a>
 		<a href = "favorites.php" class = "no">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sHeart.png">Favorites
 			</div>
 		</a>
 		<hr>
-		<a href = "home.php" class = "no">
-			<div class = "sideBox">
-				<img class = "sideImg" src = "images/sGlass.png">Recipes
-			</div>
-		</a>
 		<a href = "home-review.php" class = "no">
 			<div class = "sideBox">
-				<img class = "sideImg" src = "images/sApple.png">Reviews
+				<img class = "sideImg" src = "images/sGlass.png">Reviews
+			</div>
+		</a>
+		<a href = "home-recipe.php" class = "no">
+			<div class = "sideBox">
+				<img class = "sideImg" src = "images/sApple.png">Recipes
 			</div>
 		</a>
 		<hr>

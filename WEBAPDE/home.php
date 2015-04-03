@@ -1,9 +1,11 @@
-<?php	
+<?php
 	session_start();
 	include 'functions.php';
 	loadAll();
+	$searched = "";
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
+		$searched = $_POST["searchbar"];
 	}
 	else{
 		echo "You are not logged in.";
@@ -18,12 +20,39 @@
 	</head>
 	<body>
 		<div class = "foodList">
-			<?php include 'header.php'; ?>	
+			<?php include 'header.php'; ?>
 			<div class = "menuBox" id = "inbox">
-				<p class = "menuHead">The best food in Los Angeles.</p>
+				<a href = "home-review.php">
+					<div class = "mainHeader">
+						<img class = "mainImg" src = "images/mainReview.jpg"/>
+						<img class = "mainItemImg" src = "images/review/rev_10001.jpg"/>
+						<p class = "mainHead">Reviews.</p>
+					</div>
+				</a>
+				<br>
+				<a href = "home-recipe.php">
+					<div class = "mainHeader">
+						<img class = "mainImg" src = "images/mainRecipe.jpg"/>
+						<img class = "mainItemImg" src = "images/recipe/rec_10013.jpg"/>
+						<p class = "mainHead">Recipes.</p>
+					</div>
+				</a>
+				<br>
+				<a href = "account.php">
+					<div class = "mainHeader">
+						<img class = "mainImg" src = "images/mainAccount.jpg"/>
+						<img class = "mainItemImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>"/>
+						<p class = "mainHead">Account.</p>
+					</div>
+				</a>
+				<br>
+				<div class = "mainHeader">
+					<img class = "mainImg" src = "images/mainSettings.jpg"/>
+					<img class = "mainItemImg" src = "images/gear.jpg"/>
+					<p class = "mainHead">Settings.</p>
+				</div>
 				<br>
 				<br>
-				<?php populateRecipeList(); ?>
 			</div>
 			<div class = "addButton">
 				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>
