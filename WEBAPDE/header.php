@@ -7,16 +7,17 @@
 			document.querySelector("#nav-toggle").addEventListener("click", function(){
 				this.classList.toggle("active");
 				if(clicked == 0){
-					$(".slideOutBar").animate({left: "0px"}, 300);
+					$(".slideOutBar").animate({left: "0px"}, 100);
 					clicked = 1;
 				}
 				else{
-					$(".slideOutBar").animate({left: "-268px"}, 300);
+					$(".slideOutBar").animate({left: "-268px"}, 100);
 					clicked = 0;
 				}
   			});
   			$(document).ready(function(){
   				$(".menuBox").animate({opacity: 1, top: "15%"}, 500);
+				$(".submitButton").addClass('spinButton');
 				$('ul.tabs li').click(function(){
 					var tab_id = $(this).attr('data-tab');
 					$('ul.tabs li').removeClass('current');
@@ -55,7 +56,22 @@
 						$('#favoriteRecipes').css('opacity', '0');
 						$('#favoriteRecipes').animate({opacity: 1}, "slow");
 					}
+					else if(tab_id == "postReview"){
+						$('#inputData1').css('opacity', '0');
+						$('#inputData1').animate({opacity: 1}, "slow");
+					}
+					else if(tab_id == "postRecipe"){
+						$('#inputData2').css('opacity', '0');
+						$('#inputData2').animate({opacity: 1}, "slow");
+					}
+					$(".submitButton").removeClass('spinButton');
 				});
+				$('.mainHeader').hover(function(){
+        			$(this).animate({opacity: 1}, 300);
+        		}
+        		,function(){
+        			$(this).animate({opacity: 0.8}, 300);
+    			});
 			});
 		</script>
 		<a href = "home.php" class = "no"><p class = "headName">potato.</p></a>

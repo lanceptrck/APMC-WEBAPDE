@@ -81,6 +81,7 @@ hr{
 	width: 820px;
 	height: 120px;
 	position: relative;
+	opacity: 0.8;
 }
 p.welcomeHeadName{
 	color: rgb(255, 255, 255);
@@ -103,7 +104,7 @@ p.registerHead{
 	font-weight: bold;
 }
 p.accHead{
-	top: 125px; 
+	top: 115px; 
 	left: 125px;
 	color: rgb(255, 255, 255);
 	font-size: 32px;
@@ -116,7 +117,7 @@ p.userName{
 	position: absolute;
 }
 p.mainHead{
-	top: 45px; 
+	top: 35px; 
 	left: 125px;
 	color: rgb(255, 255, 255);
 	font-size: 30px;

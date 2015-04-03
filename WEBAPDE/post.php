@@ -19,7 +19,7 @@ else{
 	</head>
 	<body>
 		<div class = "foodList">
-			<?php include 'postheader.php'; ?>	
+			<?php include 'header.php'; ?>	
 			<div class = "menuBox" id = "inbox">
 				<ul class = "tabs" align = "center">
 					<li class = "tab-link current" data-tab = "postReview">Review</a></li>
