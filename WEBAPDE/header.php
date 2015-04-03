@@ -71,7 +71,7 @@
 			<?php echo $loggedIn_account->getUser(); ?>
 		</p>
 		<hr>
-		<a href = "#" class = "no">
+		<a href = "favorites.php" class = "no">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sHeart.png">Favorites
 			</div>
