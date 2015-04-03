@@ -22,18 +22,19 @@
 		<div class = "foodList">
 			<?php include 'header.php'; ?>
 			<div class = "menuBox" id = "inbox">
-				<p class = "resultHead">Showing results of</p>
-				<p class = "menuHead" style = "padding-top:15px; padding-left:25px"><?php echo $searched ?>.</p>
+				<p class = "menuHead">Your Favorites.</p>
 				<ul class = "tabs" align = "center">
-					<li class = "tab-link current" data-tab = "resultReview">Review</a></li>
-					<li class = "tab-link" data-tab = "resultRecipe">Recipe</a></li>
+					<li class = "tab-link current" data-tab = "favoriteReviews">Review</a></li>
+					<li class = "tab-link" data-tab = "favoriteRecipes">Recipe</a></li>
 				</ul>
 				<br>
-				<div id = "resultReview" class = "tab-content current">
-					<?php populateReviewByName($searched); ?>
+				<div id = "favoriteReviews" class = "tab-content current">
+					<!-- Testing purposes -->
+					<?php populateReviewByName("Lobster"); ?>
 				</div>					
-				<div id = "resultRecipe" class = "tab-content">
-					<?php populateRecipeByName($searched); ?>
+				<div id = "favoriteRecipes" class = "tab-content">
+					<!-- Testing purposes -->
+					<?php populateRecipeByName("Lobster"); ?>
 				</div>
 			</div>
 			<div class = "addButton">

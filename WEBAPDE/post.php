@@ -32,7 +32,7 @@ else{
 							<input type = "text" placeholder = "Title" class = "pBox" name = "review_title"/>
 							<br>
 							<br>
-							<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50" name = "review_txt"/></textarea>
+							<textarea placeholder = "Insert text here" class = "tBox" cols = "10" rows = "50" name = "review_txt"/></textarea>
 							<br>
 							<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,13 +44,13 @@ else{
 							<span class = "rating">
 						        <input type = "radio" class = "rating-input" id = "rating-input-1-5" value ="5" name = "rating-input-1">
 						        <label for = "rating-input-1-5" class = "rating-star"></label>
-						        <input type = "radio" class = "rating-input" id = "rating-input-1-4" value="4" name = "rating-input-1">
+						        <input type = "radio" class = "rating-input" id = "rating-input-1-4" value = "4" name = "rating-input-1">
 						        <label for = "rating-input-1-4" class = "rating-star"></label>
-						        <input type = "radio" class="rating-input" id = "rating-input-1-3" value="3"name = "rating-input-1">
+						        <input type = "radio" class="rating-input" id = "rating-input-1-3" value = "3"name = "rating-input-1">
 						        <label for = "rating-input-1-3" class = "rating-star"></label>
-						        <input type = "radio" class="rating-input" id = "rating-input-1-2" value ="2" name = "rating-input-1">
+						        <input type = "radio" class="rating-input" id = "rating-input-1-2" value = "2" name = "rating-input-1">
 						        <label for = "rating-input-1-2" class = "rating-star"></label>
-						        <input type = "radio" class = "rating-input" id = "rating-input-1-1" value ="1" name = "rating-input-1">
+						        <input type = "radio" class = "rating-input" id = "rating-input-1-1" value = "1" name = "rating-input-1">
 						        <label for = "rating-input-1-1" class = "rating-star"></label>
 							</span>
 						</div>

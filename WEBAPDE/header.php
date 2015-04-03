@@ -31,13 +31,33 @@
 						$('#resultRecipe').css('opacity', '0');
 						$('#resultRecipe').animate({opacity: 1}, "slow");
 					}
+					else if(tab_id == "accountWall"){
+						$('#accountWall').css('opacity', '0');
+						$('#accountWall').animate({opacity: 1}, "slow");
+					}
+					else if(tab_id == "accountAbout"){
+						$('#accountAbout').css('opacity', '0');
+						$('#accountAbout').animate({opacity: 1}, "slow");
+					}
+					else if(tab_id == "accountReviews"){
+						$('#accountReviews').css('opacity', '0');
+						$('#accountReviews').animate({opacity: 1}, "slow");
+					}
+					else if(tab_id == "accountRecipes"){
+						$('#accountRecipes').css('opacity', '0');
+						$('#accountRecipes').animate({opacity: 1}, "slow");
+					}
+					else if(tab_id == "favoriteReviews"){
+						$('#favoriteReviews').css('opacity', '0');
+						$('#favoriteReviews').animate({opacity: 1}, "slow");
+					}
+					else if(tab_id == "favoriteRecipes"){
+						$('#favoriteRecipes').css('opacity', '0');
+						$('#favoriteRecipes').animate({opacity: 1}, "slow");
+					}
 				});
 			});
 		</script>
-		<script src = "js/jquery.flexText.min.js"></script>
-			<script>
-				
-			</script>
 		<a href = "home.php" class = "no"><p class = "headName">potato.</p></a>
 		<form action = "results.php" method = "post">
 			<input type = "search" name = "searchbar" placeholder = "">
