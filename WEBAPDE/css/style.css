@@ -11,7 +11,7 @@ body{
 	padding-right: 10px;
 }
 .foodList{
-	background: url(images/registerBackground.jpg);
+	background: url(../images/registerBackground.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	width: 100%;
@@ -20,20 +20,12 @@ body{
     overflow: auto;
 }
 .backgroundPage{
-	background: url(images/welcomeBackground.jpg);
+	background: url(../images/welcomeBackground.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	width: 100%;
 	height: 100%;
 	position: fixed;
-}
-.registerPage{
-	background: url(images/registerBackground.jpg);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	width: 100%;
-	height: 100%;
-	position: absolute;
 }
 .header{
 	background-color: rgb(175, 20, 20);
@@ -94,6 +86,14 @@ p.menuHead{
 	font-family: sans-serif;
 	font-size: 42px;
 	font-weight: bold;
+}
+p.resultHead{	
+	margin: 0px;
+	padding-top: 25px;
+	padding-left: 25px;
+	font-style: arial;
+	font-family: sans-serif;
+	font-size: 13px;
 }
 a{
     color: black;
@@ -409,9 +409,6 @@ p.commentText{
     left: 30px;
     position: relative;
 }
-.commentBox:hover{
-    border: 1px solid rgba(0, 0, 0, 0.3);
-}
 .pBox{
 	color: rgb(10, 10, 10);
 	font-style: arial;
@@ -475,6 +472,30 @@ p.commentText{
 .reBox::-webkit-input-placeholder{
     color: rgb(118, 118, 118);
 }
+.cBox{
+	margin-left: 15px;
+	padding-bottom: 0px;
+    overflow: hidden;
+	color: rgb(10, 10, 10);
+	font-style: arial;
+	font-family: sans-serif;
+	font-size: 11px;
+	min-height: 35px;
+	border: 1px solid rgba(0,0,0,0.15);
+   	border-radius: 3px;
+   	opacity: 1.0;
+   	resize: none;
+}
+.cBox:hover{
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.cBox:active{
+    border: 1px solid rgb(66,133,244);
+    opacity: 0.8;
+}
+.cBox::-webkit-input-placeholder{
+    color: rgb(118, 118, 118);
+}
 img.favorited{
     margin: 0px;
     padding-left: 15px;
@@ -506,8 +527,8 @@ img.reviewImg{
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 215px;
+    height: 215px;
     float: right;
 }
 img.sideImg{
@@ -529,6 +550,14 @@ img.heartImg{
     padding-top: 10px;
     padding-left: 10px;
     float: right;
+}
+img.sendImg{
+	position: absolute;
+	background-repeat: no-repeat;
+	top: 22px;
+	right: 18px;
+	width: 27px;
+	height:27px;
 }
 img.postImg{
 	background-repeat: no-repeat;
@@ -576,7 +605,7 @@ input[type=search]{
 	margin: 13px;
 	float: right;
 	top: 0px;
-	background: url(images/searchIcon.png) no-repeat 0px center;
+	background: url(../images/searchIcon.png) no-repeat 0px center;
 	background-size: 20px 20px;
 	border: 0px;
 	height: 22px;
@@ -646,17 +675,17 @@ ul.tabs li.current{
 	float: right;        
     width: 30px;
 	height: 30px;
-    background: url(images/hollowStar.png) no-repeat 0px center;
+    background: url(../images/hollowStar.png) no-repeat 0px center;
 	background-size: 24px 24px;
 }
 .rating-star:hover,
 .rating-star:hover ~ .rating-star,
 .rating-input:checked ~ .rating-star{
-	background: url(images/star.jpg) no-repeat 0px center;
+	background: url(../images/star.jpg) no-repeat 0px center;
 	background-size: 24px 24px;
 }
 .imgSign{
-	background-image: url(images/sLogout.png);
+	background-image: url(../images/sLogout.png);
 	width: 16px;
 	height: 16px;
 	margin-right: 30px;

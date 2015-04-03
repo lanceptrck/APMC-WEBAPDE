@@ -15,24 +15,24 @@ else{
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
-		<link rel = "stylesheet" type = "text/css" href = "style.css">
+		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
 	</head>
 	<body>
 		<div class = "foodList">
-			<?php include 'header.php'; ?>	
+			<?php include 'postheader.php'; ?>	
 			<div class = "menuBox" id = "inbox">
 				<ul class = "tabs" align = "center">
-					<li class="tab-link current" data-tab = "postReview">Review</a></li>
-					<li class="tab-link" data-tab = "postRecipe">Recipe</a></li>
+					<li class = "tab-link current" data-tab = "postReview">Review</a></li>
+					<li class = "tab-link" data-tab = "postRecipe">Recipe</a></li>
 				</ul>
 				<div id = "postReview" class = "tab-content current" align = "center">
-					<form action ="post_review.php" method="POST" enctype="multipart/form-data">
+					<form action = "post_review.php" method = "POST" enctype = "multipart/form-data">
 						<div id = "inputData1">
 							<br>
-							<input type = "text" placeholder = "Title" class = "pBox" id = "title" name="review_title"/>
+							<input type = "text" placeholder = "Title" class = "pBox" name = "review_title"/>
 							<br>
 							<br>
-							<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50 "id = "textBody" name="review_txt"/></textarea>
+							<textarea placeholder = "Insert text here" class = "tBox"cols = "10" rows = "50" name = "review_txt"/></textarea>
 							<br>
 							<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;
@@ -63,16 +63,16 @@ else{
 					<form action ="post_recipe.php" method="POST" enctype = "multipart/form-data">
 						<div id = "inputData2">
 							<br>
-							<input type = "text" placeholder = "Title" class = "pBox" id = "title" name="recipe_title"/>
+							<input type = "text" placeholder = "Title" class = "pBox" name = "recipe_title"/>
 							<br>
 							<br>
-							<textarea placeholder = "Ingredients" class = "reBox"cols = "10" rows = "50 "id = "ingredientsText" name="ingredients_txt"/></textarea>
+							<textarea placeholder = "Ingredients" class = "reBox"cols = "10" rows = "50" name = "ingredients_txt"/></textarea>
 							<br>
 							<br>
-							<textarea placeholder = "Directions" class = "reBox"cols = "10" rows = "50 "id = "directionsText" name="directions_txt"/></textarea>
+							<textarea placeholder = "Directions" class = "reBox"cols = "10" rows = "50" name = "directions_txt"/></textarea>
 							<br>
 							<br>
-							<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50 "id = "nutritionsText" name="facts_txt"/></textarea>
+							<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50" name = "facts_txt"/></textarea>
 							<br>
 							<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;

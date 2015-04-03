@@ -17,27 +17,25 @@
   			});
   			$(document).ready(function(){
   				$(".menuBox").animate({opacity: 1, top: "15%"}, 500);
+  				$(".submitButton").addClass('spinButton');
 				$('ul.tabs li').click(function(){
 					var tab_id = $(this).attr('data-tab');
 					$('ul.tabs li').removeClass('current');
 					$('.tab-content').removeClass('current');
 					$(this).addClass('current');
 					$("#"+tab_id).addClass('current');
-					if(tab_id == "resultReview"){
-						$('#resultReview').css('opacity', '0');
-						$('#resultReview').animate({opacity: 1}, "slow");
+					if(tab_id == "postReview"){
+						$('#inputData1').css('opacity', '0');
+						$('#inputData1').animate({opacity: 1}, "slow");
 					}
-					else if(tab_id == "resultRecipe"){
-						$('#resultRecipe').css('opacity', '0');
-						$('#resultRecipe').animate({opacity: 1}, "slow");
+					else if(tab_id == "postRecipe"){
+						$('#inputData2').css('opacity', '0');
+						$('#inputData2').animate({opacity: 1}, "slow");
 					}
+					$(".submitButton").removeClass('spinButton');
 				});
 			});
 		</script>
-		<script src = "js/jquery.flexText.min.js"></script>
-			<script>
-				
-			</script>
 		<a href = "home.php" class = "no"><p class = "headName">potato.</p></a>
 		<form action = "results.php" method = "post">
 			<input type = "search" name = "searchbar" placeholder = "">
@@ -68,12 +66,12 @@
 			</div>
 		</a>
 		<hr>
-		<a href = "logout.php" class ="no">
+		<a href = "logout.php" class = "no">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sLogout.png">Logout
 			</div>
 		</a>
-		<a href = "#" class ="no">
+		<a href = "#" class = "no">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sSettings.png">Settings
 			</div>

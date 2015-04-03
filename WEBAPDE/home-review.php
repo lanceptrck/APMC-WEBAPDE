@@ -14,7 +14,7 @@
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
-		<link rel = "stylesheet" type = "text/css" href = "style.css">
+		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
 	</head>
 	<body>
 		<div class = "foodList">
@@ -26,7 +26,7 @@
 				<?php populateReviewList(); ?>
 			</div>
 			<div class = "addButton">
-				<a href="post.php"><img class = "postImg" src = "images/addButton.png"></a>
+				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>
 			</div>
 		</div>
 	</body>

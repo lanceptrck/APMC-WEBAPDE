@@ -24,6 +24,7 @@
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
+		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
 		<script>
 			function commentHeader(cUser, cImage, cBody, hCount){
 				this.cUser = cUser;
@@ -54,7 +55,6 @@
 				}
 			}
 		</script>
-		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
 	<body>
 		<div class = "foodList">
@@ -85,10 +85,11 @@
 				<br>
 				<br>
 				<br>
+				<?php include 'addComment.php'; ?>
 				<script>populate();</script>
 			</div>
 			<div class = "addButton">
-				<a href="post.php"><img class = "postImg" src = "images/addButton.png"></a>
+				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>
 			</div>
 		</div>
 	</body>

@@ -24,6 +24,7 @@ else{
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
+		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
 		<script>
 			function commentHeader(cUser, cImage, cBody, hCount){
 				this.cUser = cUser;
@@ -45,7 +46,7 @@ else{
 					newElement.className = "commentBox";
 					var commentBoxData = 
 					  	  "<img class = \"itemBoxImg\" src = \"" + comments[i].cImage + "\">"
-						+ "&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" + comments[i].cUser + "</font></b>"
+						+ "&nbsp;&nbsp;&nbsp;&nbsp;<b><font size = \"2\">" + comments[i].cUser + "</font></b>"
 						+ "<p class = \"heartCount\">" + comments[i].hCount + "</p><img class = \"heartImg\" src = \"images/heart.jpg\">"
 						+ "<br><br>"
 						+ "<p class = \"commentText\">" + comments[i].cBody + "</p>";
@@ -67,7 +68,6 @@ else{
 				}
 			}
 		</script>
-		<link rel = "stylesheet" type = "text/css" href = "style.css">
 	</head>
 	<body>
 		<div class = "foodList">
@@ -87,10 +87,11 @@ else{
 				</div>
 				<br>
 				<br>
+				<?php include 'addComment.php'; ?>
 				<script>populate();</script>
 			</div>
 			<div class = "addButton">
-				<a href="post.php"><img class = "postImg" src = "images/addButton.png"></a>
+				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>
 			</div>
 		</div>
 	</body>

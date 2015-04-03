@@ -6,30 +6,27 @@
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
 		$searched = $_POST["searchbar"];
-
 	}
 	else{
 		echo "You are not logged in.";
 		header('Refresh: 3; URL=index.php');	
 	}
-
-
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>potato. - Discover good food and recipes</title>
-		<link rel = "stylesheet" type = "text/css" href = "style.css">
+		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
 	</head>
 	<body>
 		<div class = "foodList">
 			<?php include 'header.php'; ?>
 			<div class = "menuBox" id = "inbox">
 				<p class = "resultHead">Showing results of</p>
-				<p class = "menuHead" style = "padding-top:15px;"><?php echo $searched ?>.</p>
+				<p class = "menuHead" style = "padding-top:15px; padding-left:25px"><?php echo $searched ?>.</p>
 				<ul class = "tabs" align = "center">
-					<li class="tab-link current" data-tab = "resultReview">Review</a></li>
-					<li class="tab-link" data-tab = "resultRecipe">Recipe</a></li>
+					<li class = "tab-link current" data-tab = "resultReview">Review</a></li>
+					<li class = "tab-link" data-tab = "resultRecipe">Recipe</a></li>
 				</ul>
 				<br>
 				<div id = "resultReview" class = "tab-content current">

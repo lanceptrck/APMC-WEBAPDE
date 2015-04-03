@@ -4,7 +4,6 @@ include 'functions.php';
 loadAll();
 $loggedin = false;
 $reply = "Sign in.";
-
 if(isset($_SESSION["username"])){
 	$loggedIn_account = getAccount($_SESSION["username"]);
 	header("Location: home.php");
@@ -39,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html>
 	<head>
 		<title>Welcome to potato.</title>
-		<link rel = "stylesheet" type = "text/css" href = "style.css">
+		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
 	</head>
 	<body>
 		<div class = "backgroundPage">
