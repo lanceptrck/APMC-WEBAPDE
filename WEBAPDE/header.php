@@ -7,11 +7,11 @@
 			document.querySelector("#nav-toggle").addEventListener("click", function(){
 				this.classList.toggle("active");
 				if(clicked == 0){
-					$(".slideOutBar").animate({left: "0px"}, 100);
+					$(".slideOutBar").animate({left: "0px"}, 150);
 					clicked = 1;
 				}
 				else{
-					$(".slideOutBar").animate({left: "-268px"}, 100);
+					$(".slideOutBar").animate({left: "-268px"}, 150);
 					clicked = 0;
 				}
   			});
@@ -67,10 +67,10 @@
 					$(".submitButton").removeClass('spinButton');
 				});
 				$('.mainHeader').hover(function(){
-        			$(this).animate({opacity: 1}, 300);
+        			$(this).animate({opacity: 1}, 250);
         		}
         		,function(){
-        			$(this).animate({opacity: 0.8}, 300);
+        			$(this).animate({opacity: 0.8}, 250);
     			});
 			});
 		</script>
@@ -83,10 +83,12 @@
 		<div class = "slideHeader">
 			<img class = "slideImg" src = "images/profile/chino_cover.jpg"/>
 			<img class = "userImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>"/>
-			<p class = "userName"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?>
-				<br>
-				<?php echo $loggedIn_account->getUser() ?>
-			</p>
+			<a href = "account.php" class = "no">
+				<p class = "userName"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?>
+					<br>
+					<?php echo $loggedIn_account->getUser() ?>
+				</p>
+			</a>
 		</div>
 		<hr><a href = "home.php" class = "no">
 			<div class = "sideBox">
@@ -120,5 +122,6 @@
 				<img class = "sideImg" src = "images/sSettings.png">Settings
 			</div>
 		</a>
+		<hr>
 	</div>
 </html>

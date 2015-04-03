@@ -7,6 +7,9 @@ p{
 }
 hr{
 	margin: 0px;
+	height: 12px;
+    border: 0;
+    box-shadow: inset 0 8px 8px -8px rgba(0,0,0,0.5);
 }
 #rating{
 	padding: 50px;
