@@ -3,14 +3,17 @@
 	include 'functions.php';
 	loadAll();
 	$searched = "";
+
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
-		$searched = $_POST["searchbar"];
+
 	}
 	else{
 		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');	
+		header('Refresh: 3; URL=index.php');
+		exit;	
 	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,6 +38,14 @@
 						<img class = "mainImg" src = "images/mainRecipe.jpg"/>
 						<img class = "mainItemImg" src = "images/recipe/rec_10013.jpg"/>
 						<p class = "mainHead">Recipes.</p>
+					</div>
+				</a>
+				<br>
+				<a href = "favorites.php">
+					<div class = "mainHeader">
+						<img class = "mainImg" src = "images/finedining.jpg"/>
+						<img class = "mainItemImg" src = "images/recipe/rec_10010.jpg"/>
+						<p class = "mainHead">Favorites.</p>
 					</div>
 				</a>
 				<br>

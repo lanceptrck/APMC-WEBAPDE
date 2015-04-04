@@ -1,8 +1,8 @@
 <html>
 	<div class = "commentBox">
 		<img class = "itemBoxImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>">
-		<form>
-			<textarea class = "cBox" placeholder = "Write a comment..." name = "comments_txt"/></textarea>
+		<form action="post_comment.php?id=<?php echo $_GET['link']; ?>&type=<?php echo $_GET['type']; ?>" method="post">
+			<textarea class = "cBox" placeholder = "Write a comment..." name = "text"/></textarea>
 			<button id = "postButton" onclick = "document.forms["pComment"].submit();"><img class = "sendImg" src = "images/sent.png"></button>
 		</form>
 		<script src = "js/jquery-2.1.3.min.js"></script>

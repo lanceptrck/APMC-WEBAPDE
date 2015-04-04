@@ -173,6 +173,196 @@ class review
 
 }
 
+class comment
+{
+	public $comment_id;
+	public $account_id;
+	public $comment;
+	public $type;
+	public $favorite_count;
+	public $review_id;
+	public $recipe_id;
+	public $acc_id;
+
+	function __construct($cid, $aid, $cnt, $cmt, $t, $rv, $rc, $a)
+	{
+		$this->comment_id = $cid;
+		$this->account_id = $aid;
+		$this->comment = $cmt;
+		$this->type = $t;
+		$this->favorite_count = $cnt;
+		$this->review_id = $rv;
+		$this->recipe_id = $rc;
+		$this->acc_id = $a;
+	}
+
+	function get_commentid()
+	{
+		return $this->comment_id;
+	}
+
+	function get_accountid()
+	{
+		return $this->account_id;
+	}
+
+	function get_reviewid()
+	{
+		return $this->review_id;
+	}
+
+	function get_recipeid()
+	{
+		return $this->recipe_id;
+	}
+
+	function get_accid()
+	{
+		return $this->acc_id;
+	}
+
+	function get_type()
+	{
+		return $this->type;
+	}
+
+	function get_favecounts()
+	{
+		return $this->favorite_count;
+	}
+
+	function get_comment()
+	{
+		return $this->comment;
+	}
+
+	/* setters */
+
+	function set_commentid($input)
+	{
+		$this->comment_id = $input;
+	}
+
+	function set_accountid($input)
+	{
+		$this->account_id = $input;
+	}
+
+	function set_reviewid($input)
+	{
+		$this->review_id = $input;
+	}
+
+	function set_recipeid($input)
+	{
+		$this->recipe_id = $input;
+	}
+
+	function set_accid($input)
+	{
+		$this->acc_id = $input;
+	}
+
+	function set_type($input)
+	{
+		$this->type = $input;
+	}
+
+	function set_favcount($input)
+	{
+		$this->favorite_count = $input;
+	}
+
+	function set_comment($input)
+	{
+		$this->comment = $input;
+	}
+}
+
+class favorite
+{
+	public $favorite_id;
+	public $account_id;
+	public $type;
+	public $review_id;
+	public $recipe_id;
+	public $comment_id;
+
+	function __construct($fid, $aid, $t, $rv, $rc, $ct)
+	{
+		$this->favorite_id = $fid;
+		$this->account_id = $aid;
+		$this->type = $t;
+		$this->review_id = $rv;
+		$this->recipe_id = $rc;
+		$this->comment_id = $ct;
+
+	}
+
+	function get_favoriteid()
+	{
+		return $this->favorite_id;
+	}
+
+	function get_commentid()
+	{
+		return $this->comment_id;
+	}
+
+	function get_accountid()
+	{
+		return $this->account_id;
+	}
+
+	function get_reviewid()
+	{
+		return $this->review_id;
+	}
+
+	function get_recipeid()
+	{
+		return $this->recipe_id;
+	}
+
+	function get_type()
+	{
+		return $this->type;
+	}
+
+	/* setters */
+
+	function set_commentid($input)
+	{
+		$this->comment_id = $input;
+	}
+
+	function set_accountid($input)
+	{
+		$this->account_id = $input;
+	}
+
+	function set_reviewid($input)
+	{
+		$this->review_id = $input;
+	}
+
+	function set_recipeid($input)
+	{
+		$this->recipe_id = $input;
+	}
+
+	function set_favoriteid($input)
+	{
+		$this->favorite_id = $input;
+	}
+
+	function set_type($input)
+	{
+		$this->type = $input;
+	}
+
+}
+
 class account
 {
 	public $account_id;
@@ -253,7 +443,7 @@ class DBConnection
 	{
 			$this->servername = "localhost";
 			$this->dbuser = "root";
-			$this->password = "root";
+			$this->password = "1234";
 			$this->dbName = "potato";
 			$this->conn = new mysqli($this->servername, $this->dbuser, $this->password, $this->dbName);
 	}

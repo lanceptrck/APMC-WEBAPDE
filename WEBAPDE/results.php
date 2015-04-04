@@ -2,10 +2,14 @@
 	session_start();
 	include 'functions.php';
 	loadAll();
-	$searched = "";
+	$searched = null;
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
-		$searched = $_POST["searchbar"];
+		if(isset($_POST["searchbar"]))
+		{
+			$searched = $_POST["searchbar"];
+		}
+
 	}
 	else{
 		echo "You are not logged in.";
@@ -23,17 +27,21 @@
 			<?php include 'header.php'; ?>
 			<div class = "menuBox" id = "inbox">
 				<p class = "resultHead">Showing results of</p>
-				<p class = "menuHead" style = "padding-top:15px; padding-left:25px"><?php echo $searched ?>.</p>
+				<p class = "menuHead" style = "padding-top:15px; padding-left:25px"><?php echo $searched ?></p>
 				<ul class = "tabs" align = "center">
 					<li class = "tab-link current" data-tab = "resultReview">Review</a></li>
 					<li class = "tab-link" data-tab = "resultRecipe">Recipe</a></li>
+					<li class = "tab-link" data-tab = "resultAccount">People</a></li>
 				</ul>
 				<br>
 				<div id = "resultReview" class = "tab-content current">
-					<?php populateReviewByName($searched); ?>
+					<?php if($searched != null) populateReviewByName($searched); else echo "<p align=\"center\"> Empty search field <p>"; ?>
 				</div>					
 				<div id = "resultRecipe" class = "tab-content">
-					<?php populateRecipeByName($searched); ?>
+					<?php if($searched != null) populateRecipeByName($searched); else echo "<p align=\"center\"> Empty search field <p>"; ?>
+				</div>
+				<div id = "resultAccount" class = "tab-content">
+					<?php if($searched != null) populatePeople($searched); else echo "<p align=\"center\"> Empty search field <p>"; ?>
 				</div>
 			</div>
 			<div class = "addButton">

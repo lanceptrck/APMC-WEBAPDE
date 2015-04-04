@@ -43,3 +43,6 @@ Bacon<br>Onions<br>Lettuce<br>Burger Patty<br>
 10015
 Cheese<br>
 ;
+10016
+1 tablespoon curry powder<br>1 garlic clove, minced<br>1 tablespoon grated fresh ginger<br>2 teaspoons chopped cilantro, plus leaves for serving<br>1/2 teaspoon crushed red pepper<br>1/4 teaspoon kosher salt<br>1 pound large shrimp, peeled and deveined<br>1 tablespoon vegetable oil<br>1/2 cup chutney<br>
+;

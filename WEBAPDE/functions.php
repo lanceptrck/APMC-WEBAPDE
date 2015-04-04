@@ -7,7 +7,9 @@ $username = null;
 $password = null;
 $accounts = array();
 $recipes = array();
-$recviews = array();
+$reviews = array();
+$comments = array();
+$favorites = array();
 $reply = "";
 $loggedin = false;
 
@@ -29,6 +31,8 @@ function loadAll()
 	loadAccounts();
 	loadRecipes();
 	loadReviews();
+	loadComments();
+	loadFavorites();
 }
 
 
@@ -205,6 +209,52 @@ function loadReviews()
 	$connect->close();
 }
 
+function loadComments()
+{
+	global $comments;
+	$comments = null;
+	$connect= new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "SELECT * FROM comment";
+	$result = $connect->query($sql);
+
+	if($result->num_rows > 0)
+	{
+		while($row = $result->fetch_assoc())
+		{
+			$temp_comment = new comment($row['comment_id'], $row['account_id'], $row['favorite_count'], "hi", $row['type'], $row['review_id'], $row['recipe_id'], $row['acc_id']);
+			$temp_comment->set_comment(getCommentFromText("text/comments.txt", $row['comment_id']));
+
+			$comments[count($comments)] = $temp_comment;
+		}
+	} else echo "0 results";
+
+	$connect->close();
+}
+
+function loadFavorites()
+{
+	global $favorites;
+	$favorites = null;
+	$connect= new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "SELECT * FROM favorite";
+	$result = $connect->query($sql);
+
+	if($result->num_rows > 0)
+	{
+		while($row = $result->fetch_assoc())
+		{
+			$temp_fave = new favorite($row['favorite_id'], $row['account_id'], $row['type'], $row['review_id'], $row['recipe_id'], $row['comment_id']);
+			$favorites[count($favorites)] = $temp_fave;
+		}
+	} else echo "0 results";
+
+	$connect->close();
+}
+
 function getData ($text, $recipe_id)
 {
 	$file= fopen($text, "r");
@@ -219,6 +269,38 @@ function getData ($text, $recipe_id)
 		if(strcmp($init, $recipe_id) == 0)
 		{
 			do {
+				$save = str_replace(array("\r", "\n"), "", fgets($file));
+				if(strcmp($save, ";") != 0)
+					$text .= $save;
+			}while(strcmp($save, ";"));
+
+		}
+	}
+
+	fclose($file);
+
+	return $text;
+}
+
+function getCommentFromText($text, $comment_id)
+{
+	$file = fopen($text, "r");
+
+	$text = "";
+	$found = false;
+
+	while(!feof($file) || $found == true)
+	{
+		$init = str_replace(array("\r", "\n"), "", fgets($file));
+
+		if(strcmp($init, $comment_id) == 0)
+		{
+			for($i = 0; $i<4; $i++)
+			{
+				fgets($file);
+			}
+
+			do{
 				$save = str_replace(array("\r", "\n"), "", fgets($file));
 				if(strcmp($save, ";") != 0)
 					$text .= $save;
@@ -311,6 +393,47 @@ function getLastAccId()
 	return $id;
 }
 
+function getLastCommentId()
+{
+	$id = null;
+	$connect= new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "SELECT MAX(comment_id) as result FROM comment";
+	$result = $connect->query($sql);
+
+	if($result->num_rows > 0)
+	{
+		$row = $result->fetch_assoc();
+		$id = $row['result'];
+	}
+
+	$connect->close();
+
+	return $id;
+}
+
+function getLastFavoriteId()
+{
+	$id = null;
+	$connect= new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "SELECT MAX(favorite_id) as result FROM favorite";
+	$result = $connect->query($sql);
+
+	if($result->num_rows > 0)
+	{
+		$row = $result->fetch_assoc();
+		$id = $row['result'];
+	}
+
+	$connect->close();
+
+	return $id;
+}
+
+
 function getLastRecipeId()
 {
 	$id = null;
@@ -352,6 +475,8 @@ function getLastReviewId()
 	return $id;
 
 }
+
+
 
 function populateRecipeList()
 {
@@ -446,6 +571,119 @@ function postRecipe($rec_id, $acc_id, $t, $i, $d, $f, $img)
 
 }
 
+function getFavoriteCountById($id, $type)
+{
+
+	switch($type)
+	{
+		case 1: global $reviews;
+				for($i = 0; $i<count($reviews); $i++)
+				{
+					if($reviews[$i]->get_reviewid() == $id)
+						return $reviews[$i]->get_favecounts();
+				}
+				break;
+
+		case 2: global $recipes;
+				for($i = 0; $i<count($recipes); $i++)
+				{
+					if($recipes[$i]->get_recipeid() == $id)
+						return $recipes[$i]->get_favecounts();
+				}
+				break;
+
+		case 3: global $comments;
+				for($i = 0; $i<count($comments); $i++)
+				{
+					if($comments[$i]->get_commentid() == $id)
+						return $comments[$i]->get_favecounts();
+				}
+				break;
+	}
+}
+
+function hasLiked($aid, $id, $type)
+{
+	global $favorites;
+
+	for($i = 0; $i<count($favorites); $i++)
+	{
+		$temp = $favorites[$i];
+
+		if($temp->get_accountid() == $aid)
+		{	
+			switch($type)
+			{
+				case 1: if($temp->get_reviewid() == $id) return true; break;
+				case 2: if($temp->get_recipeid() == $id) return true; break;
+				case 3: if($temp->get_commentid() == $id) return true; break;
+			}
+		}
+	}
+
+	return false;
+}
+
+function favorite($fid, $aid, $t, $rv, $rc, $ct)
+{
+	global $favorites;
+	$connect = new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "INSERT INTO favorite(favorite_id, account_id, type, review_id, recipe_id, comment_id)
+	VALUES ('$fid', '$aid', '$t', '$rv', '$rc', '$ct')";
+
+	if ($connect->query($sql) !== TRUE) {
+    	echo "Error: " . $sql . "<br>" . $connect->error;
+    }
+
+    $sql ="";
+
+    switch($t)
+    {
+    	case 1: $sql = "UPDATE review SET favorite_count='" . (getFavoriteCountById($rv, $t)+1) . "' WHERE review_id='" . $rv . "'"; break;
+    	case 2: $sql = "UPDATE recipe SET favorite_count='" . (getFavoriteCountById($rc, $t)+1) . "' WHERE recipe_id='" . $rc . "'"; break;
+    	case 3: $sql = "UPDATE comment SET favorite_count='" . (getFavoriteCountById($ct, $t)+1) . "' WHERE comment_id='" . $ct . "'"; break;
+    }
+
+    if ($connect->query($sql) !== TRUE) {
+    	echo "Error: " . $sql . "<br>" . $connect->error;
+    }
+
+    $connect->close();
+
+  	loadAll();
+
+}
+
+function postComment($cid, $aid, $cnt, $cmt, $t, $rv, $rc, $a)
+{
+	global $comments;
+	$connect = new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "INSERT INTO comment(comment_id, account_id, file_comment, favorite_count, type, review_id, recipe_id, acc_id)
+	VALUES ('$cid', '$aid', 'comments.txt', '$cnt', '$t', '$rv', '$rc', '$a')";
+
+	if ($connect->query($sql) !== TRUE) {
+    	echo "Error: " . $sql . "<br>" . $connect->error;
+    }
+
+	$connect->close();
+
+	$cmt = str_replace("\n", "<br>", $cmt) . "<br>";
+
+	$temp_comment = new comment($cid, $aid, $cnt, $cmt, $t, $rv, $rc, $a);
+
+	$comments[count($comments)] = $temp_comment;
+
+	writeCommentsToText();
+
+	loadAll();
+
+
+}
+
 function writeRecipeToText()
 {
 	$file = fopen("text/ingredients.txt", "w");
@@ -479,6 +717,41 @@ function writeRecipeToText()
 	fclose($file);
 	fclose($dFile);
 	fclose($fFile);
+}
+
+
+function writeCommentsToText()
+{
+	$file = fopen("text/comments.txt", "w");
+
+	$newline = PHP_EOL;
+
+	global $comments;
+
+	for($i = 0; $i<count($comments); $i++)
+	{
+		$temp = $comments[$i];
+		fwrite($file, $temp->get_commentid().$newline);
+		fwrite($file, $temp->get_type().$newline);
+
+		switch($temp->get_type()){
+			case 1: fwrite($file, $temp->get_reviewid().$newline); break;
+			case 2: fwrite($file, $temp->get_recipeid().$newline); break;
+			case 3: fwrite($file, $temp->get_accid().$newline); break;
+
+		}
+
+		fwrite($file, $temp->get_favecounts().$newline);
+
+		fwrite($file, $temp->get_accountid().$newline);
+
+		fwrite($file, $temp->get_comment().$newline);
+
+		fwrite($file, ";".$newline);
+
+	}
+
+	fclose($file);
 }
 
 function postReview($rev_id, $acc_id, $t, $rev_txt, $rat, $img)
@@ -537,7 +810,7 @@ function populateRecipeByName($name)
 	for($i = 0; $i<count($recipes); $i++)
 	{
 		$temp = $recipes[$i];
-		if(strpos($temp->get_recipename(), $name) !== false)
+		if(strpos(strtolower($temp->get_recipename()), strtolower($name)) !== false)
 		{
 		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
@@ -561,7 +834,7 @@ function populateReviewByName($name)
 	for($i = 0; $i<count($reviews); $i++)
 	{
 		$temp = $reviews[$i];
-		if(strpos($temp->get_reviewname(), $name) !== false){
+		if(strpos(strtolower($temp->get_reviewname()), strtolower($name)) !== false){
 		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
@@ -573,6 +846,171 @@ function populateReviewByName($name)
 	}
 
 	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+function populateReviewByAccount($id)
+{
+	global $reviews;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($reviews); $i++)
+	{
+		$temp = $reviews[$i];
+		if($temp->get_accid() == $id){
+		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		$cnt++;
+		}
+	}
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+function populateReviewByFavorite($aid)
+{
+	global $reviews;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($reviews); $i++)
+	{
+		$temp = $reviews[$i];
+		if(hasLiked($aid, $temp->get_reviewid(), "1") == true){
+		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		$cnt++;
+		}
+	}
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+
+function populateRecipeByAccount($id)
+{
+	global $recipes;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($recipes); $i++)
+	{
+		$temp = $recipes[$i];
+		if($temp->get_accid() == $id)
+		{
+		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		$cnt++;
+		}
+	}
+
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+function populateRecipeByFavorite($aid)
+{
+	global $recipes;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($recipes); $i++)
+	{
+		$temp = $recipes[$i];
+		if(hasLiked($aid, $temp->get_recipeid(), "2") == true)
+		{
+		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		$cnt++;
+		}
+	}
+
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+function populatePeople($name)
+{
+	global $accounts;
+	$temp = null;
+	$cnt = 0;
+
+	for($i = 0; $i<count($accounts); $i++)
+	{
+		$temp = $accounts[$i];
+		if(strpos(strtolower($temp->getFirstname()), strtolower($name)) !== false || strpos(strtolower($temp->getLastname()), strtolower($name)) !== false){
+		echo "<a class =\"no\" href='account.php?id=". $temp->getAccid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/profile/" . $temp->getImg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->getFirstname() . " " . $temp->getLastname() . "</font></b>
+		</div></a>";
+		$cnt++;
+		}
+	}
+
+	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
+}
+
+function populateCommentById($aid, $id, $type)
+{
+	global $comments;
+	$temp = null;
+	$cnt = 0;
+
+
+	for($i = 0; $i<count($comments); $i++)
+	{
+		$temp = $comments[$i];
+
+
+		switch($type)
+		{
+			case 1: $compare = $temp->get_reviewid(); $div = "commentBox"; break;
+			case 2: $compare = $temp->get_recipeid(); $div = "commentBox"; break;
+			case 3: $compare = $temp->get_accid(); $div = "postBox"; break;
+		}
+
+		if($compare == $id && $temp->get_type() == $type){
+		$acc = getAccount(getAccountName($temp->get_accountid()));
+		if(hasLiked($aid, $temp->get_commentid(), "3") == false)
+		{
+			echo "<div class =\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
+			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b>
+			<a class =\"no\" title =\"Favorite\" href='favorite-it.php?id=". $temp->get_commentid()."&type=3'><p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\"></a><br><br>
+			<p class = \"commentText\">" . $temp->get_comment() . "</p>
+			</div>";
+		}
+		else
+		{
+			echo "<div class =\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
+			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b></a>
+			<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/hollowheart.png\"><br><br>
+			<p class = \"commentText\">" . $temp->get_comment() . "</p>
+			</div>";
+		}
+	 }
+
+	}
+}
+
+function echoFavorite($aid, $id, $type)
+{
+	if(hasLiked($aid, $id, $type) == false)
+		echo "<a title =\"Favorite\" href=\"favorite-it.php?id=". $id. "&type=".$type."\"><img class = \"favorited\" src = \"images/heart.jpg\"></a>";
+	else echo "<img class = \"favorited\" src = \"images/hollowheart.png\">";
+
 }
 
 ?>	

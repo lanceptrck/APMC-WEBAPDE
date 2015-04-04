@@ -5,7 +5,7 @@
 	$searched = "";
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
-		$searched = $_POST["searchbar"];
+		$la_id = $loggedIn_account->getAccid();
 	}
 	else{
 		echo "You are not logged in.";
@@ -30,11 +30,11 @@
 				<br>
 				<div id = "favoriteReviews" class = "tab-content current">
 					<!-- Testing purposes -->
-					<?php populateReviewByName("Lobster"); ?>
+					<?php populateReviewByFavorite($la_id); ?>
 				</div>					
 				<div id = "favoriteRecipes" class = "tab-content">
 					<!-- Testing purposes -->
-					<?php populateRecipeByName("Lobster"); ?>
+					<?php populateRecipeByFavorite($la_id); ?>
 				</div>
 			</div>
 			<div class = "addButton">

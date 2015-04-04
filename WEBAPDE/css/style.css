@@ -145,6 +145,7 @@ a{
     font-size: 15px;
     font-style: arial;
 	font-family: sans-serif;
+	text-decoration: none;
 }
 a.no{
     text-decoration: none;

@@ -4,6 +4,8 @@ include 'functions.php';
 loadAll();
 if(isset($_SESSION["username"])){
 	$loggedIn_account = getAccount($_SESSION["username"]);
+	$la_id = $loggedIn_account->getAccid();
+		$acc = getAccount($_SESSION["username"]);
 	if(!isset($_GET["link"])){
 		echo "<h1 align=\"center\">No review selected.</h1>";
 		header('Refresh: 3; URL=home-review.php');
@@ -11,7 +13,11 @@ if(isset($_SESSION["username"])){
 	}
 	else{	
 		$review_id = $_GET["link"];
+		$_GET["type"] = $type = 1;
 		$review = getReviewById($review_id);
+		$poster = getAccount(getAccountName($review->get_accid())); 
+		$_SESSION['prev'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 	}
 }
 else{
@@ -74,8 +80,8 @@ else{
 			<?php include 'header.php'; ?>	
 			<div class = "menuBox" id = "inbox">
 				<img class = "reviewImg" src = "images/review/<?php echo $review->get_reviewimg()?>">
-				<p class = "reviewHead"><?php echo $review->get_reviewname(); ?><img class = "favorited" src = "images/heart.jpg"></p>
-				<p class = "userTag">by <?php echo getAccountName($review->get_accid()); ?></p>
+				<p class = "reviewHead"><?php echo $review->get_reviewname(); ?> <?php echoFavorite($la_id, $review_id, "1"); ?> </p> 
+				<p class = "userTag">by <a href="account.php?id=<?php echo $poster->getAccid(); ?>"><?php echo $poster->getUser(); ?> </a></p>
 				<br>
 				<br>
 				<p class = "reviewText">
@@ -88,7 +94,7 @@ else{
 				<br>
 				<br>
 				<?php include 'addComment.php'; ?>
-				<script>populate();</script>
+				<?php populateCommentById($la_id, $review_id, $type); ?>
 			</div>
 			<div class = "addButton">
 				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>

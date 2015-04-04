@@ -4,6 +4,8 @@
 	loadAll();
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
+		$la_id = $loggedIn_account->getAccid();
+		$acc = getAccount($_SESSION["username"]);
 		if(!isset($_GET["link"])){
 			echo "<h1 align=\"center\">No recipe selected.</h1>";
 			header('Refresh: 3; URL=home.php');
@@ -12,6 +14,9 @@
 		else{	
 			$recipe_id = $_GET["link"];
 			$recipe = getRecipeById($recipe_id);
+			$poster = getAccount(getAccountName($recipe->get_accid())); 
+			$_GET["type"] = $type = 2;
+			$_SESSION['prev'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		}
 	}
 	else{
@@ -61,8 +66,8 @@
 			<?php include 'header.php'; ?>	
 			<div class = "menuBox" id = "inbox">
 				<img class = "reviewImg" src = "images/recipe/<?php echo $recipe->get_recipeimg()?>">
-				<p class = "reviewHead"> <?php echo $recipe->get_recipename(); ?><img class = "favorited" src = "images/heart.jpg"></p>
-				<p class = "userTag">by <?php echo getAccountName($recipe->get_accid()); ?></p>
+				<p class = "reviewHead"> <?php echo $recipe->get_recipename(); ?> <?php echoFavorite($la_id, $recipe_id, "2"); ?></p>
+				<p class = "userTag">by <a href="account.php?id=<?php echo $poster->getAccid(); ?>"><?php echo $poster->getUser(); ?> </a></p>
 				<br>
 				<br>
 				<br>
@@ -86,7 +91,7 @@
 				<br>
 				<br>
 				<?php include 'addComment.php'; ?>
-				<script>populate();</script>
+				<?php populateCommentById($la_id, $recipe_id, $type); ?>
 			</div>
 			<div class = "addButton">
 				<a href = "post.php"><img class = "postImg" src = "images/addButton.png"></a>
