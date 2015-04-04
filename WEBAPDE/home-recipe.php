@@ -20,7 +20,7 @@
 		<div class = "foodList">
 			<?php include 'header.php'; ?>	
 			<div class = "menuBox" id = "inbox">
-				<p class = "menuHead">The best food in Los Angeles.</p>
+				<p class = "menuHead">Recipes just for you.</p>
 				<br>
 				<br>
 				<?php populateRecipeList(); ?>

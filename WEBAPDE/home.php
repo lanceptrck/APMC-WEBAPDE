@@ -3,7 +3,6 @@
 	include 'functions.php';
 	loadAll();
 	$searched = "";
-
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
 
@@ -13,7 +12,6 @@
 		header('Refresh: 3; URL=index.php');
 		exit;	
 	}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,8 +41,8 @@
 				<br>
 				<a href = "favorites.php">
 					<div class = "mainHeader">
-						<img class = "mainImg" src = "images/finedining.jpg"/>
-						<img class = "mainItemImg" src = "images/recipe/rec_10010.jpg"/>
+						<img class = "mainImg" src = "images/mainFavorites.jpg"/>
+						<img class = "mainItemImg" src = "images/recipe/rec_10005.jpg"/>
 						<p class = "mainHead">Favorites.</p>
 					</div>
 				</a>

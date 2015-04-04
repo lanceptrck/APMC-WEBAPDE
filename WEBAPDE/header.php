@@ -32,6 +32,10 @@
 						$('#resultRecipe').css('opacity', '0');
 						$('#resultRecipe').animate({opacity: 1}, "slow");
 					}
+					else if(tab_id == "resultAccount"){
+						$('#resultAccount').css('opacity', '0');
+						$('#resultAccount').animate({opacity: 1}, "slow");
+					}
 					else if(tab_id == "accountWall"){
 						$('#accountWall').css('opacity', '0');
 						$('#accountWall').animate({opacity: 1}, "slow");
@@ -90,7 +94,8 @@
 				</p>
 			</a>
 		</div>
-		<hr><a href = "home.php" class = "no">
+		<hr>
+		<a href = "home.php" class = "no">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sHome.png">Home
 			</div>

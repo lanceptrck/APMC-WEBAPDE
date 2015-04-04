@@ -5,11 +5,9 @@
 	$searched = null;
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
-		if(isset($_POST["searchbar"]))
-		{
+		if(isset($_POST["searchbar"])){
 			$searched = $_POST["searchbar"];
 		}
-
 	}
 	else{
 		echo "You are not logged in.";

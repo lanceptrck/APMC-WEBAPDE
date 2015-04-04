@@ -9,17 +9,15 @@
 		$account_id = $loggedIn_account->getAccid();
 		$acc = getAccount($_SESSION["username"]);
 		$_GET["type"] = $type = 3;
-		if(isset($_GET["id"]))
-		{
+		if(isset($_GET["id"])){
 			$account_id = $_GET["id"];
 			$acc = getAccount(getAccountName($account_id));
 			$_SESSION['prev'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
 		}
 	}
 	else{
 		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');	
+		header('Refresh: 3; url = index.php');	
 	}
 ?>
 <!DOCTYPE html>
@@ -27,36 +25,6 @@
 	<head>
 		<title>potato. - Discover good food and recipes</title>
 		<link rel = "stylesheet" type = "text/css" href = "css/style.css">
-		<script>
-			function commentHeader(cUser, cImage, cBody, hCount){
-				this.cUser = cUser;
-				this.cImage = cImage;
-				this.cBody = cBody;
-				this.hCount = hCount;
-			}
-
-			var comments = [];
-			comments[0] = new commentHeader("iluvfood21", "images/profile/default_pic.jpg", "Great review! Hopefully I can go there and eat lobster soon! :)", 5);
-			comments[1] = new commentHeader("usaftw", "images/profile/default_pic.jpg", "I still prefer steak, but hey! Surf and Turf is amazing.", 5);
-			comments[2] = new commentHeader("bluesky21", "images/profile/default_pic.jpg", "I love it :D", 1);
-			comments[3] = new commentHeader("calidownsouth", "images/profile/default_pic.jpg", "This is an extensive well thought out review, who knew California has the best lobsters around!!!", 1);
-			comments[4] = new commentHeader("mammamia", "images/profile/default_pic.jpg", "This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!! This is an extensive well thought out review, who knew California has the best lobsters around!!!", 0);
-
-			function populate(){
-				for(var i in comments){
-					var newElement = document.createElement('div');
-					newElement.className = "postBox";
-					var commentBoxData = 
-					  	  "<img class = \"itemBoxImg\" src = \"" + comments[i].cImage + "\">"
-						+ "&nbsp;&nbsp;&nbsp;&nbsp;<b><font size = \"2\">" + comments[i].cUser + "</font></b>"
-						+ "<p class = \"heartCount\">" + comments[i].hCount + "</p><img class = \"heartImg\" src = \"images/heart.jpg\">"
-						+ "<br><br>"
-						+ "<p class = \"commentText\">" + comments[i].cBody + "</p>";
-					newElement.innerHTML = commentBoxData;
-					document.getElementById("accountWall").appendChild(newElement);
-				}
-			}
-		</script>
 	</head>
 	<body>
 		<div class = "foodList">
@@ -79,7 +47,7 @@
 				<div id = "accountWall" class = "tab-content current">
 					<div class = "postBox">
 						<img class = "itemBoxImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>">
-						<form action="post_comment.php?id=<?php echo $account_id; ?>&type=<?php echo $_GET['type']; ?>" method="post">
+						<form action = "post_comment.php?id=<?php echo $account_id; ?>&type=<?php echo $_GET['type']; ?>" method = "post">
 							<textarea class = "cBox" placeholder = "Write something..." name = "text"/></textarea>
 							<button id = "postButton" onclick = "document.forms["pPost"].submit();"><img class = "sendImg" src = "images/sent.png"></button>
 						</form>
@@ -104,11 +72,9 @@
 					The heart of another is a dark forest, always, no matter how close it has been to one's own.
 				</div>	
 				<div id = "accountReviews" class = "tab-content">
-					<!-- Testing purposes -->
 					<?php populateReviewByAccount($account_id); ?>
 				</div>					
 				<div id = "accountRecipes" class = "tab-content">
-					<!-- Testing purposes -->
 					<?php populateRecipeByAccount($account_id);  ?>
 				</div>
 			</div>

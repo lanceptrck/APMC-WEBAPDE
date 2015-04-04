@@ -9,7 +9,7 @@
 	}
 	else{
 		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');	
+		header('Refresh: 3; url = index.php');	
 	}
 ?>
 <!DOCTYPE html>
@@ -29,11 +29,9 @@
 				</ul>
 				<br>
 				<div id = "favoriteReviews" class = "tab-content current">
-					<!-- Testing purposes -->
 					<?php populateReviewByFavorite($la_id); ?>
 				</div>					
 				<div id = "favoriteRecipes" class = "tab-content">
-					<!-- Testing purposes -->
 					<?php populateRecipeByFavorite($la_id); ?>
 				</div>
 			</div>
