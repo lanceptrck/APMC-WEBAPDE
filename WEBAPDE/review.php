@@ -8,7 +8,7 @@ if(isset($_SESSION["username"])){
 	$acc = getAccount($_SESSION["username"]);
 	if(!isset($_GET["link"])){
 		echo "<h1 align=\"center\">No review selected.</h1>";
-		header('Refresh: 3; URL=home-review.php');
+		header('Refresh: 2; URL=home-review.php');
 		exit;
 	}
 	else{	
@@ -21,7 +21,7 @@ if(isset($_SESSION["username"])){
 }
 else{
 	echo "You are not logged in.";
-	header('Refresh: 3; URL = index.php');
+	header('Refresh: 2; URL = index.php');
 	exit;	
 }
 ?>
@@ -51,7 +51,7 @@ else{
 			<div class = "menuBox" id = "inbox">
 				<img class = "reviewImg" src = "images/review/<?php echo $review->get_reviewimg()?>">
 				<p class = "reviewHead"><?php echo $review->get_reviewname(); ?><?php echoFavorite($la_id, $review_id, "1"); ?></p> 
-				<p class = "userTag">by<a href="account.php?id=<?php echo $poster->getAccid(); ?>"><?php echo $poster->getUser(); ?></a></p>
+				<p class = "userTag">by <a href="account.php?id=<?php echo $poster->getAccid(); ?>"><?php echo $poster->getUser(); ?></a></p>
 				<br>
 				<br>
 				<p class = "reviewText">

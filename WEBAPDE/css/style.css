@@ -2,18 +2,18 @@ body{
 	margin: 0px;
 }
 p{
-	font-style: arial;
+	font-style: helvetica;
     font-family: sans-serif; 
 }
 hr{
 	margin: 0px;
     border: 0;
     box-shadow: inset 0 8px 8px -8px rgba(0,0,0,0.5);
-	height: 12px;
+	height: 5px;
 }a{
     color: black;
     font-size: 15px;
-    font-style: arial;
+    font-style: helvetica;
 	font-family: sans-serif;
 	text-decoration: none;
 }
@@ -203,7 +203,7 @@ p.commentText{
 	top: 40%;
 	left: 60%;
 	color: rgb(255, 255, 255);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 18px;
 	position: absolute;
@@ -215,7 +215,7 @@ p.commentText{
 	background: rgb(60, 60, 60);
 	box-shadow: 0px 0.5px 5px rgb(60, 60, 60);
 	color: rgb(255, 255, 255);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 12px;
 	width: 240px;
@@ -244,7 +244,7 @@ p.commentText{
 }
 .iBox{
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -265,7 +265,7 @@ p.commentText{
 }
 .passBox{
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -286,7 +286,7 @@ p.commentText{
 }
 .loginButton{
 	padding-top: 5px;
-    font-style: arial;
+    font-style: helvetica;
 	font-family: sans-serif;
 	font-weight: bold;
     border-radius: 3px;
@@ -308,7 +308,7 @@ p.commentText{
 }
 .regButton{
 	padding-top: 5px;
-    font-style: arial;
+    font-style: helvetica;
 	font-family: sans-serif;
 	font-weight: bold;
     border-radius: 3px;
@@ -345,7 +345,7 @@ p.commentText{
 }
 .rBox{
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -366,7 +366,7 @@ p.commentText{
 }
 .registerButton{
 	padding-top: 5px;
-    font-style: arial;
+    font-style: helvetica;
 	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 11px;
@@ -392,7 +392,7 @@ p.commentText{
 	margin-bottom: 40px;
     padding: 30px;
 	color: rgba(10, 10, 10, 0.9);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 14px;
 	background-color: rgb(255, 255, 255);
@@ -407,7 +407,7 @@ p.commentText{
     left: 60px;
     padding: 15px;
 	color: rgba(10, 10, 10, 0.9);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 11px;
 	background-color: rgb(255, 255, 255);
@@ -445,7 +445,7 @@ p.commentText{
 }
 .pBox{
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -466,7 +466,7 @@ p.commentText{
 }
 .tBox{
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -488,7 +488,7 @@ p.commentText{
 }
 .reBox{
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -512,7 +512,7 @@ p.commentText{
 	margin-left: 15px;
 	padding-bottom: 0px;
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 11px;
 	border: 1px solid rgba(0,0,0,0.15);
@@ -722,7 +722,7 @@ input[type=search]:focus{
 	padding-right: 6px;
 	background: rgb(255, 255, 255);
 	color: rgb(10, 10, 10);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
     box-shadow: 0.5px 0.5px 1px #888888 inset;
@@ -814,6 +814,14 @@ ul.tabs li.current{
         transform:rotate(360deg);
     }
 }
+.leftSettings{
+	padding-left: 35px;
+	float: left;
+}
+.rightSettings{
+	padding-right: 35px;
+	float: right;
+}
 #rating{
 	padding: 50px;
 	padding-top: 20px;
@@ -822,7 +830,7 @@ ul.tabs li.current{
 #error{
     color: red;
     font-size: 13px;
-    font-style: arial;
+    font-style: helvetica;
     font-family: sans-serif;
     display: inline;   			
 }
@@ -840,7 +848,7 @@ ul.tabs li.current{
     left: 60px;
     padding: 15px;
 	color: rgba(10, 10, 10, 0.9);
-	font-style: arial;
+	font-style: helvetica;
 	font-family: sans-serif;
 	font-size: 13px;
     border-radius: 5px;
@@ -848,4 +856,15 @@ ul.tabs li.current{
     width: 840px;
     height: auto;
     position: relative;
+}
+#settingsBox{
+	margin-left: 60px;
+	color: rgba(10, 10, 10, 0.9);
+	font-style: helvetica;
+	font-family: sans-serif;
+	font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 0.5px 0.5px 2px #888888 inset;
+    width: 870px;
+    height: 355px;
 }

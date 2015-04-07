@@ -79,7 +79,7 @@
      	{
      		postRecipe(getLastRecipeId()+1, $account_id, $title, $ingredients, $directions, $facts, $file_name);
      		uploadPicture($target_dir.$file_name, $file_type, $file_name, $file_size, $_FILES["fileToUpload"]["tmp_name"]);
-     		header("Refresh: 3; URL=post.php");
+     		header("Refresh: 2; URL=post.php");
      	} else {
         echo "An error occured, going back to post page.";
         header("Refresh: 2; URL=post.php");

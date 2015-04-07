@@ -988,7 +988,7 @@ function populateCommentById($aid, $id, $type)
 		{
 			echo "<div class =\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
 			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b>
-			<a class =\"no\" title =\"Favorite\" href='favorite-it.php?id=". $temp->get_commentid()."&type=3'><p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\"></a><br><br>
+			<a class =\"no\" title =\"Favorite\" href='favorite-it.php?id=". $temp->get_commentid()."&type=3'><p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/hollowheart.png\"></a><br><br>
 			<p class = \"commentText\">" . $temp->get_comment() . "</p>
 			</div>";
 		}
@@ -996,7 +996,7 @@ function populateCommentById($aid, $id, $type)
 		{
 			echo "<div class =\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
 			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b></a>
-			<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/hollowheart.png\"><br><br>
+			<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\"><br><br>
 			<p class = \"commentText\">" . $temp->get_comment() . "</p>
 			</div>";
 		}
@@ -1008,8 +1008,8 @@ function populateCommentById($aid, $id, $type)
 function echoFavorite($aid, $id, $type)
 {
 	if(hasLiked($aid, $id, $type) == false)
-		echo "<a title =\"Favorite\" href=\"favorite-it.php?id=". $id. "&type=".$type."\"><img class = \"favorited\" src = \"images/heart.jpg\"></a>";
-	else echo "<img class = \"favorited\" src = \"images/hollowheart.png\">";
+		echo "<a title =\"Favorite\" href=\"favorite-it.php?id=". $id. "&type=".$type."\"><img class = \"favorited\" src = \"images/hollowheart.png\"></a>";
+	else echo "<img class = \"favorited\" src = \"images/heart.jpg\">";
 
 }
 

@@ -7,7 +7,7 @@ if(isset($_SESSION["username"])){
 }
 else{
 	echo "You are not logged in.";
-	header('Refresh: 3; URL=index.php');
+	header('Refresh: 2; URL=index.php');
 	exit;	
 }
 ?>

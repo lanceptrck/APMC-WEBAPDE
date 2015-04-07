@@ -9,7 +9,7 @@
 	}
 	else{
 		echo "You are not logged in.";
-		header('Refresh: 3; url = index.php');	
+		header('Refresh: 2; url = index.php');	
 	}
 ?>
 <!DOCTYPE html>

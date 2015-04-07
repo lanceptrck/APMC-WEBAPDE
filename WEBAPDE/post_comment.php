@@ -39,7 +39,7 @@
      		
 
      	}
-     	header("Location:$prev");
+     	header("Location: $prev");
 
 	}
 	

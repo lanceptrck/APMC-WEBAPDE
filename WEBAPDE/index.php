@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if($loggedin == true){
  		if(verify($username, $password)){
 			$_SESSION["username"] = test_input($_POST["username"]);
-			header('Refresh: 5; URL = home.php');	
+			header('Refresh: 1; URL = home.php');	
 		}
 		else if($loggedin == false){
 			$reply = "";
@@ -53,10 +53,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<p id ="error" style = "color:black;"><?php echo $reply; ?></p>
 				<form method = "POST" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<br>
-					<input type = "text" placeholder = "Email or username "class = "iBox" id = "username" name ="username">
+					<input type = "text" placeholder = "Email or username "class = "iBox" id = "username" name = "username">
 					<br>
 					<br>
-					<input type = "password" placeholder = "Password" class = "iBox" id = "password" name="password">
+					<input type = "password" placeholder = "Password" class = "iBox" id = "password" name = "password">
 					<br>
 					<br>
 					<a href = "registration.php"><input type = "button" class = "regButton" value = "Register"/></a>

@@ -70,7 +70,7 @@
      	{
      		postReview(getLastReviewId()+1, $account_id, $title, $review_text, $rating, $file_name);
      		uploadPicture($target_dir.$file_name, $file_type, $file_name, $file_size, $_FILES["fileToUpload"]["tmp_name"]);
-     		header("Refresh: 3; URL=post.php");
+     		header("Refresh: 2; URL=post.php");
      	} else {
      		echo "An error occured, going back to post page.";
      		header("Refresh: 2; URL=post.php");

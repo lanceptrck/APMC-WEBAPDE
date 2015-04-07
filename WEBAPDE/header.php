@@ -122,7 +122,7 @@
 				<img class = "sideImg" src = "images/sLogout.png">Logout
 			</div>
 		</a>
-		<a href = "#" class ="no">
+		<a href = "settings.php" class ="no">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sSettings.png">Settings
 			</div>

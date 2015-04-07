@@ -9,7 +9,7 @@
 	}
 	else{
 		echo "You are not logged in.";
-		header('Refresh: 3; URL=index.php');
+		header('Refresh: 2; URL=index.php');
 		exit;	
 	}
 ?>
@@ -55,11 +55,13 @@
 					</div>
 				</a>
 				<br>
-				<div class = "mainHeader">
-					<img class = "mainImg" src = "images/mainSettings.jpg"/>
-					<img class = "mainItemImg" src = "images/gear.jpg"/>
-					<p class = "mainHead">Settings.</p>
-				</div>
+				<a href = "settings.php">
+					<div class = "mainHeader">
+						<img class = "mainImg" src = "images/mainSettings.jpg"/>
+						<img class = "mainItemImg" src = "images/gear.jpg"/>
+						<p class = "mainHead">Settings.</p>
+					</div>
+				</a>
 				<br>
 				<br>
 			</div>
