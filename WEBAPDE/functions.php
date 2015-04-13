@@ -115,6 +115,21 @@ function getAccount($username)
 
 }
 
+
+function changePassword($account_id, $new_password)
+{
+	$connect= new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "UPDATE account SET password='" . $new_password . "' WHERE account_id='" . $account_id . "'"; 
+
+	if ($connect->query($sql) !== TRUE) {
+    			echo "ERROR: Could not able to execute $sql. " . mysqli_error($connect);
+    }
+
+    $connect->close();
+}	
+
 function getAccountName($account_id)
 {
 	global $accounts;
@@ -150,7 +165,10 @@ function loadAccounts()
 	{
 		while($row = $result->fetch_assoc())
 		{
-			$accounts[count($accounts)] = new account($row['account_id'], $row['accimgname'], $row['username'], $row['password'], $row['firstname'], $row['lastname'], $row['email']);
+			$temp_acc = new account($row['account_id'], $row['accimgname'], $row['username'], $row['password'], $row['firstname'], $row['lastname'], $row['email']);
+			$temp_acc->set_aboutme(getData("text/aboutme.txt", $temp_acc->getAccid()));
+			$accounts[count($accounts)] = $temp_acc;
+			
 		}
 
 	}else echo "0 results";
@@ -523,20 +541,41 @@ function uploadPicture($directory, $file_type, $file_name, $file_size, $file)
 
 	if($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg" 
 		&& $file_type != "gif" ) {
-    		echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
    		 $uploadOk = 0;
 	}
 
 	if($uploadOk == 0)
 	{
 		echo "File not uploaded.";
+		return false;
 	} else {
 		if(move_uploaded_file($file, $directory))
 		{
-			echo "File successfully uploaded";
-		} else echo "Error occured";
+			//echo "File successfully uploaded";
+			return true;
+		} else 
+		{
+			//echo "Error occured";
+			return false;
+		}
 	}
 
+
+
+}
+
+function changeProfilePicture($account_id, $profile_pic)
+{
+	$connect= new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "UPDATE account SET accimgname='" . $profile_pic . "' WHERE account_id='" . $account_id . "'"; 
+
+	if ($connect->query($sql) !== TRUE) {
+    	echo "Error: " . $sql . "<br>" . $connect->error;
+    }
+
+    $connect->close();
 }
 
 function postRecipe($rec_id, $acc_id, $t, $i, $d, $f, $img)
@@ -570,6 +609,48 @@ function postRecipe($rec_id, $acc_id, $t, $i, $d, $f, $img)
 	loadAll();
 
 }
+
+function editRecipe($rec_id, $img, $ing, $d, $f)
+{
+	global $recipes;
+				//echo $i . " -i " . $d . " -d " . $f . " -f";
+
+	for($i = 0; $i<count($recipes); $i++)
+	{
+		$forEdit = $recipes[$i];
+
+		if($rec_id == $forEdit->get_recipeid())
+		{
+			//echo $forEdit->get_recipeid();
+				if(strcmp($ing, "") != 0)
+				{
+					$forEdit->set_ingredients($ing);
+				}
+
+				if(strcmp($d, "") != 0)
+				{
+					$forEdit->set_directions($d);
+					//echo $d;
+				}
+
+				if(strcmp($f, "") != 0)
+				{
+					$forEdit->set_facts($f);
+					//echo $f;
+				}
+
+				$recipes[$i] = $forEdit;
+		}
+	}
+
+
+	writeRecipeToText();
+
+	loadAll();
+}
+
+
+
 
 function getFavoriteCountById($id, $type)
 {
@@ -614,9 +695,9 @@ function hasLiked($aid, $id, $type)
 		{	
 			switch($type)
 			{
-				case 1: if($temp->get_reviewid() == $id) return true; break;
-				case 2: if($temp->get_recipeid() == $id) return true; break;
-				case 3: if($temp->get_commentid() == $id) return true; break;
+				case 1: if($temp->get_reviewid() == $id) return $temp->get_favoriteid(); break;
+				case 2: if($temp->get_recipeid() == $id) return $temp->get_favoriteid(); break;
+				case 3: if($temp->get_commentid() == $id) return $temp->get_favoriteid(); break;
 			}
 		}
 	}
@@ -629,6 +710,7 @@ function favorite($fid, $aid, $t, $rv, $rc, $ct)
 	global $favorites;
 	$connect = new DBConnection();
 	$connect = $connect->getInstance();
+	$favCount = 0;
 
 	$sql = "INSERT INTO favorite(favorite_id, account_id, type, review_id, recipe_id, comment_id)
 	VALUES ('$fid', '$aid', '$t', '$rv', '$rc', '$ct')";
@@ -641,9 +723,9 @@ function favorite($fid, $aid, $t, $rv, $rc, $ct)
 
     switch($t)
     {
-    	case 1: $sql = "UPDATE review SET favorite_count='" . (getFavoriteCountById($rv, $t)+1) . "' WHERE review_id='" . $rv . "'"; break;
-    	case 2: $sql = "UPDATE recipe SET favorite_count='" . (getFavoriteCountById($rc, $t)+1) . "' WHERE recipe_id='" . $rc . "'"; break;
-    	case 3: $sql = "UPDATE comment SET favorite_count='" . (getFavoriteCountById($ct, $t)+1) . "' WHERE comment_id='" . $ct . "'"; break;
+    	case 1: $favCount = (getFavoriteCountById($rv, $t)+1); $sql = "UPDATE review SET favorite_count='" . $favCount . "' WHERE review_id='" . $rv . "'"; break;
+    	case 2: $favCount = (getFavoriteCountById($rc, $t)+1); $sql = "UPDATE recipe SET favorite_count='" . $favCount. "' WHERE recipe_id='" . $rc . "'"; break;
+    	case 3: $favCount = (getFavoriteCountById($ct, $t)+1); $sql = "UPDATE comment SET favorite_count='" . $favCount . "' WHERE comment_id='" . $ct . "'"; break;
     }
 
     if ($connect->query($sql) !== TRUE) {
@@ -653,6 +735,66 @@ function favorite($fid, $aid, $t, $rv, $rc, $ct)
     $connect->close();
 
   	loadAll();
+
+  	return $favCount;
+
+}
+
+function test()
+{
+	$connect = new DBConnection();
+	$connect = $connect->getInstance();
+
+	$sql = "UPDATE review SET favorite_count='10' WHERE review_id='10001'";
+    				if ($connect->query($sql) !== TRUE) {
+    	echo "Error: " . $sql . "<br>" . $connect->error;
+    }
+
+    $connect->close();
+}
+
+function unfavorite($aid, $t, $rv, $rc, $ct)
+{
+	global $favorites;
+	$connect = new DBConnection();
+	$connect = $connect->getInstance();
+	$favCount;
+
+    switch($t)
+    {
+    	case 1: $favCount = (getFavoriteCountById($rv, $t)-1); 
+    			$sql = "DELETE FROM favorite where account_id='" .$aid. '" AND review_id="'.$rv."'"; 
+    				$connect->query($sql);
+
+    			$sql = "UPDATE review SET favorite_count='" . $favCount. "' WHERE review_id='" . $rv . "'";
+    				$connect->query($sql); 
+    			
+    			break;
+    	case 2: $favCount = (getFavoriteCountById($rc, $t)-1); 
+    			$sql = "DELETE FROM favorite where account_id='" .$aid. '" AND recipe_id="'.$rc."'"; 
+    				$connect->query($sql);
+
+    			$sql = "UPDATE recipe SET favorite_count='" . $favCount. "' WHERE recipe_id='" . $rc . "'";
+    				$connect->query($sql); 
+    			
+    			break;
+    	case 3: $favCount = (getFavoriteCountById($ct, $t)-1); 
+    			$sql = "DELETE FROM favorite where account_id='" .$aid. '" AND comment_id="'.$ct."'"; 
+    				$connect->query($sql); 
+
+    			$sql = "UPDATE comment SET favorite_count='" . $favCount . "' WHERE comment_id='" . $ct . "'";
+    				$connect->query($sql); 
+
+    			break;
+    }
+
+
+
+    $connect->close();
+
+  	loadAll();
+
+  	return $favCount;
 
 }
 
@@ -682,6 +824,25 @@ function postComment($cid, $aid, $cnt, $cmt, $t, $rv, $rc, $a)
 	loadAll();
 
 
+}
+
+function changeAboutMe($account_id, $aboutme)
+{
+	global $accounts;
+
+	for($i = 0; $i<count($accounts); $i++)
+	{
+		$temp = $accounts[$i];
+		if($temp->getAccid() == $account_id)
+		{	
+			$temp->set_aboutme($aboutme);
+			break;
+		}
+
+	}
+
+	writeAboutMeToText();
+	loadAll();
 }
 
 function writeRecipeToText()
@@ -717,6 +878,27 @@ function writeRecipeToText()
 	fclose($file);
 	fclose($dFile);
 	fclose($fFile);
+}
+
+function writeAboutMeToText()
+{
+	$file = fopen("text/aboutme.txt", "w");
+
+	$newline = PHP_EOL;
+
+	global $accounts;
+
+	for($i = 0; $i<count($accounts); $i++)
+	{
+		$temp = $accounts[$i];
+
+		fwrite($file, $temp->getAccid().PHP_EOL);
+		fwrite($file, $temp->get_aboutme().PHP_EOL);
+		fwrite($file, ";".$newline);
+	}
+
+	fclose($file);
+
 }
 
 
@@ -779,6 +961,48 @@ function postReview($rev_id, $acc_id, $t, $rev_txt, $rat, $img)
 
     loadAll();
 
+}
+
+
+function editReview($rev_id, $img, $txt, $rat)
+{
+	global $reviews;
+				//echo $i . " -i " . $d . " -d " . $f . " -f";
+
+	for($i = 0; $i<count($reviews); $i++)
+	{
+		$forEdit = $reviews[$i];
+
+		if($rev_id == $forEdit->get_reviewid())
+		{
+			//echo $forEdit->get_recipeid();
+				if(strcmp($txt, "") != 0)
+				{
+					$forEdit->set_reviewtext($txt);
+				}
+
+				if(strcmp($rat, "") !== 0)
+				{	$connect = new DBConnection();
+					$connect = $connect->getInstance();
+
+						$sql = "UPDATE review SET review_count='" . $rat. "' WHERE review_id='" . $rev_id. "'"; 
+						if ($connect->query($sql) !== TRUE) {
+    					echo "Error: " . $sql . "<br>" . $connect->error;
+    					}
+
+    				 $connect->close();
+				}
+				
+    
+
+				$reviews[$i] = $forEdit;
+		}
+	}
+
+
+	writeReviewToText();
+
+	loadAll();
 }
 
 function writeReviewToText()
@@ -858,8 +1082,8 @@ function populateReviewByAccount($id)
 	{
 		$temp = $reviews[$i];
 		if($temp->get_accid() == $id){
-		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
-		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
+		echo "<a href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b><a href='edit-review.php?link=". $temp->get_reviewid()."'>&nbsp;&nbsp&nbsp;<input type=\"button\" value=\"Edit\"/></a>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
 		<br><br>
@@ -906,8 +1130,8 @@ function populateRecipeByAccount($id)
 		$temp = $recipes[$i];
 		if($temp->get_accid() == $id)
 		{
-		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
-		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
+		echo "<a class href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'><input type=\"button\" value=\"Edit\"/></a>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<br><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
@@ -986,17 +1210,17 @@ function populateCommentById($aid, $id, $type)
 		$acc = getAccount(getAccountName($temp->get_accountid()));
 		if(hasLiked($aid, $temp->get_commentid(), "3") == false)
 		{
-			echo "<div class =\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
-			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b>
-			<a class =\"no\" title =\"Favorite\" href='favorite-it.php?id=". $temp->get_commentid()."&type=3'><p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/hollowheart.png\"></a><br><br>
+			echo "<div class=\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
+			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b></a>
+			<p id =\"".$temp->get_commentid()."_heartCount\" class = \"heartCount\">" . $temp->get_favecounts() . "</p><input type=\"image\" onclick=\"favorite(".$temp->get_commentid().", '3', '0');\" id=\"".$temp->get_commentid()."_heartImg\"class = \"heartImg\" src = \"images/hollowheart.png\"><br><br>
 			<p class = \"commentText\">" . $temp->get_comment() . "</p>
 			</div>";
 		}
 		else
 		{
-			echo "<div class =\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
+			echo "<div class=\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
 			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b></a>
-			<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\"><br><br>
+			<p id =\"".$temp->get_commentid()."_heartCount\" class = \"heartCount\">" . $temp->get_favecounts() . "</p><input type=\"image\" onclick=\"unfavorite(".$temp->get_commentid().", '3', '0');\" id=\"".$temp->get_commentid()."_heartImg\"class = \"heartImg\" src = \"images/hollowheart.png\"><br><br>
 			<p class = \"commentText\">" . $temp->get_comment() . "</p>
 			</div>";
 		}
@@ -1007,9 +1231,13 @@ function populateCommentById($aid, $id, $type)
 
 function echoFavorite($aid, $id, $type)
 {
+
 	if(hasLiked($aid, $id, $type) == false)
-		echo "<a title =\"Favorite\" href=\"favorite-it.php?id=". $id. "&type=".$type."\"><img class = \"favorited\" src = \"images/hollowheart.png\"></a>";
-	else echo "<img class = \"favorited\" src = \"images/heart.jpg\">";
+	{
+		echo "<input title=\"Favorite\" type=\"image\" id=\"".$id."_favorited\" onclick=\"favorite(".$id.", ".$type.", '1');\" class = \"favorited\" src = \"images/hollowheart.png\">";
+	}
+	else 
+		echo "<input title=\"Unfavorite\" type=\"image\" id=\"".$id."_favorited\" onclick=\"unfavorite(".$id.", ".$type.", '1');\" class = \"favorited\" src = \"images/heart.jpg\">";
 
 }
 

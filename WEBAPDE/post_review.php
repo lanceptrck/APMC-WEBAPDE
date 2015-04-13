@@ -27,6 +27,11 @@
 
 		$submitted = isset($_POST["submit"]);
 
+    if($file_size < 0)
+    {
+        $isErr = true;
+    } 
+
 		if(isset($_POST["submit"])) {
 				$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	    	if($check !== false) {
@@ -68,9 +73,17 @@
 
      	if($isErr == false)
      	{
-     		postReview(getLastReviewId()+1, $account_id, $title, $review_text, $rating, $file_name);
-     		uploadPicture($target_dir.$file_name, $file_type, $file_name, $file_size, $_FILES["fileToUpload"]["tmp_name"]);
-     		header("Refresh: 2; URL=post.php");
+
+        $toPost = uploadPicture($target_dir.$file_name, $file_type, $file_name, $file_size, $_FILES["fileToUpload"]["tmp_name"]);
+     		
+        if($toPost == true)
+        {
+          postReview(getLastReviewId()+1, $account_id, $title, $review_text, $rating, $file_name);
+     		    echo "Review successfuly posted!";
+            header("Refresh: 2; URL=review.php?link=$getLastReviewId()+1");
+            exit;
+        } 
+        
      	} else {
      		echo "An error occured, going back to post page.";
      		header("Refresh: 2; URL=post.php");

@@ -2,7 +2,7 @@
 100g protein<br>8g fat<br>10mg sodium<br>
 ;
 10002
-555
+100 kcal<br>3g fat<br>10g protein<br>
 ;
 10003
 100 kcal<br>3g fat<br>10g protein<br>
@@ -17,7 +17,7 @@
 100 kcal<br>3g fat<br>10g protein<br>
 ;
 10007
-555
+100 kcal<br>3g fat<br>10g protein<br>
 ;
 10008
 100 kcal<br>3g fat<br>10g protein<br>
@@ -27,31 +27,4 @@ Per serving: 238 kcal cal., 14 g fat (6 g sat. fat, 1 g polyunsaturated fat, 5 g
 ;
 10010
 100g protein<br>20g fat<br>
-;
-10011
-1000g fat<br>
-;
-10012
-N/A<br>
-;
-10013
-555
-;
-10014
-N/A<br>
-;
-10015
-10g fat<br>
-;
-10016
-N/A<br>
-;
-10017
-
-;
-10018
-
-;
-10019
-N/A<br>
 ;

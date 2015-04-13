@@ -372,6 +372,7 @@ class account
 	public $firstname;
 	public $lastname;
 	public $email;
+	public $about_me;
 
 	function __construct($accid, $img, $user, $pass, $fn, $ln, $em)
 	{
@@ -383,6 +384,16 @@ class account
 		$this->lastname = $ln;
 		$this->email = $em;
 
+	}
+
+	function set_aboutme($input)
+	{
+		$this->about_me = $input;
+	}
+
+	function get_aboutme()
+	{
+		return $this->about_me;
 	}
 
 	function changePass($pw)
@@ -443,7 +454,7 @@ class DBConnection
 	{
 			$this->servername = "localhost";
 			$this->dbuser = "root";
-			$this->password = "root";
+			$this->password = "1234";
 			$this->dbName = "potato";
 			$this->conn = new mysqli($this->servername, $this->dbuser, $this->password, $this->dbName);
 	}

@@ -20,7 +20,7 @@
 				<p class = "welcomeHeadName">potato.</p>
 			</div>
 			<div class = "registerBox">
-				<form method = "POST" action = "#">
+				<form method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<p class = "registerHead">Sign up for potato.</p>
 					<br>
 					<label><p id ="error">* required fields</p></label>

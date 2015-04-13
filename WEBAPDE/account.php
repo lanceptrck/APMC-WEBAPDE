@@ -63,13 +63,7 @@
 					<?php populateCommentById($la_id, $account_id, $type); ?>
 				</div>
 				<div id = "accountAbout" class = "tab-content">
-					<b>DLSU Student.</b>
-					<br>
-					<br>
-					Failure is the key to success; each mistake teaches us something.
-					<br>
-					<br>
-					The heart of another is a dark forest, always, no matter how close it has been to one's own.
+					<?php echo $acc->get_aboutme(); ?>
 				</div>	
 				<div id = "accountReviews" class = "tab-content">
 					<?php populateReviewByAccount($account_id); ?>

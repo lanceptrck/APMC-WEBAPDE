@@ -17,9 +17,9 @@
 
      	switch($type)
      	{
-     		case 1: $fav = favorite(getLastFavoriteId()+1, $account_id, $type, $id, "0", "0"); break;
-     		case 2: $fav = favorite(getLastFavoriteId()+1, $account_id, $type, "0", $id, "0"); break;
-     		case 3: $fav = favorite(getLastFavoriteId()+1, $account_id, $type, "0", "0", $id); break;
+     		case 1: $fav = unfavorite($account_id, $type, $id, "0", "0"); break;
+     		case 2: $fav = unfavorite($account_id, $type, "0", $id, "0"); break;
+     		case 3: $fav = unfavorite($account_id, $type, "0", "0", $id); break;
      	}
 		
 	}

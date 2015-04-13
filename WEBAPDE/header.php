@@ -77,10 +77,85 @@
         			$(this).animate({opacity: 0.8}, 250);
     			});
 			});
+
+			function showResult(str)
+			{
+				if (str.length==0) { 
+    				document.getElementById("livesearch").innerHTML="";
+    				document.getElementById("livesearch").style.border="0px";
+    			return;
+  				}	
+
+  				if (window.XMLHttpRequest) {
+   				 // code for IE7+, Firefox, Chrome, Opera, Safari
+    				xmlhttp=new XMLHttpRequest();
+  				} else {  // code for IE6, IE5
+   					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  				}
+  				xmlhttp.onreadystatechange=function() {
+    				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      					document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+      					document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    				}
+  				}
+  					xmlhttp.open("GET","livesearch.php?q="+str,true);
+  					xmlhttp.send();
+			}
+
+			function favorite(id, type, indicator)
+			{
+				var xmlhttp = new XMLHttpRequest();
+        			xmlhttp.onreadystatechange = function() {
+            		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            			if(indicator == 0)
+            			{
+            				document.getElementById(id+"_heartCount").innerHTML = xmlhttp.responseText;
+            				document.getElementById(id+"_heartImg").src = "images/heart.jpg";
+            				document.getElementById(id+"_heartImg").onclick = function(){ unfavorite(id,type,indicator); } ;
+            				document.getElementById(id+"_heartImg").title = "Unfavorite";
+            			}
+            			else{
+            				document.getElementById(id+"_favorited").src = "images/heart.jpg";
+            				document.getElementById(id+"_favorited").onclick = function(){ unfavorite(id,type,indicator); } ;
+            				document.getElementById(id+"_favorited").title = "Unfavorite";
+            			}
+
+            		}
+       		}
+        		xmlhttp.open("GET", "favorite-it.php?id=" + id +"&type="+type, true);
+        		xmlhttp.send();
+			}
+
+		function unfavorite(id, type, indicator)
+			{
+				var xmlhttp = new XMLHttpRequest();
+        			xmlhttp.onreadystatechange = function() {
+            		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            			if(indicator == 0)
+            			{
+            				document.getElementById(id+"_heartCount").innerHTML = xmlhttp.responseText;
+            				document.getElementById(id+"_heartImg").src = "images/hollowheart.png";
+            				document.getElementById(id+"_heartImg").onclick = function(){ favorite(id,type,indicator); } ;
+            				document.getElementById(id+"_heartImg").title = "Favorite";
+            			}
+            			else{
+            				document.getElementById(id+"_favorited").src = "images/hollowheart.png";
+            				document.getElementById(id+"_favorited").onclick = function(){ favorite(id,type,indicator); } ;
+            				document.getElementById(id+"_favorited").title = "Favorite";
+            			}
+
+            		}
+       		}
+        		xmlhttp.open("GET", "unfavorite-it.php?id=" + id +"&type="+type, true);
+        		xmlhttp.send();
+        	}
+
+			
+
 		</script>
 		<a href = "home.php" class = "no"><p class = "headName">potato.</p></a>
 		<form action = "results.php" method = "post">
-			<input type = "search" name = "searchbar" placeholder = "">
+			<input type = "search" name = "searchbar" placeholder = "" autocomplete="off">
 		</form>
 	</header>
 	<div class = "slideOutBar">

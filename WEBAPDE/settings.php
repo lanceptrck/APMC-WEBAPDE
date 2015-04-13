@@ -6,14 +6,8 @@
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
 		$la_id = $loggedIn_account->getAccid();
-		$account_id = $loggedIn_account->getAccid();
-		$acc = getAccount($_SESSION["username"]);
-		$_GET["type"] = $type = 3;
-		if(isset($_GET["id"])){
-			$account_id = $_GET["id"];
-			$acc = getAccount(getAccountName($account_id));
-			$_SESSION['prev'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-		}
+		include 'logic_settings.php';
+		
 	}
 	else{
 		echo "You are not logged in.";
@@ -38,31 +32,25 @@
 				<br>
 				<br>
 				<div id = "settingsBox">
-					<form>
+					<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype = "multipart/form-data">
 						<div class = "leftSettings">
 							<br>
 							<br>
-							<b>Profile picture</b>
-							<br>
-							<br>
+							<b>Profile picture</b> <p> <?php echo $ppReply; ?> </p>
 							<input type = "file" name = "fileToUpload">
 							<br>
 							<br>
-							<b>Password</b>
+							<b>Password</b> <p> <?php echo $pReply; ?> </p>
+							<input type = "Password" placeholder = "New password" name ="password" class = "iBox"/>
 							<br>
 							<br>
-							<input type = "Password" placeholder = "New password" class = "iBox"/>
-							<br>
-							<br>
-							<input type = "Password" placeholder = "Confirm password" class = "iBox"/>
+							<input type = "Password" placeholder = "Confirm password" name ="confirmPassword" class = "iBox"/>
 						</div>
 						<div class = "rightSettings">
 							<br>
 							<br>
-							<b>About me</b>
-							<br>
-							<br>
-							<textarea placeholder = "Insert text here" class = "tBox" style = "width:400px;" cols = "10" rows = "50"/></textarea>
+							<b>About me</b> <?php echo $aReply; ?> </p>
+							<textarea placeholder = "Insert text here" class = "tBox" name="aboutme" style = "width:400px;" cols = "10" rows = "50"/></textarea>
 							<br>
 							<br>
 						</div>

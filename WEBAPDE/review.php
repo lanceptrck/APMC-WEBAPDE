@@ -9,13 +9,13 @@ if(isset($_SESSION["username"])){
 	if(!isset($_GET["link"])){
 		echo "<h1 align=\"center\">No review selected.</h1>";
 		header('Refresh: 2; URL=home-review.php');
-		exit;
+		exit;	
 	}
 	else{	
 		$review_id = $_GET["link"];
-		$_GET["type"] = $type = 1;
 		$review = getReviewById($review_id);
 		$poster = getAccount(getAccountName($review->get_accid())); 
+				 $_GET["type"] = $type = 1;
 		$_SESSION['prev'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	}
 }

@@ -2,7 +2,7 @@
 Carrots<br>Cabbage<br>
 ;
 10002
-Carrots<br>Cabbage<br>
+
 ;
 10003
 Carrots<br>Cabbage<br>
@@ -17,7 +17,7 @@ Carrots<br>Cabbage<br>
 Carrots<br>Cabbage<br>
 ;
 10007
-Carrots<br>Cabbage<br>
+6
 ;
 10008
 Carrots<br>Cabbage<br>
@@ -35,7 +35,7 @@ Bacon<br>Onions<br>Lettuce<br>Burger Patty<br>
 1 Tonkatsu<br>1/4 C Dashi<br>1 Tbsp soy sauce<br>1/2 Tbsp sugar<br>1/2 Tbsp Sake<br>1/2 Tbsp Mirin<br>1-2 eggs<br>green onions, chopped (optional)<br>Steamed Rice<br>roasted seaweed (Nori), thinly sliced<br>
 ;
 10013
-<b>Salted pork</b><br>1 lb pork<br>1 tsp salt<br><b>Soup</b><br>6 cups water (1.5L)<br>50g ginger root, sliced<br>3 cloves garlic, skinned<br>1 bunch green onions<br>4 Tbsp soy sauce<br>2 Tbsp sake<br>1 tsp salt<br>1 tsp sesame oil<br><b>Noodles</b><br>9 oz fresh angel hair pasta (225g)<br>8 cups water (2L)<br>2 Tbsp baking soda<br><b>Topping</b><br>boiled egg halves<br>bean sprouts, blanched briefly<br>green onions, cut finely<br>
+12
 ;
 10014
 2 lbs. chicken, cut into serving pieces<br>1 big potato, chopped<br>1 tbsp garlic, minced<br>3 stalks celery, cut into 2 inches length<br>1 medium onion, chopped<br>1 small red bell pepper, cut into cubes<br>2 tbsp fish sauce<br>1 cup coconut milk<br>2 tbsp curry powder<br>1 thumb ginger, cut into strips<br>1 cup water<br>
@@ -44,5 +44,14 @@ Bacon<br>Onions<br>Lettuce<br>Burger Patty<br>
 Cheese<br>
 ;
 10016
-1 tablespoon curry powder<br>1 garlic clove, minced<br>1 tablespoon grated fresh ginger<br>2 teaspoons chopped cilantro, plus leaves for serving<br>1/2 teaspoon crushed red pepper<br>1/4 teaspoon kosher salt<br>1 pound large shrimp, peeled and deveined<br>1 tablespoon vegetable oil<br>1/2 cup chutney<br>
+1 tablespoon curry powder<br>1 garlic clove, minced<br>1 tablespoon grated fresh ginger<br>2 teaspoons chopped cilantro, plus leaves for serving<br>1/2 teaspoon crushed red pepper<br>1/4 teaspoon kosher salt<br>1 pound large shrimp, peeled and deveined<br>1 tablespoon vegetable oil<br>1/2 cup chutney<br>
+;
+10017
+
+;
+10018
+
+;
+10019
+Chicken<br>
 ;

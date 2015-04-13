@@ -2,6 +2,7 @@
 	session_start();
 	include 'functions.php';
 	loadAll();
+
 	if(isset($_SESSION["username"])){
 		$loggedIn_account = getAccount($_SESSION["username"]);
 		$la_id = $loggedIn_account->getAccid();
