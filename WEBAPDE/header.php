@@ -77,11 +77,12 @@
         			$(this).animate({opacity: 0.8}, 250);
     			});
 			});
-			/* Doesn't work yet
+
 			function showResult(str){
-				if (str.length == 0){ 
-    				document.getElementById("livesearch").innerHTML = "";
-    				document.getElementById("livesearch").style.border = "0px";
+				if (str.length < 2){ 
+    				document.getElementById("live").innerHTML = "";
+    				document.getElementById("live").className = "";
+    				document.getElementById("search").className = "";
     				return;
   				}	
   				if(window.XMLHttpRequest){
@@ -92,14 +93,22 @@
   				}
   				xmlhttp.onreadystatechange = function(){
     				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-      					document.getElementById("livesearch").innerHTML = xmlhttp.responseText;
-      					document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+      					document.getElementById("live").innerHTML = xmlhttp.responseText;
+      					document.getElementById("live").className = "live";
+    					document.getElementById("search").className = "searchClicked";
     				}
+
   				}
   				xmlhttp.open("GET","livesearch.php?q="+str,true);
   				xmlhttp.send();
 			}
-			*/
+
+			function autofill(str)
+			{
+				document.getElementById("search").value = str;
+				$( "#live" ).remove();
+			}
+			
 			function favorite(id, type, indicator){
 				var xmlhttp = new XMLHttpRequest();
 	        	xmlhttp.onreadystatechange = function(){
@@ -120,6 +129,7 @@
         		xmlhttp.open("GET", "favorite-it.php?id=" + id +"&type="+type, true);
         		xmlhttp.send();
 			}
+
 			function unfavorite(id, type, indicator){
 				var xmlhttp = new XMLHttpRequest();
         		xmlhttp.onreadystatechange = function(){
@@ -143,8 +153,9 @@
 		</script>
 		<a href = "home.php" class = "no"><p class = "headName">potato.</p></a>
 		<form action = "results.php" method = "post">
-			<input type = "search" name = "searchbar" placeholder = "" autocomplete="off">
+			<input id ="search" type = "search" name = "searchbar" placeholder = "" autocomplete="off" onkeyup="showResult(this.value);">
 		</form>
+		<br><br><br><div id="live"></div>
 	</header>
 	<div class = "slideOutBar">
 		<div class = "slideHeader">

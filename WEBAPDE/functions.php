@@ -115,6 +115,28 @@ function getAccount($username)
 
 }
 
+function getAccountById($id)
+{
+	global $accounts;
+
+	$acc = null;
+
+	for($i = 0; $i<count($accounts); $i++)
+	{
+		$temp_id = $accounts[$i]->getAccid();
+
+		if($id == $temp_id)
+		{
+			$acc = $accounts[$i];
+		}
+
+	}
+
+	return $acc;
+
+}
+
+
 
 function changePassword($account_id, $new_password)
 {
@@ -171,8 +193,7 @@ function loadAccounts()
 			
 		}
 
-	}else echo "0 results";
-
+	}
 	$connect->close();
 }
 
@@ -198,7 +219,7 @@ function loadRecipes()
 			$recipes[count($recipes)] = $temp_recipe;
 
 		}
-	} else echo "0 results";
+	}
 
 	$connect->close();
 
@@ -222,7 +243,7 @@ function loadReviews()
 			$temp_review->set_reviewtext(getData("text/reviews.txt", $temp_review->get_reviewid()));
 			$reviews[count($reviews)] = $temp_review;
 		}
-	}	else echo "0 results";
+	}
 
 	$connect->close();
 }
@@ -246,7 +267,7 @@ function loadComments()
 
 			$comments[count($comments)] = $temp_comment;
 		}
-	} else echo "0 results";
+	}
 
 	$connect->close();
 }
@@ -268,7 +289,7 @@ function loadFavorites()
 			$temp_fave = new favorite($row['favorite_id'], $row['account_id'], $row['type'], $row['review_id'], $row['recipe_id'], $row['comment_id']);
 			$favorites[count($favorites)] = $temp_fave;
 		}
-	} else echo "0 results";
+	}
 
 	$connect->close();
 }
@@ -511,6 +532,71 @@ function populateRecipeList()
 		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 	}
 }
+
+function populateMatches($str)
+{
+	global $accounts;
+	global $recipes;
+	global $reviews;
+
+	$result = "<h3> Search results: </h3>";
+
+	for($i = 0; $i<count($accounts); $i++)
+	{
+		$temp = $accounts[$i];
+		if(strpos(strtolower($temp->getFirstname()), strtolower($str)) !== false || strpos(strtolower($temp->getLastname()), strtolower($str)) !== false)
+		{
+			$or_match = $temp->getFirstname() . " " . $temp->getLastname();
+			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
+
+
+			if($result == "")
+			{
+				$result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
+			} else $result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
+
+		}
+	}
+
+	for($i = 0; $i<count($recipes); $i++)
+	{
+		$temp = $recipes[$i];
+		if(strpos(strtolower($temp->get_recipename()), strtolower($str)) !== false)
+		{
+			$or_match = $temp->get_recipename();
+			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
+
+			if($result == "")
+			{
+				$result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
+			} else $result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
+
+		}
+	}
+
+	for($i = 0; $i<count($reviews); $i++)
+	{
+		$temp = $reviews[$i];
+		if(strpos(strtolower($temp->get_reviewname()), strtolower($str)) !== false)
+		{
+			$or_match = $temp->get_reviewname();
+			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
+
+			if($result == "")
+			{
+				$result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
+			} else $result .= "<p class='hi onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
+
+		}
+	}
+
+	if($result == "")
+		echo "No results.";
+	else {
+		echo $result;
+	}
+}
+
 
 function populateReviewList()
 {
@@ -823,6 +909,21 @@ function postComment($cid, $aid, $cnt, $cmt, $t, $rv, $rc, $a)
 
 	loadAll();
 
+	switch($t)
+	{
+		case 1: $compare = $rv; $div = "commentBox"; break;
+		case 2: $compare = $rc; $div = "commentBox"; break;
+		case 3: $compare = $a; $div = "postBox"; break;
+	}
+
+	$acc = getAccountById($aid);
+
+	return "<div class=\"".$div."\"><a href='account.php?id=". $acc->getAccid() ."'><img class = \"itemBoxImg\" src = \"images/profile/" . $acc->getImg() . "\"></a>
+			&nbsp;&nbsp&nbsp;&nbsp;<a href='account.php?id=". $acc->getAccid() ."'><b><font size = \"2\">" . $acc->getFirstname() . " " . $acc->getLastname() . "</font></b></a>
+			<p id =\"".$cid."_heartCount\" class = \"heartCount\">" . $cnt . "</p><input type=\"image\" onclick=\"favorite(".$cid.", '3', '0');\" id=\"".$cid."_heartImg\"class = \"heartImg\" src = \"images/hollowheart.png\"><br><br>
+			<p class = \"commentText\">" . $cmt . "</p>
+			</div>";
+
 
 }
 
@@ -1034,7 +1135,7 @@ function populateRecipeByName($name)
 	for($i = 0; $i<count($recipes); $i++)
 	{
 		$temp = $recipes[$i];
-		if(strpos(strtolower($temp->get_recipename()), strtolower($name)) !== false)
+		if(strcmp($name, $temp->get_recipename()) == 0 || strpos(strtolower($temp->get_recipename()), strtolower($name)) !== false)
 		{
 		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
@@ -1058,7 +1159,7 @@ function populateReviewByName($name)
 	for($i = 0; $i<count($reviews); $i++)
 	{
 		$temp = $reviews[$i];
-		if(strpos(strtolower($temp->get_reviewname()), strtolower($name)) !== false){
+		if(strcmp($name, $temp->get_recipename()) == 0 || strpos(strtolower($temp->get_reviewname()), strtolower($name)) !== false){
 		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
@@ -1178,7 +1279,11 @@ function populatePeople($name)
 	for($i = 0; $i<count($accounts); $i++)
 	{
 		$temp = $accounts[$i];
-		if(strpos(strtolower($temp->getFirstname()), strtolower($name)) !== false || strpos(strtolower($temp->getLastname()), strtolower($name)) !== false){
+		$firstname = $temp->getFirstname();
+		$lastname = $temp->getLastname();
+		$fullname = $firstname . " " . $lastname;
+
+		if(strcmp($name, $fullname) == 0 || strpos(strtolower($firstname), strtolower($name)) !== false || strpos(strtolower($lastname), strtolower($name)) !== false){
 		echo "<a class =\"no\" href='account.php?id=". $temp->getAccid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/profile/" . $temp->getImg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->getFirstname() . " " . $temp->getLastname() . "</font></b>
 		</div></a>";
