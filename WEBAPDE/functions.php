@@ -1083,11 +1083,12 @@ function populateReviewByAccount($id)
 		$temp = $reviews[$i];
 		if($temp->get_accid() == $id){
 		echo "<a href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
-		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b><a href='edit-review.php?link=". $temp->get_reviewid()."'>&nbsp;&nbsp&nbsp;<input type=\"button\" value=\"Edit\"/></a>
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b><a href='edit-review.php?link=". $temp->get_reviewid()."'>&nbsp;&nbsp&nbsp;
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
+		<input type=\"button\" value=\"Edit\"/></a>
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
 	}
@@ -1131,10 +1132,11 @@ function populateRecipeByAccount($id)
 		if($temp->get_accid() == $id)
 		{
 		echo "<a class href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
-		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'><input type=\"button\" value=\"Edit\"/></a>
+		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<input type=\"button\" value=\"Edit\"/></a>
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div>";
 		$cnt++;
 		}
 	}
@@ -1156,7 +1158,7 @@ function populateRecipeByFavorite($aid)
 		{
 		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
-		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "<img class = \"heartImg\" src = \"images/heart.jpg\"></p>
 		<br><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;

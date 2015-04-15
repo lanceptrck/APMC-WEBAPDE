@@ -454,7 +454,7 @@ class DBConnection
 	{
 			$this->servername = "localhost";
 			$this->dbuser = "root";
-			$this->password = "1234";
+			$this->password = "root";
 			$this->dbName = "potato";
 			$this->conn = new mysqli($this->servername, $this->dbuser, $this->password, $this->dbName);
 	}

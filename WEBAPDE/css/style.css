@@ -10,7 +10,8 @@ hr{
     border: 0;
     box-shadow: inset 0 8px 8px -8px rgba(0,0,0,0.5);
 	height: 5px;
-}a{
+}
+a{
     color: black;
     font-size: 15px;
     font-style: helvetica;
@@ -149,6 +150,8 @@ p.resultHead{
 p.heartCount{
 	margin: 0px;
 	padding: 10px;
+	padding-top: 15px;
+	padding-left: 5px;
 	color: rgba(10, 10, 10, 0.9);
 	font-size: 10px;
 	font-weight: bold;
@@ -548,6 +551,9 @@ input.favorited{
     width: 27px;
     height: 25px;
 }
+input.favorited:focus{
+	outline: 0px;
+}
 img.itemBoxImg{
     background-repeat: no-repeat;
     background-position: 50%;
@@ -647,10 +653,15 @@ img.heartImg{
 }
 input.heartImg{
     padding: 5px;
+    padding-top: 10px;
+    padding-right: 0px;
 	background-repeat: no-repeat;
     width: 20px;
     height: 18px;
     float: right;
+}
+input.heartImg:focus{
+    outline: 0;
 }
 img.sendImg{
 	top: 22px;
@@ -743,6 +754,30 @@ input[type=search]:focus{
     box-shadow: 0.5px 0.5px 1px #888888 inset;
 	width: 230px;
 	cursor: auto;
+	outline: 0;
+}
+input[type=button]{
+	margin-top: 3px;
+	padding-top: 5px;
+    font-style: helvetica;
+	font-family: sans-serif;
+	font-weight: bold;
+    border-radius: 3px;
+    border: 0px;
+    height: 2.5em;
+    width: 5em;
+    opacity: 0.8;
+    float: right;
+    cursor: pointer;
+}
+input[type=button]:hover{
+    border: 1px solid rgba(0,0,0,0.3);
+}
+input[type=button]:active{
+    background-color: rgb(168, 168, 168);
+    border: 1px solid rgb(66,133,244);
+}
+input[type=button]:focus{
 	outline: 0;
 }
 ul.tabs{

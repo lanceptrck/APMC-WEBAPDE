@@ -22,7 +22,7 @@
 							clicked = 0;
 						}
   					});
-  					$(document).ready(function() {
+  					$(document).ready(function(){
     					$(".menuBox").animate({opacity: 1, top: "15%"}, "slow");
   					});
 				</script>

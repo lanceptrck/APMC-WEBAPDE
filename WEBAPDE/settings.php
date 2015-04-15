@@ -41,10 +41,10 @@
 							<br>
 							<br>
 							<b>Password</b> <p> <?php echo $pReply; ?> </p>
-							<input type = "Password" placeholder = "New password" name ="password" class = "iBox"/>
+							<input type = "Password" placeholder = "New password" name = "password" class = "iBox"/>
 							<br>
 							<br>
-							<input type = "Password" placeholder = "Confirm password" name ="confirmPassword" class = "iBox"/>
+							<input type = "Password" placeholder = "Confirm password" name = "confirmPassword" class = "iBox"/>
 						</div>
 						<div class = "rightSettings">
 							<br>
