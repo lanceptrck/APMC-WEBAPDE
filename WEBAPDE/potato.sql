@@ -40,7 +40,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (10001,'profpic_10001.jpg','patrick.esquillo','1234','Patrick Lance','Esquillo','ptrck.esquillo@gmail.com'),(10002,'aj_dp.jpg','aj.amadora','aj!','Angelo John','Amadora','angelo_amadora@dlsu.edu.ph'),(10003,'chino_dp.jpg','chino.tapales','chino!','Carlo Gabriel','Tapales','carlo_tapales@dlsu.edu.ph'),(10004,'miguel_dp.jpg','miguel.gomez','miguel!','Miguel Francisco','Gomez','miguel_gomez@dlsu.edu.ph'),(10005,'vince_dp.jpg','vince.lander','vince!','Vince Lander','Esquillo','vince.lander@gmail.com'),(10006,'default_pic.jpg','jd.guillarte','jd!','Joshua Daniel','Guillarte','jd@gmail.com'),(10007,'kanye_dp.jpg','kanye.greatest','kanye!','Kanye','West','mynigga@kanye.com'),(10008,'nicole_dp.jpg','nicole.felices','nicole!','Nicole Angeline','Felices','nicole.felices@gmail.com'),(10009,'default_pic.jpg','air_06','jed!','Jed','Pangilininan','jed.pangilinan@gmail.com'),(10010,'default_pic.jpg','arturo01','1234','Arturo','Caronongan','arturo.caronongan@dlsu.edu.ph'),(10011,'profpic_10011.jpg','richard.ng','richard','Richard','Ng','richard.ng@gmail.com');
+INSERT INTO `account` VALUES (10001,'profpic_10001.jpg','patrick.esquillo','1234','Patrick Lance','Esquillo','ptrck.esquillo@gmail.com'),(10002,'aj_dp.jpg','aj.amadora','aj!','Angelo John','Amadora','angelo_amadora@dlsu.edu.ph'),(10003,'chino_dp.jpg','chino.tapales','chino!','Carlo Gabriel','Tapales','carlo_tapales@dlsu.edu.ph'),(10004,'miguel_dp.jpg','miguel.gomez','miguel!','Miguel Francisco','Gomez','miguel_gomez@dlsu.edu.ph'),(10005,'vince_dp.jpg','vince.lander','vince!','Vince Lander','Esquillo','vince.lander@gmail.com'),(10006,'default_pic.jpg','jd.guillarte','jd!','Joshua Daniel','Guillarte','jd@gmail.com'),(10007,'kanye_dp.jpg','kanye.greatest','kanye!','Kanye','West','mynigga@kanye.com'),(10008,'nicole_dp.jpg','nicole.felices','nicole!','Nicole Angeline','Felices','nicole.felices@gmail.com'),(10009,'default_pic.jpg','air_06','jed!','Jed','Pangilininan','jed.pangilinan@gmail.com'),(10010,'default_pic.jpg','arturo01','1234','Arturo','Caronongan','arturo.caronongan@dlsu.edu.ph'),(10011,'profpic_10011.jpg','richard.ng','richard','Richard','Ng','richard.ng@gmail.com'),(10012,'default_pic.jpg','sbeaver13','choy','Seaver','Choy','seaver.choy@gmail.com');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,6 +153,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (10001,'Mozzarella Sticks',10003,'rev_1.jpg',0,4);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -165,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-15 19:29:30
+-- Dump completed on 2015-04-16 10:47:17

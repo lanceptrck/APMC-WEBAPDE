@@ -381,15 +381,16 @@ p.commentText{
     outline: 0;
 }
 .live{
+	top: 40px;
+	right: 20px;
 	padding: 0px;
-	margin-right: 20px;	
     background-color: white;
 	font-style: helvetica;
 	font-family: sans-serif;
     border-radius: 5px;
 	box-shadow: 0px 0.5px 5px rgb(60, 60, 60);
 	width: 215px;
-	float: right;
+	position: fixed;
 }
 .menuBox{
     top: 40%;

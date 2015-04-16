@@ -138,7 +138,7 @@
 	            			document.getElementById(id+"_heartCount").innerHTML = xmlhttp.responseText;
 	            			document.getElementById(id+"_heartImg").src = "images/hollowheart.png";
 	            			document.getElementById(id+"_heartImg").onclick = function(){ favorite(id,type,indicator); } ;
-	            			document.getElementById(id+"_heartImg").title = "Favorite";
+	            			document.getElementwById(id+"_heartImg").title = "Favorite";
 	            		}
 	            		else{
 	            			document.getElementById(id+"_favorited").src = "images/hollowheart.png";
@@ -155,7 +155,8 @@
 		<form action = "results.php" method = "post">
 			<input id ="search" type = "search" name = "searchbar" placeholder = "" autocomplete="off" onkeyup="showResult(this.value);">
 		</form>
-		<br><br><br><div id="live"></div>
+		<div id = "live">
+		</div>
 	</header>
 	<div class = "slideOutBar">
 		<div class = "slideHeader">

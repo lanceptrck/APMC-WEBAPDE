@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			changeProfilePicture($la_id, $file_name);
 			$ppReply = "Successfuly changed profile picture!";
-		} else  $ppReply = "Fail to change profile picture.";
+		} else  $ppReply = "Failed to change profile picture.";
 	}
 
 	if(!empty($_POST["password"]) && !empty($_POST["confirmPassword"]))
@@ -43,11 +43,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		$aExist = true;
 		changeAboutMe($la_id, $_POST["aboutme"]);
-		$aReply = "Successfully change about me.";
+		$aReply = "Successfully changed About me.";
 	}
-
-	//echo "Succesfully Made Changes!";
-	//header("Refresh: 2; URL=settings.php");
 }
 
 ?>

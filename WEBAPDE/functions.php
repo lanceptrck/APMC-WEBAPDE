@@ -1257,7 +1257,7 @@ function populateRecipeByFavorite($aid)
 		{
 		echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
-		<p class = \"heartCount\">" . $temp->get_favecounts() . "<img class = \"heartImg\" src = \"images/heart.jpg\"></p>
+		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<br><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;

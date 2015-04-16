@@ -5,7 +5,7 @@ The recipe <b> GOD </b>.Bow down to the greatest chef of all time nigguhz!
 Nigga supp man<br>
 ;
 10003
-8===D
+<h3>Hello</h3>
 ;
 10004
 I am the bomb!<br>
@@ -27,4 +27,10 @@ I am the bomb!<br>
 ;
 10010
 I am the bomb!<br>
+;
+10011
+
+;
+10012
+<h1> Confucious nigga </h1>
 ;
