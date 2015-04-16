@@ -47,10 +47,10 @@
 					<input type = "text" placeholder = "*Username" class = "rBox" id = "username" name = "username">
 					<br>
 					<br>
-					<input type ="submit" value ="Register" class="registerButton">
+					<input type = "submit" value ="Register" class = "registerButton">
 					<br>
 					<br>
-					<a href = "index.php"><input type ="button" value = "Cancel" class = "registerButton"></a>
+					<a href = "index.php"><input type ="button" value = "Cancel" style = "margin-top:0px; margin-right:55px; width:27em;"></a>
 				</form>
 			</div>
 		</div>

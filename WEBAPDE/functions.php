@@ -539,8 +539,6 @@ function populateMatches($str)
 	global $recipes;
 	global $reviews;
 
-	$result = "<h3> Search results: </h3>";
-
 	for($i = 0; $i<count($accounts); $i++)
 	{
 		$temp = $accounts[$i];
@@ -552,8 +550,8 @@ function populateMatches($str)
 
 			if($result == "")
 			{
-				$result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
-			} else $result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
+				$result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
+			} else $result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
 
 		}
 	}
@@ -568,8 +566,8 @@ function populateMatches($str)
 
 			if($result == "")
 			{
-				$result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
-			} else $result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
+				$result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
+			} else $result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
 
 		}
 	}
@@ -584,14 +582,14 @@ function populateMatches($str)
 
 			if($result == "")
 			{
-				$result .= "<p class='hi' onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
-			} else $result .= "<p class='hi onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
+				$result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
+			} else $result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
 
 		}
 	}
 
 	if($result == "")
-		echo "No results.";
+		echo "<p class = \"noResults\">No results.</p>";
 	else {
 		echo $result;
 	}
