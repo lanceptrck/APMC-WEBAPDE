@@ -66,10 +66,10 @@
 					<?php echo $acc->get_aboutme(); ?>
 				</div>	
 				<div id = "accountReviews" class = "tab-content">
-					<?php populateReviewByAccount($account_id); ?>
+					<?php populateReviewByAccount($account_id, $la_id); ?>
 				</div>					
 				<div id = "accountRecipes" class = "tab-content">
-					<?php populateRecipeByAccount($account_id);  ?>
+					<?php populateRecipeByAccount($account_id, $la_id);  ?>
 				</div>
 			</div>
 			<div class = "addButton">

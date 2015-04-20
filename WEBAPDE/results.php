@@ -8,6 +8,10 @@
 		if(isset($_POST["searchbar"])){
 			$searched = $_POST["searchbar"];
 		}
+		else if(isset($_GET['q']))
+		{
+			$searched = $_GET['q'];
+		}
 	}
 	else{
 		echo "You are not logged in.";

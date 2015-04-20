@@ -7,3 +7,12 @@ N/A<br>
 10003
 N/A<br>
 ;
+10004
+Healthy enough
+;
+10005
+Healthy<br>
+;
+10006
+I don't want to know.<br>
+;

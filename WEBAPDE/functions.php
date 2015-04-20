@@ -539,6 +539,10 @@ function populateMatches($str)
 	global $recipes;
 	global $reviews;
 
+	$cnt = 0;
+
+	$result = "";
+
 	for($i = 0; $i<count($accounts); $i++)
 	{
 		$temp = $accounts[$i];
@@ -547,12 +551,8 @@ function populateMatches($str)
 			$or_match = $temp->getFirstname() . " " . $temp->getLastname();
 			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
 
-
-			if($result == "")
-			{
-				$result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
-			} else $result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
-
+			$result .= "<a href='account.php?id=".$temp->getAccid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
+			$cnt++;
 		}
 	}
 
@@ -564,11 +564,8 @@ function populateMatches($str)
 			$or_match = $temp->get_recipename();
 			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
 
-			if($result == "")
-			{
-				$result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
-			} else $result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
-
+			$result .= "<a href='recipe.php?link=".$temp->get_recipeid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
+			$cnt++;
 		}
 	}
 
@@ -580,16 +577,13 @@ function populateMatches($str)
 			$or_match = $temp->get_reviewname();
 			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
 
-			if($result == "")
-			{
-				$result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
-			} else $result .= "<p class=\"resultItem\" onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
-
+			$result .= "<a href='review.php?link=".$temp->get_reviewid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
+			$cnt++;
 		}
 	}
 
 	if($result == "")
-		echo "<p class = \"noResults\">No results.</p>";
+		echo "<p class =\"noResults\>No results.</p>";
 	else {
 		echo $result;
 	}
@@ -1157,7 +1151,7 @@ function populateReviewByName($name)
 	for($i = 0; $i<count($reviews); $i++)
 	{
 		$temp = $reviews[$i];
-		if(strcmp($name, $temp->get_recipename()) == 0 || strpos(strtolower($temp->get_reviewname()), strtolower($name)) !== false){
+		if(strcmp($name, $temp->get_reviewname()) == 0 || strpos(strtolower($temp->get_reviewname()), strtolower($name)) !== false){
 		echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
@@ -1171,7 +1165,7 @@ function populateReviewByName($name)
 	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
 }
 
-function populateReviewByAccount($id)
+function populateReviewByAccount($id, $aid)
 {
 	global $reviews;
 	$temp = null;
@@ -1181,6 +1175,8 @@ function populateReviewByAccount($id)
 	{
 		$temp = $reviews[$i];
 		if($temp->get_accid() == $id){
+
+		if($temp->get_accid() == $aid){
 		echo "<a href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b><a href='edit-review.php?link=". $temp->get_reviewid()."'>&nbsp;&nbsp&nbsp;
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
@@ -1190,6 +1186,18 @@ function populateReviewByAccount($id)
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
+
+		else
+		{
+			echo "<a class =\"no\" href='review.php?link=". $temp->get_reviewid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/review/" . $temp->get_reviewimg() . "\">
+			&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b>
+			<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+			<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
+			<br><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+			$cnt++;
+		}
+	}
 	}
 
 	if($cnt == 0) echo "<p align=\"center\">No results.</p>";
@@ -1219,7 +1227,7 @@ function populateReviewByFavorite($aid)
 }
 
 
-function populateRecipeByAccount($id)
+function populateRecipeByAccount($id, $aid)
 {
 	global $recipes;
 	$temp = null;
@@ -1230,15 +1238,29 @@ function populateRecipeByAccount($id)
 		$temp = $recipes[$i];
 		if($temp->get_accid() == $id)
 		{
-		echo "<a class href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
-		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'>
-		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
-		<input type=\"button\" value=\"Edit\"/></a>
-		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div>";
-		$cnt++;
+			if($temp->get_accid() == $aid)
+			{
+				echo "<a class href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
+				&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'>
+				<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+				<input type=\"button\" value=\"Edit\"/></a>
+				<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div>";
+				$cnt++;
+			}
+			else
+			{
+				echo "<a class =\"no\" href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
+				&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
+				<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
+				<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+				$cnt++;
+			}
 		}
+		
 	}
+	
 
 
 	if($cnt == 0) echo "<p align=\"center\">No results.</p>";

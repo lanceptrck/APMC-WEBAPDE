@@ -1,4 +1,4 @@
-q<?php
+<?php
 
 	session_start();
 	
@@ -84,12 +84,13 @@ q<?php
      	{
         $toPost = uploadPicture($target_dir.$file_name, $file_type, $file_name, $file_size, $_FILES["fileToUpload"]["tmp_name"]);
      		
+        $link = getLastRecipeId()+1;
         if($toPost == true)
         {
           postRecipe(getLastRecipeId()+1, $account_id, $title, $ingredients, $directions, $facts, $file_name);
      		  echo "Recipe successfuly posted!";
-          header("Refresh: 2; URL=recipe.php?link=$getLastRecipeId()+1");
-          exit
+          header("Refresh: 2; URL=recipe.php?link=$link");
+          exit;
         }
 
      	} else {

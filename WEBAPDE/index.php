@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<input type = "password" placeholder = "Password" class = "iBox" id = "password" name = "password">
 					<br>
 					<br>
-					<a href = "registration.php"><input type = "button" style = "margin-top:0px; margin-left:10px; width:10em;" value = "Register"/></a>
+					<a href = "registration.php"><input type = "button" style="margin-top:0px; margin-right: 5px; margin-left:10px; width:8em;" value = "Register"/></a>
 					<input type ="submit" class = "loginButton" value ="Login">
 				</form>
 			</div>

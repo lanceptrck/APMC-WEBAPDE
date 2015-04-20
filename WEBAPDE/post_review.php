@@ -49,7 +49,7 @@
    			} else {
      			$title = test_input($_POST["review_title"]);
      				// check if name only contains letters and whitespace
-     			if (!preg_match("/^[a-zA-Z ]*$/", $title)) {
+     			if (!preg_match("/^[a-zA-Z0-9,.!? ]*$/", $title)) {
        				$tErr = "Only letters and white space allowed"; 
        				$isErr = true;
      			}
@@ -75,12 +75,12 @@
      	{
 
         $toPost = uploadPicture($target_dir.$file_name, $file_type, $file_name, $file_size, $_FILES["fileToUpload"]["tmp_name"]);
-     		
+        $latest = getLastReviewId()+1;
         if($toPost == true)
         {
           postReview(getLastReviewId()+1, $account_id, $title, $review_text, $rating, $file_name);
      		    echo "Review successfuly posted!";
-            header("Refresh: 2; URL=review.php?link=$getLastReviewId()+1");
+            header("Refresh: 2; URL=review.php?link=$latest");
             exit;
         } 
         
