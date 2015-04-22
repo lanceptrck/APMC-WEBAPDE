@@ -551,7 +551,7 @@ function populateMatches($str)
 			$or_match = $temp->getFirstname() . " " . $temp->getLastname();
 			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
 
-			$result .= "<a href='account.php?id=".$temp->getAccid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Account: ".$match."</p>";
+			$result .= "<a href='account.php?id=".$temp->getAccid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Account - ".$match."</p>";
 			$cnt++;
 		}
 	}
@@ -564,7 +564,7 @@ function populateMatches($str)
 			$or_match = $temp->get_recipename();
 			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
 
-			$result .= "<a href='recipe.php?link=".$temp->get_recipeid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Recipe: ".$match."</p>";
+			$result .= "<a href='recipe.php?link=".$temp->get_recipeid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Recipe - ".$match."</p>";
 			$cnt++;
 		}
 	}
@@ -577,14 +577,14 @@ function populateMatches($str)
 			$or_match = $temp->get_reviewname();
 			$match = strtolower(str_ireplace($str, "<b>".$str."</b>", $or_match));
 
-			$result .= "<a href='review.php?link=".$temp->get_reviewid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Review: ".$match."</p>";
+			$result .= "<a href='review.php?link=".$temp->get_reviewid()."'><p class='resultItem' onclick='autofill(\"".$or_match."\")'>Review - ".$match."</p>";
 			$cnt++;
 		}
 	}
 
 	if($result == "")
-		echo "<p class =\"noResults\>No results.</p>";
-	else {
+		echo "<p class =\"noResults\">No results.</p>";
+	else{
 		echo $result;
 	}
 }
@@ -1181,7 +1181,7 @@ function populateReviewByAccount($id, $aid)
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b><a href='edit-review.php?link=". $temp->get_reviewid()."'>&nbsp;&nbsp&nbsp;
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
-		<input type=\"button\" value=\"Edit\"/></a>
+		<input type=\"button\" value=\"Edit\" style=\"margin-top:5px;\"/></a>
 		<br><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
@@ -1243,7 +1243,7 @@ function populateRecipeByAccount($id, $aid)
 				echo "<a class href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
 				&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'>
 				<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
-				<input type=\"button\" value=\"Edit\"/></a>
+				<input type=\"button\" value=\"Edit\" style=\"margin-top:5px;\"/></a>
 				<br><br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div>";
 				$cnt++;

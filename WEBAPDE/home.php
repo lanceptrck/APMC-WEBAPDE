@@ -26,7 +26,7 @@
 				<a href = "home-review.php">
 					<div class = "mainHeader">
 						<img class = "mainImg" src = "images/mainReview.jpg"/>
-						<img class = "mainItemImg" src = "images/review/rev_10001.jpg"/>
+						<img class = "mainItemImg" src = "images/reviewsIcon.jpg"/>
 						<p class = "mainHead">Reviews.</p>
 					</div>
 				</a>
@@ -34,7 +34,7 @@
 				<a href = "home-recipe.php">
 					<div class = "mainHeader">
 						<img class = "mainImg" src = "images/mainRecipe.jpg"/>
-						<img class = "mainItemImg" src = "images/recipe/rec_10013.jpg"/>
+						<img class = "mainItemImg" src = "images/recipesIcon.jpg"/>
 						<p class = "mainHead">Recipes.</p>
 					</div>
 				</a>
@@ -42,7 +42,7 @@
 				<a href = "favorites.php">
 					<div class = "mainHeader">
 						<img class = "mainImg" src = "images/mainFavorites.jpg"/>
-						<img class = "mainItemImg" src = "images/recipe/rec_10005.jpg"/>
+						<img class = "mainItemImg" src = "images/favoritesIcon.jpg"/>
 						<p class = "mainHead">Favorites.</p>
 					</div>
 				</a>

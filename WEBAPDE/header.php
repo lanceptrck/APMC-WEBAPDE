@@ -7,11 +7,11 @@
 			document.querySelector("#nav-toggle").addEventListener("click", function(){
 				this.classList.toggle("active");
 				if(clicked == 0){
-					$(".slideOutBar").animate({left: "0px"}, 150);
+					$(".slideOutBar").animate({left: "0px"}, 300);
 					clicked = 1;
 				}
 				else{
-					$(".slideOutBar").animate({left: "-268px"}, 150);
+					$(".slideOutBar").animate({left: "-268px"}, 300);
 					clicked = 0;
 				}
   			});

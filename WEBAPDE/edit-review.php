@@ -13,8 +13,8 @@ if(isset($_SESSION["username"])){
 			header('Refresh: 2; URL=home.php');
 			exit;
 		}
-	} else echo "No recipe selected.";
-
+	} 
+	else echo "No recipe selected.";
 }
 else{
 	echo "You are not logged in.";
@@ -32,8 +32,9 @@ else{
 		<div class = "foodList">
 			<?php include 'header.php'; ?>	
 			<div class = "menuBox" id = "inbox">
+				<a href = "account.php"><input type = "button" style = "top: 15px; left:15px; position: absolute;" value = "&#10094; Back"/></a>
 				<ul class = "tabs" align = "center">
-					<li class = "tab-link current" data-tab = "postReview">Editing Review: <?php echo $review->get_reviewname(); ?></a></li>
+					<li class = "tab-link current" data-tab = "postReview">Editing Review - <?php echo $review->get_reviewname(); ?></a></li>
 				</ul>
 				<div id = "postReview" class = "tab-content current" align = "center">
 					<form action = "logic_editreview.php?q=<?php echo $review_id;?>" method = "POST" enctype = "multipart/form-data">
@@ -60,7 +61,6 @@ else{
 						        <input type = "radio" class = "rating-input" id = "rating-input-1-1" value = "1" name = "rating-input-1">
 						        <label for = "rating-input-1-1" class = "rating-star"></label>
 							</span>
-							<br><br><a href="account.php"><input type="button" value="Cancel"/></a>
 						</div>
 					    <div class = "submitButton">
 							<button id = "postButton" onclick = "document.forms["pReview"].submit();"><img class = "postImg" src = "images/checkButton.png"></button>
