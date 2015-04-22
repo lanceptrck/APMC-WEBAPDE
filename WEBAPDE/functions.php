@@ -1133,7 +1133,7 @@ function populateRecipeByName($name)
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
 	}
@@ -1157,7 +1157,7 @@ function populateReviewByName($name)
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
 	}
@@ -1181,9 +1181,9 @@ function populateReviewByAccount($id, $aid)
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_reviewname() . "</font></b><a href='edit-review.php?link=". $temp->get_reviewid()."'>&nbsp;&nbsp&nbsp;
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
-		<input type=\"button\" value=\"Edit\" style=\"margin-top:5px;\"/></a>
+		<input type=\"button\" value=\"Edit\" style=\"margin-top:5px; padding: 2px;\"/></a>
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
 
@@ -1194,7 +1194,7 @@ function populateReviewByAccount($id, $aid)
 			<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 			<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
 			<br><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 			$cnt++;
 		}
 	}
@@ -1218,7 +1218,7 @@ function populateReviewByFavorite($aid)
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<p class = \"heartCount\">" . $temp->get_reviewcounts() . "</p><img class = \"heartImg\" src = \"images/star.jpg\">
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
 	}
@@ -1243,9 +1243,9 @@ function populateRecipeByAccount($id, $aid)
 				echo "<a class href='recipe.php?link=". $temp->get_recipeid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/recipe/" . $temp->get_recipeimg() . "\">
 				&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font>&nbsp;&nbsp&nbsp;</b><a href='edit-recipe.php?link=". $temp->get_recipeid()."'>
 				<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
-				<input type=\"button\" value=\"Edit\" style=\"margin-top:5px;\"/></a>
+				<input type=\"button\" value=\"Edit\" style=\"margin-top:5px; padding: 2px;\"/></a>
 				<br><br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div>";
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div>";
 				$cnt++;
 			}
 			else
@@ -1254,7 +1254,7 @@ function populateRecipeByAccount($id, $aid)
 				&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
 				<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 				<br><br>
-				&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 				$cnt++;
 			}
 		}
@@ -1281,7 +1281,7 @@ function populateRecipeByFavorite($aid)
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->get_recipename() . "</font></b>
 		<p class = \"heartCount\">" . $temp->get_favecounts() . "</p><img class = \"heartImg\" src = \"images/heart.jpg\">
 		<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;submitted by " . getAccountName($temp->get_accid()) . "</div></a>";
 		$cnt++;
 		}
 	}
@@ -1305,6 +1305,7 @@ function populatePeople($name)
 
 		if(strcmp($name, $fullname) == 0 || strpos(strtolower($firstname), strtolower($name)) !== false || strpos(strtolower($lastname), strtolower($name)) !== false){
 		echo "<a class =\"no\" href='account.php?id=". $temp->getAccid()."'><div class =\"itemBox\"><img class = \"itemBoxImg\" src = \"images/profile/" . $temp->getImg() . "\">
+		<br>
 		&nbsp;&nbsp&nbsp;&nbsp;<b><font size = \"2\">" . $temp->getFirstname() . " " . $temp->getLastname() . "</font></b>
 		</div></a>";
 		$cnt++;
