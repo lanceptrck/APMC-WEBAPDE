@@ -36,11 +36,15 @@
 						<div class = "leftSettings">
 							<br>
 							<br>
-							<b>Profile picture</b> <p> <?php echo $ppReply; ?> </p>
-							<input type = "file" name = "fileToUpload">
+							<b>Profile picture</b><p><?php echo $ppReply; ?></p>
+							<label class = "custom-file-input">
+								Upload Image
+								<input type = "file" name = "fileToUpload">
+							</label>
 							<br>
 							<br>
-							<b>Password</b> <p> <?php echo $pReply; ?> </p>
+							<br>
+							<b>Password</b><p><?php echo $pReply; ?></p>
 							<input type = "Password" placeholder = "New password" name = "password" class = "iBox"/>
 							<br>
 							<br>
@@ -49,7 +53,7 @@
 						<div class = "rightSettings">
 							<br>
 							<br>
-							<b>About me</b> <?php echo $aReply; ?> </p>
+							<b>About me</b><?php echo $aReply; ?></p>
 							<textarea placeholder = "Insert text here" class = "tBox" name="aboutme" style = "width:400px;" cols = "10" rows = "50"/></textarea>
 							<br>
 							<br>

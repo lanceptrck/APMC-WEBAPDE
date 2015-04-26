@@ -30,9 +30,10 @@
 			<div class = "menuBox" id = "inbox">
 				<p class = "resultHead">Showing results of</p>
 				<p class = "menuHead" style = "padding-top:15px; padding-left:25px"><?php echo $searched ?></p>
-				<ul class = "tabs" align = "center">
-					<li class = "tab-link current" data-tab = "resultReview">Review</a></li>
-					<li class = "tab-link" data-tab = "resultRecipe">Recipe</a></li>
+				<br>
+				<ul class = "tabs" style = "padding-left:30px;">
+					<li class = "tab-link current" data-tab = "resultReview">Reviews</a></li>
+					<li class = "tab-link" data-tab = "resultRecipe">Recipes</a></li>
 					<li class = "tab-link" data-tab = "resultAccount">People</a></li>
 				</ul>
 				<br>

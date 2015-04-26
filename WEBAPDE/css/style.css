@@ -18,7 +18,7 @@ a{
 	font-family: sans-serif;
 	text-decoration: none;
 }
-a.no{
+a.navLink{
     text-decoration: none;
     color: white;
     font-size: 13px;
@@ -41,7 +41,7 @@ p.resultItem{
 p.resultItem:hover{
 	background-color: rgb(187, 187, 187);
 }
-.live{
+.liveResults{
 	top: 40px;
 	right: 20px;
     background-color: white;
@@ -359,6 +359,41 @@ p.commentText{
 }
 .regButton:focus{
     outline: 0;
+}
+.custom-file-input{
+	outline: 0;
+    background-color: rgb(204, 204, 204);
+	overflow: hidden;
+	position: relative;
+}
+.custom-file-input [type=file]{
+    top: 0;
+    right: 0;
+    text-align: right;
+    min-height: 100%;
+    min-width: 100%;
+    display: block;
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    cursor: inherit;
+    position: absolute;
+}
+.custom-file-input{
+	padding: 7px;
+	font-size: 11px;
+    font-style: helvetica;
+	font-family: sans-serif;
+	font-weight: bold;
+    border-radius: 3px;
+}
+.custom-file-input [type=file]{
+	cursor: pointer;
+}
+.custom-file-input:hover{
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.custom-file-input:active{
+    border: 1px solid rgb(66,133,244);
 }
 .registerBox{
     top: 40%;
@@ -940,6 +975,7 @@ ul.tabs li.current{
 #accountAbout{
     left: 60px;
     padding: 15px;
+    padding-top: 1px;
 	color: rgba(10, 10, 10, 0.9);
 	font-style: helvetica;
 	font-family: sans-serif;

@@ -77,11 +77,10 @@
         			$(this).animate({opacity: 0.8}, 250);
     			});
 			});
-
 			function showResult(str){
 				if (str.length < 2){ 
-    				document.getElementById("live").innerHTML = "";
-    				document.getElementById("live").className = "";
+    				document.getElementById("liveResults").innerHTML = "";
+    				document.getElementById("liveResults").className = "";
     				document.getElementById("search").className = "";
     				return;
   				}	
@@ -93,8 +92,8 @@
   				}
   				xmlhttp.onreadystatechange = function(){
     				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-      					document.getElementById("live").innerHTML = xmlhttp.responseText;
-      					document.getElementById("live").className = "live";
+      					document.getElementById("liveResults").innerHTML = xmlhttp.responseText;
+      					document.getElementById("liveResults").className = "liveResults";
     					document.getElementById("search").className = "searchClicked";
     				}
 
@@ -102,13 +101,10 @@
   				xmlhttp.open("GET","livesearch.php?q="+str,true);
   				xmlhttp.send();
 			}
-
-			function autofill(str)
-			{
+			function autofill(str){
 				document.getElementById("search").value = str;
-				$( "#live" ).remove();
+				$( "#liveResults" ).remove();
 			}
-			
 			function favorite(id, type, indicator){
 				var xmlhttp = new XMLHttpRequest();
 	        	xmlhttp.onreadystatechange = function(){
@@ -129,7 +125,6 @@
         		xmlhttp.open("GET", "favorite-it.php?id=" + id +"&type="+type, true);
         		xmlhttp.send();
 			}
-
 			function unfavorite(id, type, indicator){
 				var xmlhttp = new XMLHttpRequest();
         		xmlhttp.onreadystatechange = function(){
@@ -151,17 +146,20 @@
         		xmlhttp.send();
         	}
 		</script>
-		<a href = "home.php" class = "no"><p class = "headName">potato.</p></a>
+		<a href = "home.php" class = "navLink"><p class = "headName">potato.</p></a>
 		<form action = "results.php" method = "post">
 			<input id ="search" type = "search" name = "searchbar" placeholder = "" autocomplete="off" onkeyup="showResult(this.value);">
 		</form>
-		<br><br><br><div id="live"></div>
+		<br>
+		<br>
+		<br>
+		<div id = "liveResults"></div>
 	</header>
 	<div class = "slideOutBar">
 		<div class = "slideHeader">
 			<img class = "slideImg" src = "images/profile/chino_cover.jpg"/>
 			<img class = "userImg" src = "images/profile/<?php echo $loggedIn_account->getImg()?>"/>
-			<a href = "account.php" class = "no">
+			<a href = "account.php" class = "navLink">
 				<p class = "userName"><?php echo $loggedIn_account->getFirstname() . " " . $loggedIn_account->getLastname() ?>
 					<br>
 					<?php echo $loggedIn_account->getUser() ?>
@@ -169,34 +167,34 @@
 			</a>
 		</div>
 		<hr>
-		<a href = "home.php" class = "no">
+		<a href = "home.php" class = "navLink">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sHome.png">Home
 			</div>
 		</a>
-		<a href = "favorites.php" class = "no">
+		<a href = "favorites.php" class = "navLink">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sHeart.png">Favorites
 			</div>
 		</a>
 		<hr>
-		<a href = "home-review.php" class = "no">
+		<a href = "home-review.php" class = "navLink">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sGlass.png">Reviews
 			</div>
 		</a>
-		<a href = "home-recipe.php" class = "no">
+		<a href = "home-recipe.php" class = "navLink">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sApple.png">Recipes
 			</div>
 		</a>
 		<hr>
-		<a href = "logout.php" class ="no">
+		<a href = "logout.php" class ="navLink">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sLogout.png">Logout
 			</div>
 		</a>
-		<a href = "settings.php" class ="no">
+		<a href = "settings.php" class ="navLink">
 			<div class = "sideBox">
 				<img class = "sideImg" src = "images/sSettings.png">Settings
 			</div>

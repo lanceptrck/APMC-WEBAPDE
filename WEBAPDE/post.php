@@ -35,10 +35,10 @@ else{
 							<textarea placeholder = "Insert text here" class = "tBox" cols = "10" rows = "50" name = "review_txt"/></textarea>
 							<br>
 							<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type = "file" name = "fileToUpload">
+							<label class = "custom-file-input">
+								Upload Image
+								<input type = "file" name = "fileToUpload">
+							</label>
 							<br>
 							<br>
 							<span class = "rating">
@@ -75,10 +75,10 @@ else{
 							<textarea placeholder = "Nutrition Facts" class = "reBox"cols = "10" rows = "50" name = "facts_txt"/></textarea>
 							<br>
 							<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type = "file" name = "fileToUpload">
+							<label class = "custom-file-input">
+								Upload Image
+								<input type = "file" name = "fileToUpload">
+							</label>
 						</div>
 						<div class = "submitButton">
 							<button id = "postButton" onclick = "document.forms["pRecipe"].submit();"><img class = "postImg" src = "images/checkButton.png"></button>
